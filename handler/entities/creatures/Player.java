@@ -4,6 +4,7 @@ import handler.Handler;
 import handler.entities.Entity;
 import handler.gfx.Animation;
 import handler.gfx.Assets;
+import handler.inventory.Inventory;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -12,8 +13,11 @@ public class Player extends Creature{
 
 //animations
     private Animation animIdle, animMoveLeft, animMoveRight, animMoveUp, animMoveDown, animAttackLeft, animAttackRight, animAttackUp, animAttackDown;
+    //attack and attack animation timer
     private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
     private long lastAnimationTimer, animationCooldown = 500, animationTimer = animationCooldown;
+    //inventory
+    private Inventory inventory;
 
     public Player(Handler handler, float x, float y)
     {
@@ -34,6 +38,8 @@ public class Player extends Creature{
 //        animAttackRight = new Animation(800, Assets.player_attack_right);
 //        animAttackUp = new Animation(800, Assets.player_attack_up);
 //        animAttackDown = new Animation(800, Assets.player_attack_down);
+
+        inventory = new Inventory(handler);
     }
 
     @Override
@@ -52,7 +58,10 @@ public class Player extends Creature{
         getInput();
         move();
         handler.getGameCamera().centerOnEntity(this);
+        //attack
         checkAttacks();
+        //Inventory
+        inventory.tick();
     }
 
     private void checkAttacks()
@@ -203,6 +212,7 @@ public class Player extends Creature{
     @Override
     public void render(Graphics g) {
         g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),width, height * 2, null);
+        inventory.render(g);
 
 //        g.setColor(Color.red);
 //        g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()), (int) (y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
@@ -317,13 +327,17 @@ public class Player extends Creature{
 //        if(animationTimer > animationCooldown) {
 //            if(handler.getKeyManager().aUp)
 //            {
-//                animAttackUp.getCurrentFrame();
+//                animAttackUp.tick();
+//                return animAttackUp.getCurrentFrame();
 //            } else if (handler.getKeyManager().aDown) {
-//                animAttackDown.getCurrentFrame();
+//                animAttackDown.tick();
+//                return animAttackDown.getCurrentFrame();
 //            } else if (handler.getKeyManager().aLeft) {
-//                animAttackLeft.getCurrentFrame();
+//                animAttackLeft.tick()
+//                return animAttackLeft.getCurrentFrame();
 //            } else if (handler.getKeyManager().aRight) {
-//                animAttackRight.getCurrentFrame();
+//                animAttackRight.tick();
+//                return animAttackRight.getCurrentFrame();
 //            }
 //        }
 
@@ -347,4 +361,12 @@ public class Player extends Creature{
      {
          System.out.println("You've Been Eliminated");
      }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
 }

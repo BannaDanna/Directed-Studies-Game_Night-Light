@@ -13,7 +13,7 @@ public class Item {
     public static Item batteriesItem = new Item(Assets.batteries, "Batteries", 0);
 
     //Class
-    public static final int ITEMWIDTH = 16, ITEMHEIGHT = 16, PICKED_UP = -1;
+    public static final int ITEMWIDTH = 16, ITEMHEIGHT = 16;
 
     protected Handler handler;
     protected BufferedImage texture;
@@ -21,6 +21,7 @@ public class Item {
     protected final int id;
 
     protected int x, y, count;
+    protected boolean PickedUp = false;
 
     protected Rectangle bounds;
 
@@ -39,7 +40,8 @@ public class Item {
     public void tick(){
         if(handler.getWorld().getEntityManager().getPlayer().getCollisionBounds(0f,0f).intersects(bounds))
         {
-            count = PICKED_UP;
+            PickedUp = true;
+            handler.getWorld().getEntityManager().getPlayer().getInventory().addItem(this);
         }
     }
 
@@ -123,5 +125,13 @@ public class Item {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public boolean isPickedUp() {
+        return PickedUp;
+    }
+
+    public void setPickedUp(boolean pickedUp) {
+        PickedUp = pickedUp;
     }
 }

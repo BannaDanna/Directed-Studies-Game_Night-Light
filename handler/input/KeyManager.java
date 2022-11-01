@@ -75,7 +75,7 @@ public class KeyManager implements KeyListener {
 
     public boolean keyJustPressed(int keyCode)
     {
-        if(keyCode > 0 || keyCode >= keys.length)
+        if(keyCode < 0 || keyCode >= keys.length)
         {
             return false;
         }
