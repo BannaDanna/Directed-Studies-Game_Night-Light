@@ -35,8 +35,8 @@ public class Game implements Runnable{
     public State menuState;
     public State settingsState;
 
-    private BufferedImage testImage;
-    private BufferedImage banana;
+//    private BufferedImage testImage;
+//    private BufferedImage banana;
     private BufferedImage sheet;
     private SpriteSheet sheetCrop;
 
