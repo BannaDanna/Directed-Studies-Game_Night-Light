@@ -212,7 +212,6 @@ public class Player extends Creature{
     @Override
     public void render(Graphics g) {
         g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),width, height * 2, null);
-        inventory.render(g);
 
 //        g.setColor(Color.red);
 //        g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()), (int) (y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
@@ -318,6 +317,11 @@ public class Player extends Creature{
 //        g.fillRect(ar3.x, ar3.y, ar3.width, ar3.height);
 //        g.fillRect(ar4.x, ar4.y, ar4.width, ar4.height);
 //        g.fillRect(ar5.x, ar5.y, ar5.width, ar5.height);
+    }
+
+    public void postRender(Graphics g)
+    {
+        inventory.render(g);
     }
 
     private BufferedImage getCurrentAnimationFrame()

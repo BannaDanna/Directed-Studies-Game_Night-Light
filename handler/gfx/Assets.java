@@ -1,22 +1,32 @@
 package handler.gfx;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Assets {
 
     private static final int width = 256, height = width;
     //tiles
-    public static BufferedImage empty, wall, carpet, lamp, leftSideWall, rightSideWall, bottomSideWall, bottomWall;
+    public static BufferedImage empty, wall, carpet, leftSideWall, rightSideWall, bottomSideWall, bottomWall;
+
+    //static entities
+    public static BufferedImage lamp, couch;
+
     //player animations
     public static BufferedImage[] player_idle;
     //UI
     public static BufferedImage[] btn_start;
     //items
     public static BufferedImage batteries;
+    //inventory
+    public static BufferedImage inventoryScreen;
 
     public static void init()
     {
         SpriteSheet sheet = new SpriteSheet(ImageLoader.LoadImage("/textures/squareSheet.png"));
+
+        //inventory
+        inventoryScreen = ImageLoader.LoadImage("/textures/inventoryScreen.png");
 
         //UI
         btn_start = new BufferedImage[2];
@@ -33,11 +43,14 @@ public class Assets {
         empty = sheet.crop(width*9, height*9, width, height);
         wall = sheet.crop((width * 2), 0, width, height);
         carpet = sheet.crop((width * 3), 0 , width, height);
-        lamp = sheet.crop(width * 9, 0, width, height * 2);
         leftSideWall = sheet.crop(width * 8, 0, width, height);
         rightSideWall = sheet.crop(width * 3, height, width, height);
         bottomSideWall = sheet.crop(width * 4, height, width, height);
         bottomWall = sheet.crop(width * 2, height, width, height);
+
+        //static entities
+        lamp = sheet.crop(width * 9, 0, width, height * 2);
+        couch = sheet.crop(width * 6, height, width, height);
 
         //items
         batteries = sheet.crop(width * 5, height * 5, width, height);

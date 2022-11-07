@@ -1,6 +1,7 @@
 package handler.inventory;
 
 import handler.Handler;
+import handler.gfx.Assets;
 import handler.items.Item;
 
 import java.awt.*;
@@ -9,6 +10,8 @@ import java.sql.Array;
 import java.util.ArrayList;
 
 public class Inventory {
+
+    private int invX = 0, invY = 0, invWidth = 640, invHeight = 360, invListCenterX = (int) invX + (invWidth / 2), invListCenterY = (int) invY + (invHeight / 2);
 
     private Handler handler;
     private boolean active = false;
@@ -43,7 +46,7 @@ public class Inventory {
             return;
         }
 
-
+        g.drawImage(Assets.inventoryScreen, invX, invY, invWidth, invHeight, null);
     }
 
     //inventory methods

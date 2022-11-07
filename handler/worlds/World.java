@@ -4,6 +4,7 @@ import com.sun.source.tree.Tree;
 import handler.Handler;
 import handler.entities.EntityManager;
 import handler.entities.creatures.Player;
+import handler.entities.statics.Couch;
 import handler.entities.statics.Lamp;
 import handler.items.Item;
 import handler.items.ItemManager;
@@ -30,6 +31,7 @@ public class World {
         entityManager.addEntity(new Lamp(handler, 100, 50));
         entityManager.addEntity(new Lamp(handler, 700, 50));
         entityManager.addEntity(new Lamp(handler, 400, 100));
+        entityManager.addEntity(new Couch(handler, 356, 150));
         loadWorld(path);
 
         entityManager.getPlayer().setX(spawnX);
