@@ -59,6 +59,14 @@ public class Item {
         render(g,(int) (x - handler.getGameCamera().getxOffset()),(int) (y - handler.getGameCamera().getyOffset()));
     }
 
+    public Item createNew(int count)
+    {
+        Item i = new Item(texture, name, id);
+        i.setPickedUp(true);
+        i.setCount(count);
+        return i;
+    }
+
     public Item createNew(int x, int y)
     {
         Item i = new Item(texture, name, id);

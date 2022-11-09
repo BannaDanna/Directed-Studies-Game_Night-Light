@@ -12,8 +12,8 @@ public class Couch extends StaticEntity{
         super(handler, x, y, Tile.TILEWIDTH, Tile.TILEHEIGHT);
         bounds.x = 0;
         bounds.y = 0;
-        bounds.width = 256;
-        bounds.height = 256;
+        bounds.width = 64;
+        bounds.height = 64;
     }
 
     @Override
@@ -30,4 +30,5 @@ public class Couch extends StaticEntity{
     public void die() {
 
     }
+
 }

@@ -20,9 +20,16 @@ public class Assets {
     public static BufferedImage batteries;
     //inventory
     public static BufferedImage inventoryScreen;
+    //fonts
+    public static Font font28, font56, font14;
+
 
     public static void init()
     {
+        font28 = FontLoader.loadFont("res/fonts/Pixellettersfull-BnJ5.ttf", 28);
+        font14 = FontLoader.loadFont("res/fonts/Pixellettersfull-BnJ5.ttf", 14);
+        font56 = FontLoader.loadFont("res/fonts/Pixellettersfull-BnJ5.ttf", 56);
+
         SpriteSheet sheet = new SpriteSheet(ImageLoader.LoadImage("/textures/squareSheet.png"));
 
         //inventory
@@ -53,6 +60,6 @@ public class Assets {
         couch = sheet.crop(width * 6, height, width, height);
 
         //items
-        batteries = sheet.crop(width * 5, height * 5, width, height);
+        batteries = sheet.crop(width * 5, height, width, height);
     }
 }
