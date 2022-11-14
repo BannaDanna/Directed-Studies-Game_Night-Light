@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class Inventory {
 
-    private int invX = 0, invY = 0, invWidth = 640, invHeight = 360, invListCenterX = (int) invX + (invWidth / 2), invListCenterY = (int) invY + (invHeight / 2), invListSpacing = 50;
+    private int invX = 0, invY = 0, invWidth = 640, invHeight = 360, invListCenterX = (int) invX + (invWidth / 2) - 100, invListCenterY = (int) invY + (invHeight / 2), invListSpacing = 50;
 
     private int invImageX = 490, invImageY = 50,
             invImageWidth = 100, invImageHeight = 100;
@@ -80,9 +80,9 @@ public class Inventory {
                 continue;
             if(i == 0)
             {
-                Text.drawString(g,"> " + inventoryItems.get(selectedItem + i).getName() + " <", invListCenterX - 100, (invListCenterY + i * invListSpacing), true, Color.YELLOW, Assets.font28);
+                Text.drawString(g,"> " + inventoryItems.get(selectedItem + i).getName() + " <", invListCenterX, (invListCenterY + i * invListSpacing), true, Color.YELLOW, Assets.font28);
             } else {
-                Text.drawString(g, inventoryItems.get(selectedItem + i).getName(), invListCenterX - 100, (invListCenterY + i * invListSpacing), true, Color.WHITE, Assets.font28);
+                Text.drawString(g, inventoryItems.get(selectedItem + i).getName(), invListCenterX, (invListCenterY + i * invListSpacing), true, Color.WHITE, Assets.font28);
             }
         }
 

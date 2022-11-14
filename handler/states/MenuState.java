@@ -39,7 +39,7 @@ public class MenuState extends State{
 
         //Directly to game state
         //REMOVE in final product
-        State.setState(handler.getGame().gameState);
+//        State.setState(handler.getGame().gameState);
     }
 
     @Override
