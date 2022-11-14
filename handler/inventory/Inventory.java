@@ -17,7 +17,7 @@ public class Inventory {
     private int invImageX = 490, invImageY = 50,
             invImageWidth = 100, invImageHeight = 100;
 
-    private int invCountX = 550, invCountY = 140;
+    private int invCountX = 545, invCountY = 210;
 
 
     private int selectedItem = 0;
@@ -30,11 +30,6 @@ public class Inventory {
         this.handler = handler;
         inventoryItems = new ArrayList<Item>();
 
-        addItem(Item.batteriesItem.createNew(5));
-//        addItem(Item.batteriesItem.createNew(5));
-//        addItem(Item.batteriesItem.createNew(5));
-//        addItem(Item.batteriesItem.createNew(5));
-//        addItem(Item.batteriesItem.createNew(5));
     }
 
     public void tick() {
@@ -88,6 +83,7 @@ public class Inventory {
 
         Item item = inventoryItems.get(selectedItem);
         g.drawImage(item.getTexture(), invImageX, invImageY, invImageWidth, invImageHeight, null);
+        Text.drawString(g, Integer.toString(item.getCount()), invCountX, invCountY, true, Color.BLACK, Assets.font28);
     }
 
     //inventory methods
