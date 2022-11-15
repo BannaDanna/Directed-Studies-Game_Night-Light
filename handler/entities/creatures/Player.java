@@ -180,12 +180,16 @@ public class Player extends Creature{
             {
                 continue;
             }
+            if(!killable)
+            {
+                continue;
+            }
             for (int i = 0; i < ARray.length; i++) {
                 if(e.getCollisionBounds(0,0).intersects(ARray[i]))
                 {
-                    e.hurt(1);
+                    e.hurt(5-i);
                     System.out.println("Attack rectangle " + (i + 1));
-                    return;
+                    i= ARray.length;
                 }
             }
         }

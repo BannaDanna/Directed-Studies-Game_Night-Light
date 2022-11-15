@@ -12,6 +12,7 @@ public abstract class Entity {
     protected Rectangle bounds;
     protected int health;
     protected boolean active = true;
+    protected boolean killable = true;
     public static final int DEFAULT_HEALTH = 10;
 
 
@@ -61,6 +62,14 @@ public abstract class Entity {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public boolean isKillable() {
+        return killable;
+    }
+
+    public void setKillable(boolean killable) {
+        this.killable = killable;
     }
 
     public Entity(Handler handler, float x, float y, int width, int height)
