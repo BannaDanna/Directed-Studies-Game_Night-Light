@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class Display
 {
+
     private JFrame Frame;
     private Canvas canvas;
     private String Title;

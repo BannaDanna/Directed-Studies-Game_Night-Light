@@ -83,7 +83,7 @@ public class Player extends Creature{
         Rectangle ar3 = new Rectangle();
         Rectangle ar4 = new Rectangle();
         Rectangle ar5 = new Rectangle();
-        int arSize = 16;
+        int arSize = handler.getWidth() / 40;
         ar.width = arSize;
         ar.height = arSize;
 
@@ -189,7 +189,7 @@ public class Player extends Creature{
                 {
                     e.hurt(5-i);
                     System.out.println("Attack rectangle " + (i + 1));
-                    i= ARray.length;
+                    i = ARray.length;
                 }
             }
         }

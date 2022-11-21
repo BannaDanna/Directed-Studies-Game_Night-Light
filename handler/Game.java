@@ -192,4 +192,11 @@ public class Game implements Runnable{
         }
     }
 
+    public Display getDisplay() {
+        return display;
+    }
+
+    public void setDisplay(Display display) {
+        this.display = display;
+    }
 }

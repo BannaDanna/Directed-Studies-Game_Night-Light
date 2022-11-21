@@ -1,9 +1,12 @@
 package handler.tiles;
 
+import handler.Handler;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Tile {
+    public static Handler handler;
 
     public static Tile[] tiles = new Tile[256];
     public static Tile carpetTile = new CarpetTile(0);
@@ -17,7 +20,7 @@ public class Tile {
     protected BufferedImage texture;
     protected final int id;
 
-    public static int TILEWIDTH = 64, TILEHEIGHT = 64;
+    public static int TILEWIDTH = handler.getWidth() / 10, TILEHEIGHT = TILEWIDTH;
 
     public Tile(BufferedImage texture, int id)
     {
