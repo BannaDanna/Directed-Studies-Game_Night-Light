@@ -20,7 +20,7 @@ public class Tile {
     protected BufferedImage texture;
     protected final int id;
 
-    public static int TILEWIDTH = handler.getWidth() / 10, TILEHEIGHT = TILEWIDTH;
+    public static int TILEWIDTH = 10, TILEHEIGHT = TILEWIDTH;
 
     public Tile(BufferedImage texture, int id)
     {

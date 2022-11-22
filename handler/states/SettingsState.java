@@ -33,18 +33,18 @@ public class SettingsState extends State{
                 frame.setVisible(true);
             }
 
-            uiManager.addObject(new UIImageButton(200, 100, ))
         }));
     }
 
     @Override
     public void tick() {
-
+    uiManager.tick();
     }
 
     @Override
     public void render(Graphics g) {
 
+        uiManager.render(g);
         //g.drawImage(Assets.dos, 0,0,null);
     }
 }
