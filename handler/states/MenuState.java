@@ -27,15 +27,20 @@ public class MenuState extends State{
                 State.setState(handler.getGame().gameState);
             }
         }));
+
+        uiManager.addObject(new UIImageButton(200, 300, 256, 128, Assets.btn_start, new ClickListener() {
+
+            public void onCLick() {
+                handler.getMouseManager().setUIManager(null);
+                State.setState(handler.getGame().settingsState);
+            }
+        }));
     }
 
     @Override
     public void tick() {
         uiManager.tick();
-        if(getState() != this)
-        {
-            uiManager.removeObject();
-        }
+
 //        if(handler.getMouseManager().isLeftPressed() )
 //        {
 //            State.setState(handler.getGame().gameState);

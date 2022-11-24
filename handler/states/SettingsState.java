@@ -20,19 +20,15 @@ public class SettingsState extends State{
     public SettingsState(Handler handler)
     {
         super(handler);
-        JFrame frame = handler.getGame().getDisplay().getFrame();
         uiManager = new UIManager(handler);
         handler.getMouseManager().setUIManager(uiManager);
 
-        uiManager.addObject(new UIImageButton(200, 100, UIWidth, UIHeight, Assets.btn_start, new ClickListener() {
-            @Override
-            public void onCLick() {
-                frame.dispose();
-                frame.setUndecorated(true);
-                device.setFullScreenWindow(frame);
-                frame.setVisible(true);
-            }
+        uiManager.addObject(new UIImageButton(200, 100, 256, 128, Assets.btn_start, new ClickListener() {
 
+            public void onCLick() {
+                handler.getMouseManager().setUIManager(null);
+                State.setState(handler.getGame().menuState);
+            }
         }));
     }
 

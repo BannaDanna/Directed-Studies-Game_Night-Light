@@ -70,8 +70,8 @@ public class Game implements Runnable{
         gameCamera = new GameCamera(handler,0,0);
 
 
-        menuState = new MenuState(handler);
         settingsState = new SettingsState(handler);
+        menuState = new MenuState(handler);
         gameState = new GameState(handler);
         State.setState(menuState);
     }
