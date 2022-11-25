@@ -8,7 +8,6 @@ import handler.input.KeyManager;
 import handler.input.MouseManager;
 import handler.states.GameState;
 import handler.states.MenuState;
-import handler.states.SettingsState;
 import handler.states.State;
 
 import java.awt.*;
@@ -33,7 +32,6 @@ public class Game implements Runnable{
     //States
     public State gameState;
     public State menuState;
-    public State settingsState;
 
 //    private BufferedImage testImage;
 //    private BufferedImage banana;
@@ -70,7 +68,6 @@ public class Game implements Runnable{
         gameCamera = new GameCamera(handler,0,0);
 
 
-        settingsState = new SettingsState(handler);
         menuState = new MenuState(handler);
         gameState = new GameState(handler);
         State.setState(menuState);
