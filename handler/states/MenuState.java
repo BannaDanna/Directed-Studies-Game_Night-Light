@@ -7,6 +7,7 @@ import handler.ui.ClickListener;
 import handler.ui.UIImageButton;
 import handler.ui.UIManager;
 import handler.Launcher;
+import handler.ui.UIObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,8 @@ public class MenuState extends State{
 
     private UIManager uiManager;
     private JFrame frame;
+    private UIObject play;
+    private UIObject settings;
     static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
     public MenuState(Handler handler)
@@ -35,8 +38,14 @@ public class MenuState extends State{
         uiManager.addObject(new UIImageButton(200, 300, 256, 128, Assets.btn_start, new ClickListener() {
 
             public void onCLick() {
-                uiManager.removeObject(uiManager.getObjects().get(0));
-                uiManager.addObject(new UIImageButton(200, 100, 256, 128, Assets.btn_start, new ClickListener() {
+                play = uiManager.getObjects().get(0);
+                settings = uiManager.getObjects().get(0);
+
+                for (int i = 1; i > -1; i--)
+                {
+                    uiManager.removeObject(uiManager.getObjects().get(i));
+                }
+                uiManager.addObject(new UIImageButton(200, 50, 256, 128, Assets.btn_start, new ClickListener() {
                     @Override
                     public void onCLick() {
                         frame.dispose();
@@ -46,13 +55,25 @@ public class MenuState extends State{
                     }
                 }));
 
-                uiManager.addObject(new UIImageButton(200, 300, 256, 128, Assets.btn_start, new ClickListener() {
+                uiManager.addObject(new UIImageButton(200, 180, 256, 128, Assets.btn_start, new ClickListener() {
                     @Override
                     public void onCLick() {
-
+                        frame.dispose();
+                        frame.setUndecorated(false);
+                        device.setFullScreenWindow(null);
+                        frame.setVisible(true);
                     }
                 }));
-                uiManager.removeObject(uiManager.getObjects().get(0));
+                uiManager.addObject(new UIImageButton(200, 310, 256, 128, Assets.btn_start, new ClickListener() {
+                    @Override
+                    public void onCLick() {
+                        for (int i = 1; i > -1; i--) {
+                            uiManager.removeObject(uiManager.getObjects().get(i));
+                        }
+                        uiManager.addObject(play);
+                        uiManager.addObject(settings);
+                    }
+                }));
 
             }
         }));
