@@ -24,6 +24,7 @@ public class Display
     private void createDisplay()
     {
         Frame = new JFrame(Title);
+        Frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         Frame.setSize(Width, Height);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Frame.setResizable(false);

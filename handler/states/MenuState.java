@@ -39,7 +39,7 @@ public class MenuState extends State{
 
             public void onCLick() {
                 play = uiManager.getObjects().get(0);
-                settings = uiManager.getObjects().get(0);
+                settings = uiManager.getObjects().get(1);
 
                 for (int i = 1; i > -1; i--)
                 {
@@ -50,8 +50,8 @@ public class MenuState extends State{
                     public void onCLick() {
                         frame.dispose();
                         frame.setUndecorated(true);
-                        device.setFullScreenWindow(frame);
                         frame.setVisible(true);
+                        device.setFullScreenWindow(frame);
                     }
                 }));
 
@@ -67,7 +67,7 @@ public class MenuState extends State{
                 uiManager.addObject(new UIImageButton(200, 310, 256, 128, Assets.btn_start, new ClickListener() {
                     @Override
                     public void onCLick() {
-                        for (int i = 1; i > -1; i--) {
+                        for (int i = 2; i > -1; i--) {
                             uiManager.removeObject(uiManager.getObjects().get(i));
                         }
                         uiManager.addObject(play);
