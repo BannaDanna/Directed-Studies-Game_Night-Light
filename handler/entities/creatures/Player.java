@@ -180,7 +180,7 @@ public class Player extends Creature{
             {
                 continue;
             }
-            if(!killable)
+            if(!e.isKillable())
             {
                 continue;
             }

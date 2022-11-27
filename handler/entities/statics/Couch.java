@@ -14,6 +14,7 @@ public class Couch extends StaticEntity{
         bounds.y = 0;
         bounds.width = 64;
         bounds.height = 64;
+        killable = false;
     }
 
     @Override
