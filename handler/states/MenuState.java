@@ -11,8 +11,10 @@ import handler.ui.UIObject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class MenuState extends State{
+    private int xScaleFactor = 1, yScaleFactor = 1;
 
     private UIManager uiManager;
     private JFrame frame;
@@ -27,7 +29,7 @@ public class MenuState extends State{
         uiManager = new UIManager(handler);
         handler.getMouseManager().setUIManager(uiManager);
 
-        uiManager.addObject(new UIImageButton(200, 100, 256, 128, Assets.btn_start, new ClickListener() {
+        uiManager.addObject(new UIImageButton(200 * xScaleFactor, 100 * yScaleFactor, 256, 128, Assets.btn_start, new ClickListener() {
 
             public void onCLick() {
                 handler.getMouseManager().setUIManager(null);
@@ -35,7 +37,7 @@ public class MenuState extends State{
             }
         }));
 
-        uiManager.addObject(new UIImageButton(200, 300, 256, 128, Assets.btn_start, new ClickListener() {
+        uiManager.addObject(new UIImageButton(200 * xScaleFactor, 300 * yScaleFactor, 256, 128, Assets.btn_start, new ClickListener() {
 
             public void onCLick() {
                 play = uiManager.getObjects().get(0);
@@ -45,17 +47,26 @@ public class MenuState extends State{
                 {
                     uiManager.removeObject(uiManager.getObjects().get(i));
                 }
-                uiManager.addObject(new UIImageButton(200, 50, 256, 128, Assets.btn_start, new ClickListener() {
+                uiManager.addObject(new UIImageButton(260 * xScaleFactor, 50 * yScaleFactor, 128, 64, Assets.btn_start, new ClickListener() {
                     @Override
                     public void onCLick() {
+                        ArrayList<UIObject> temp = new ArrayList<>();
+                        for (int i = 2; i > -1; i--) {
+                            temp.add(uiManager.getObjects().get(i));
+                        }
                         frame.dispose();
                         frame.setUndecorated(true);
                         frame.setVisible(true);
                         device.setFullScreenWindow(frame);
+                        yScaleFactor = handler.getGame().getDisplay().getFrame().getHeight() / handler.getGame().getHeight();
+                        xScaleFactor = handler.getGame().getDisplay().getFrame().getWidth() / handler.getGame().getWidth();
+                        for (int i = 2; i > -1; i--) {
+                            uiManager.addObject(temp.get(i));
+                        }
                     }
                 }));
 
-                uiManager.addObject(new UIImageButton(200, 180, 256, 128, Assets.btn_start, new ClickListener() {
+                uiManager.addObject(new UIImageButton(260 * xScaleFactor, 120 * yScaleFactor, 128, 64, Assets.btn_start, new ClickListener() {
                     @Override
                     public void onCLick() {
                         frame.dispose();
@@ -64,7 +75,7 @@ public class MenuState extends State{
                         frame.setVisible(true);
                     }
                 }));
-                uiManager.addObject(new UIImageButton(200, 310, 256, 128, Assets.btn_start, new ClickListener() {
+                uiManager.addObject(new UIImageButton(200 * xScaleFactor, 190 * yScaleFactor, 256, 128, Assets.btn_start, new ClickListener() {
                     @Override
                     public void onCLick() {
                         for (int i = 2; i > -1; i--) {
