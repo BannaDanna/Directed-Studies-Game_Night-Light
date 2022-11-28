@@ -47,45 +47,47 @@ public class MenuState extends State{
                 MainMenu = new ArrayList<>();
                 MainMenu.add(play);
                 MainMenu.add(settings);
+                System.out.println(xScaleFactor);
+                System.out.println(yScaleFactor);
+                System.out.println(play.getX());
+                System.out.println(play.getY());
+                System.out.println(play.getWidth());
+                System.out.println(play.getHeight());
 
                 for (int i = 1; i > -1; i--)
                 {
                     uiManager.removeObject(uiManager.getObjects().get(i));
                 }
-                uiManager.addObject(new UIImageButton(260 * xScaleFactor, 50 * yScaleFactor, 128 * xScaleFactor, 64 * yScaleFactor, Assets.btn_start, new ClickListener() {
+
+                uiManager.addObject(new UIImageButton((float) (260 * xScaleFactor), (float) (50 * yScaleFactor), (int)(128 * xScaleFactor), (int)(64 * yScaleFactor), Assets.btn_start, new ClickListener() {
                     @Override
                     public void onCLick() {
                         ArrayList<UIObject> temp = new ArrayList<>();
                         for (UIObject object : uiManager.getObjects()) {
                             temp.add(object);
+                            uiManager.getObjects().remove(object);
                         }
                         frame.dispose();
                         frame.setUndecorated(true);
                         frame.setVisible(true);
                         device.setFullScreenWindow(frame);
-                        yScaleFactor = handler.getGame().getDisplay().getFrame().getHeight() / handler.getGame().getHeight();
-                        xScaleFactor = handler.getGame().getDisplay().getFrame().getWidth() / handler.getGame().getWidth();
+                        yScaleFactor = (double) handler.getGame().getDisplay().getFrame().getHeight() / (double)handler.getGame().getHeight();
+                        xScaleFactor = (double) handler.getGame().getDisplay().getFrame().getWidth() / (double) handler.getGame().getWidth();
                         for(UIObject object : MainMenu)
                         {
                             object.setWidth((int)(object.getWidth() * xScaleFactor));
                             object.setHeight((int)(object.getHeight() * yScaleFactor));
-                            object.setX((int)(object.getX() * xScaleFactor));
-                            object.setY((int)(object.getY() * yScaleFactor));
+                            object.setX((float)(object.getX() * xScaleFactor));
+                            object.setY((float)(object.getY() * yScaleFactor));
                         }
-                        for (UIObject object : temp)
+                        for(UIObject object : temp)
                         {
-                            object.setWidth((int)(object.getWidth() * xScaleFactor));
-                            object.setHeight((int)(object.getHeight() * yScaleFactor));
-                            object.setX((int)(object.getX() * xScaleFactor));
-                            object.setY((int)(object.getY() * yScaleFactor));
+                            uiManager.addObject(new UIImageButton(object.getX(), object.getY(), object.getWidth(), object.getHeight(),));
                         }
-                        System.out.println();
-                        System.out.println();
-                        System.out.println();
                     }
                 }));
 
-                uiManager.addObject(new UIImageButton(260 * xScaleFactor, 120 * yScaleFactor, 128 * xScaleFactor, 64 * yScaleFactor, Assets.btn_start, new ClickListener() {
+                uiManager.addObject(new UIImageButton((float)(260 * xScaleFactor), (float)(120 * yScaleFactor), (int)(128 * xScaleFactor), (int)(64 * yScaleFactor), Assets.btn_start, new ClickListener() {
                     @Override
                     public void onCLick() {
                         ArrayList<UIObject> temp = new ArrayList<>();
@@ -98,24 +100,27 @@ public class MenuState extends State{
                         frame.setVisible(true);
                         for(UIObject object : MainMenu)
                         {
-                            object.setWidth((int)(object.getWidth() / xScaleFactor));
-                            object.setHeight((int)(object.getHeight() / yScaleFactor));
-                            object.setX((int)(object.getX() / xScaleFactor));
-                            object.setY((int)(object.getY() / yScaleFactor));
+                            object.setWidth((int)((double)object.getWidth() / xScaleFactor));
+                            object.setHeight((int)((double)object.getHeight() / yScaleFactor));
+                            object.setX((float)((double)object.getX() / xScaleFactor));
+                            object.setY((float)((double)object.getY() / yScaleFactor));
                         }
                         for (UIObject object : temp)
                         {
-                            object.setWidth((int)(object.getWidth() / xScaleFactor));
-                            object.setHeight((int)(object.getHeight() / yScaleFactor));
-                            object.setX((int)(object.getX() / xScaleFactor));
-                            object.setY((int)(object.getY() / yScaleFactor));
+                            object.setWidth((int)((double)object.getWidth() / xScaleFactor));
+                            object.setHeight((int)((double)object.getHeight() / yScaleFactor));
+                            object.setX((float)((double)object.getX() / xScaleFactor));
+                            object.setY((float)((double)object.getY() / yScaleFactor));
                         }
-                        System.out.println(handler.getGame().getDisplay().getFrame().getHeight());
-                        System.out.println(handler.getHeight());
+                        System.out.println(xScaleFactor);
                         System.out.println(yScaleFactor);
+                        System.out.println(play.getX());
+                        System.out.println(play.getY());
+                        System.out.println(play.getWidth());
+                        System.out.println(play.getHeight());
                     }
                 }));
-                uiManager.addObject(new UIImageButton((int)(200 * xScaleFactor), 190 * yScaleFactor, 256 * xScaleFactor, 128 * yScaleFactor, Assets.btn_start, new ClickListener() {
+                uiManager.addObject(new UIImageButton((float)(200 * xScaleFactor), (float)(190 * yScaleFactor), (int)(256 * xScaleFactor), (int)(128 * yScaleFactor), Assets.btn_start, new ClickListener() {
                     @Override
                     public void onCLick() {
                         for (int i = 2; i > -1; i--) {
