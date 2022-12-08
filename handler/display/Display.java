@@ -11,6 +11,7 @@ public class Display
     private String Title;
     private int Width;
     private int Height;
+    private static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
     public Display(String Title, int Width, int Height)
     {
@@ -27,6 +28,8 @@ public class Display
         Frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         Frame.setSize(Width, Height);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Frame.setUndecorated(true);
+        device.setFullScreenWindow(Frame);
         Frame.setResizable(false);
         Frame.setLocationRelativeTo(null);
         Frame.setVisible(true);

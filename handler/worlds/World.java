@@ -26,12 +26,12 @@ public class World {
     private ItemManager itemManager;
     public World(Handler handler, String path){
         this.handler = handler;
-        entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+        entityManager = new EntityManager(handler, new Player(handler, 300, 300));
         itemManager = new ItemManager(handler);
-        entityManager.addEntity(new Lamp(handler, 100, 50));
-        entityManager.addEntity(new Lamp(handler, 700, 50));
-        entityManager.addEntity(new Lamp(handler, 400, 100));
-        entityManager.addEntity(new Couch(handler, 356, 150));
+        entityManager.addEntity(new Lamp(handler, 300, 150));
+        entityManager.addEntity(new Lamp(handler, 2100, 150));
+        entityManager.addEntity(new Lamp(handler, 1200, 300));
+        entityManager.addEntity(new Couch(handler, 1068, 450));
         loadWorld(path);
 
         entityManager.getPlayer().setX(spawnX);

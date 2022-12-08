@@ -20,7 +20,7 @@ public class Tile {
     protected BufferedImage texture;
     protected final int id;
 
-    public static int TILEWIDTH = 64, TILEHEIGHT = TILEWIDTH;
+    public static int TILEWIDTH = 192, TILEHEIGHT = TILEWIDTH;
 
     public Tile(BufferedImage texture, int id)
     {
@@ -48,5 +48,13 @@ public class Tile {
     public int getId()
     {
         return id;
+    }
+
+    public static int getTILEWIDTH() {
+        return TILEWIDTH;
+    }
+
+    public static void setTILEWIDTH(int TILEWIDTH) {
+        Tile.TILEWIDTH = TILEWIDTH;
     }
 }

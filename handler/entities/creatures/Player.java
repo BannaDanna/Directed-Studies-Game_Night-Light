@@ -23,10 +23,10 @@ public class Player extends Creature{
     {
         super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
 
-        bounds.x = 10;
-        bounds.y = 25;
-        bounds.height = 100;
-        bounds.width = 45;
+        bounds.x = handler.getWidth() / 64;
+        bounds.y = (int)(handler.getHeight() / 9.6);
+        bounds.height = (int)(handler.getWidth() / 6.4);
+        bounds.width = (int) (handler.getHeight() / 5.3333);
 
         //Animations
         animIdle = new Animation(500, Assets.player_idle);
@@ -120,13 +120,13 @@ public class Player extends Creature{
             ar.x = cb.x +cb.width / 2 - arSize / 2 + 20;
             ar.y = cb.y + cb.height - 70;
             ar2.x = cb.x + cb.width / 2 - arSize + 20;
-            ar2.y = cb.y + cb.height + arSize - 70;
+            ar2.y = cb.y + cb.height + arSize - 240;
             ar3.x = (int) (cb.x + cb.width / 2 - arSize * 1.5 + 20);
-            ar3.y = cb.y + cb.height + arSize * 2 - 70;
+            ar3.y = cb.y + cb.height + arSize * 2 - 240;
             ar4.x = cb.x + cb.width / 2 - arSize * 2 + 20;
-            ar4.y = cb.y + cb.height + arSize * 3 - 70;
+            ar4.y = cb.y + cb.height + arSize * 3 - 240;
             ar5.x = (int) (cb.x + cb.width / 2 - arSize * 2.5 + 20);
-            ar5.y = cb.y + cb.height + arSize * 4 - 70;
+            ar5.y = cb.y + cb.height + arSize * 4 - 240;
         } else if(handler.getKeyManager().aLeft)
         {
             ar2.width = arSize;
@@ -138,15 +138,15 @@ public class Player extends Creature{
             ar5.width = arSize;
             ar5.height = arSize * 5;
             ar.x = cb.x - arSize;
-            ar.y = cb.y + cb.height / 2 - arSize / 2 - 15;
+            ar.y = cb.y + cb.height / 2 - arSize / 2 - 48;
             ar2.x = cb.x - arSize * 2;
-            ar2.y = cb.y + cb.height / 2 - arSize - 15;
+            ar2.y = cb.y + cb.height / 2 - arSize - 48;
             ar3.x = cb.x - arSize * 3;
-            ar3.y = (int)(cb.y + cb.height / 2 - arSize  * 1.5 - 15);
+            ar3.y = (int)(cb.y + cb.height / 2 - arSize  * 1.5 - 48);
             ar4.x = cb.x - arSize * 4;
-            ar4.y = cb.y + cb.height / 2 - arSize * 2 - 15;
+            ar4.y = cb.y + cb.height / 2 - arSize * 2 - 48;
             ar5.x = cb.x - arSize * 5;
-            ar5.y = (int)(cb.y + cb.height / 2 - arSize * 2.5 - 15);
+            ar5.y = (int)(cb.y + cb.height / 2 - arSize * 2.5 - 48);
         } else if(handler.getKeyManager().aRight)
         {
             ar2.width = arSize;
@@ -158,15 +158,15 @@ public class Player extends Creature{
             ar5.width = arSize;
             ar5.height = arSize * 5;
             ar.x = cb.x + cb.width;
-            ar.y = cb.y + cb.height / 2 - arSize / 2 - 15;
+            ar.y = cb.y + cb.height / 2 - arSize / 2 - 48;
             ar2.x = cb.x + cb.width + arSize;
-            ar2.y = cb.y + cb.height / 2 - arSize - 15;
+            ar2.y = cb.y + cb.height / 2 - arSize - 48;
             ar3.x = cb.x + cb.width + arSize * 2;
-            ar3.y = (int)(cb.y + cb.height / 2 - arSize  * 1.5 - 15);
+            ar3.y = (int)(cb.y + cb.height / 2 - arSize  * 1.5 - 48);
             ar4.x = cb.x + cb.width + arSize * 3;
-            ar4.y = cb.y + cb.height / 2 - arSize * 2 - 15;
+            ar4.y = cb.y + cb.height / 2 - arSize * 2 - 48;
             ar5.x = cb.x + cb.width + arSize * 4;
-            ar5.y = (int)(cb.y + cb.height / 2 - arSize * 2.5 - 15);
+            ar5.y = (int)(cb.y + cb.height / 2 - arSize * 2.5 - 48);
         } else {
             return;
         }
@@ -235,17 +235,16 @@ public class Player extends Creature{
 //        if(attackTimer < attackCooldown) {
 //            return;
 //        }
-//        Rectangle cb = new Rectangle((int) (x + bounds.x - handler.getGameCamera().getxOffset()), (int) (y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
+//        Rectangle cb = getCollisionBounds(0,0);
 //        Rectangle ar = new Rectangle();
 //        Rectangle ar2 = new Rectangle();
 //        Rectangle ar3 = new Rectangle();
 //        Rectangle ar4 = new Rectangle();
 //        Rectangle ar5 = new Rectangle();
-//        int arSize = 16;
+//        int arSize = handler.getWidth() / 40;
 //        ar.width = arSize;
 //        ar.height = arSize;
-//
-//
+
 //        if(handler.getKeyManager().aUp)
 //        {
 //            ar2.width = arSize * 2;
@@ -279,13 +278,13 @@ public class Player extends Creature{
 //            ar.x = cb.x +cb.width / 2 - arSize / 2 + 20;
 //            ar.y = cb.y + cb.height - 70;
 //            ar2.x = cb.x + cb.width / 2 - arSize + 20;
-//            ar2.y = cb.y + cb.height + arSize - 70;
+//            ar2.y = cb.y + cb.height + arSize - 240;
 //            ar3.x = (int) (cb.x + cb.width / 2 - arSize * 1.5 + 20);
-//            ar3.y = cb.y + cb.height + arSize * 2 - 70;
+//            ar3.y = cb.y + cb.height + arSize * 2 - 240;
 //            ar4.x = cb.x + cb.width / 2 - arSize * 2 + 20;
-//            ar4.y = cb.y + cb.height + arSize * 3 - 70;
+//            ar4.y = cb.y + cb.height + arSize * 3 - 240;
 //            ar5.x = (int) (cb.x + cb.width / 2 - arSize * 2.5 + 20);
-//            ar5.y = cb.y + cb.height + arSize * 4 - 70;
+//            ar5.y = cb.y + cb.height + arSize * 4 - 240;
 //        } else if(handler.getKeyManager().aLeft)
 //        {
 //            ar2.width = arSize;
@@ -297,15 +296,15 @@ public class Player extends Creature{
 //            ar5.width = arSize;
 //            ar5.height = arSize * 5;
 //            ar.x = cb.x - arSize;
-//            ar.y = cb.y + cb.height / 2 - arSize / 2 - 15;
+//            ar.y = cb.y + cb.height / 2 - arSize / 2 - 48;
 //            ar2.x = cb.x - arSize * 2;
-//            ar2.y = cb.y + cb.height / 2 - arSize - 15;
+//            ar2.y = cb.y + cb.height / 2 - arSize - 48;
 //            ar3.x = cb.x - arSize * 3;
-//            ar3.y = (int)(cb.y + cb.height / 2 - arSize  * 1.5 - 15);
+//            ar3.y = (int)(cb.y + cb.height / 2 - arSize  * 1.5 - 48);
 //            ar4.x = cb.x - arSize * 4;
-//            ar4.y = cb.y + cb.height / 2 - arSize * 2 - 15;
+//            ar4.y = cb.y + cb.height / 2 - arSize * 2 - 48;
 //            ar5.x = cb.x - arSize * 5;
-//            ar5.y = (int)(cb.y + cb.height / 2 - arSize * 2.5 - 15);
+//            ar5.y = (int)(cb.y + cb.height / 2 - arSize * 2.5 - 48);
 //        } else if(handler.getKeyManager().aRight)
 //        {
 //            ar2.width = arSize;
@@ -317,15 +316,15 @@ public class Player extends Creature{
 //            ar5.width = arSize;
 //            ar5.height = arSize * 5;
 //            ar.x = cb.x + cb.width;
-//            ar.y = cb.y + cb.height / 2 - arSize / 2 - 15;
+//            ar.y = cb.y + cb.height / 2 - arSize / 2 - 48;
 //            ar2.x = cb.x + cb.width + arSize;
-//            ar2.y = cb.y + cb.height / 2 - arSize - 15;
+//            ar2.y = cb.y + cb.height / 2 - arSize - 48;
 //            ar3.x = cb.x + cb.width + arSize * 2;
-//            ar3.y = (int)(cb.y + cb.height / 2 - arSize  * 1.5 - 15);
+//            ar3.y = (int)(cb.y + cb.height / 2 - arSize  * 1.5 - 48);
 //            ar4.x = cb.x + cb.width + arSize * 3;
-//            ar4.y = cb.y + cb.height / 2 - arSize * 2 - 15;
+//            ar4.y = cb.y + cb.height / 2 - arSize * 2 - 48;
 //            ar5.x = cb.x + cb.width + arSize * 4;
-//            ar5.y = (int)(cb.y + cb.height / 2 - arSize * 2.5 - 15);
+//            ar5.y = (int)(cb.y + cb.height / 2 - arSize * 2.5 - 48);
 //        }
 //        g.fillRect((ar.x), (ar.y), arSize, arSize);
 //        g.fillRect(ar2.x, ar2.y, ar2.width, ar2.height);

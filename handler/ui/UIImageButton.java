@@ -32,4 +32,12 @@ public class UIImageButton extends UIObject{
     public void onClick() {
         clicker.onCLick();
     }
+
+    public ClickListener getClicker() {
+        return clicker;
+    }
+
+    public void setClicker(ClickListener clicker) {
+        this.clicker = clicker;
+    }
 }

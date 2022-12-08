@@ -12,8 +12,8 @@ public class Couch extends StaticEntity{
         super(handler, x, y, Tile.TILEWIDTH, Tile.TILEHEIGHT);
         bounds.x = 0;
         bounds.y = 0;
-        bounds.width = 64;
-        bounds.height = 64;
+        bounds.width = 192;
+        bounds.height = 192;
         killable = false;
     }
 

@@ -13,7 +13,7 @@ public class Item {
     public static Item batteriesItem = new Item(Assets.batteries, "Batteries", 0);
 
     //Class
-    public static final int ITEMWIDTH = 16, ITEMHEIGHT = 16;
+    public static final int ITEMWIDTH = 48, ITEMHEIGHT = 48;
 
     protected Handler handler;
     protected BufferedImage texture;

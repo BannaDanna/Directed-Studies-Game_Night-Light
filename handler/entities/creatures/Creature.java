@@ -6,9 +6,9 @@ import handler.tiles.Tile;
 
 public abstract class Creature extends Entity {
 
-    public static final float DEFAULT_SPEED = 3.0f;
-    public static final int DEFAULT_CREATURE_WIDTH =  64;
-    public static final int DEFAULT_CREATURE_HEIGHT =  64;
+    public static final float DEFAULT_SPEED = 4.0f;
+    public static final int DEFAULT_CREATURE_WIDTH =  192;
+    public static final int DEFAULT_CREATURE_HEIGHT =  192;
     protected float speed;
     protected float xMove, yMove;
 //setters & getters

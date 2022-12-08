@@ -12,12 +12,12 @@ import java.util.ArrayList;
 
 public class Inventory {
 
-    private int invX = 0, invY = 0, invWidth = 640, invHeight = 360, invListCenterX = (int) invX + (invWidth / 2) - 100, invListCenterY = (int) invY + (invHeight / 2), invListSpacing = 50;
+    private int invX = 0, invY = 0, invWidth, invHeight, invListCenterX, invListCenterY, invListSpacing = 50;
 
-    private int invImageX = 490, invImageY = 50,
-            invImageWidth = 100, invImageHeight = 100;
+    private int invImageX, invImageY,
+            invImageWidth, invImageHeight = invImageWidth;
 
-    private int invCountX = 545, invCountY = 210;
+    private int invCountX = 1635, invCountY = 1680;
 
 
     private int selectedItem = 0;
@@ -29,7 +29,16 @@ public class Inventory {
     public Inventory(Handler handler) {
         this.handler = handler;
         inventoryItems = new ArrayList<Item>();
-
+        invWidth = handler.getWidth();
+        invHeight = handler.getHeight();
+        invListCenterX = (int) invX + (invWidth / 2) - (handler.getWidth() / 64);
+        invListCenterY = (int) invY + (invHeight / 2);
+        invListSpacing = (int)(handler.getWidth() / 4.8);
+        invImageX = (int) (handler.getWidth() / 6.125);
+        invImageY = (int) (handler.getHeight() / 7.2);
+        invImageWidth = (int) (handler.getWidth() / 1.25);
+        invCountX = (int) (handler.getWidth() / 3);
+        invCountY = (int) (handler.getHeight() / 1.7143);
     }
 
     public void tick() {
