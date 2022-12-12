@@ -15,9 +15,9 @@ public class Inventory {
     private int invX = 0, invY = 0, invWidth, invHeight, invListCenterX, invListCenterY, invListSpacing = 50;
 
     private int invImageX, invImageY,
-            invImageWidth, invImageHeight = invImageWidth;
+            invImageWidth, invImageHeight;
 
-    private int invCountX = 1635, invCountY = 1680;
+    private int invCountX, invCountY;
 
 
     private int selectedItem = 0;
@@ -31,13 +31,14 @@ public class Inventory {
         inventoryItems = new ArrayList<Item>();
         invWidth = handler.getWidth();
         invHeight = handler.getHeight();
-        invListCenterX = (int) invX + (invWidth / 2) - (handler.getWidth() / 64);
+        invListCenterX = (int) invX + (invWidth / 2) - 200;
         invListCenterY = (int) invY + (invHeight / 2);
-        invListSpacing = (int)(handler.getWidth() / 4.8);
-        invImageX = (int) (handler.getWidth() / 6.125);
+        invListSpacing = (int)(handler.getWidth() / 10);
+        invImageX = (int) (handler.getWidth() / 1.2857);
         invImageY = (int) (handler.getHeight() / 7.2);
-        invImageWidth = (int) (handler.getWidth() / 1.25);
-        invCountX = (int) (handler.getWidth() / 3);
+        invImageWidth = (int) (handler.getWidth() / 6);
+        invImageHeight = invImageWidth;
+        invCountX = (int) (handler.getWidth() / 1.1666);
         invCountY = (int) (handler.getHeight() / 1.7143);
     }
 
@@ -100,11 +101,11 @@ public class Inventory {
     public void addItem(Item item){
         for(Item i : inventoryItems)
         {
-            if(i.getId() == item.getId())
-            {
-                i.setCount(i.getCount() + item.getCount());
-                return;
-            }
+//            if(i.getId() == item.getId())
+//            {
+//                i.setCount(i.getCount() + item.getCount());
+//                return;
+//            }
         }
         inventoryItems.add(item);
     }

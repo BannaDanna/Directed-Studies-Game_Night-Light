@@ -5,6 +5,7 @@ import handler.entities.Entity;
 import handler.gfx.Animation;
 import handler.gfx.Assets;
 import handler.inventory.Inventory;
+import handler.items.Item;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -40,6 +41,11 @@ public class Player extends Creature{
 //        animAttackDown = new Animation(800, Assets.player_attack_down);
 
         inventory = new Inventory(handler);
+        inventory.addItem(Item.batteriesItem);
+        inventory.addItem(Item.batteriesItem);
+        inventory.addItem(Item.batteriesItem);
+        inventory.addItem(Item.batteriesItem);
+        inventory.addItem(Item.batteriesItem);
     }
 
     @Override
@@ -229,12 +235,6 @@ public class Player extends Creature{
         g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),width, height * 2, null);
 
 //        g.setColor(Color.red);
-//        g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()), (int) (y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
-//        attackTimer += System.currentTimeMillis() - lastAttackTimer;
-//        lastAttackTimer = System.currentTimeMillis();
-//        if(attackTimer < attackCooldown) {
-//            return;
-//        }
 //        Rectangle cb = getCollisionBounds(0,0);
 //        Rectangle ar = new Rectangle();
 //        Rectangle ar2 = new Rectangle();
@@ -244,7 +244,7 @@ public class Player extends Creature{
 //        int arSize = handler.getWidth() / 40;
 //        ar.width = arSize;
 //        ar.height = arSize;
-
+//
 //        if(handler.getKeyManager().aUp)
 //        {
 //            ar2.width = arSize * 2;
@@ -326,7 +326,7 @@ public class Player extends Creature{
 //            ar5.x = cb.x + cb.width + arSize * 4;
 //            ar5.y = (int)(cb.y + cb.height / 2 - arSize * 2.5 - 48);
 //        }
-//        g.fillRect((ar.x), (ar.y), arSize, arSize);
+//        g.fillRect(ar.x, ar.y, ar.width,ar.height);
 //        g.fillRect(ar2.x, ar2.y, ar2.width, ar2.height);
 //        g.fillRect(ar3.x, ar3.y, ar3.width, ar3.height);
 //        g.fillRect(ar4.x, ar4.y, ar4.width, ar4.height);
