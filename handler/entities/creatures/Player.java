@@ -228,6 +228,11 @@ public class Player extends Creature{
         {
             xMove = speed;
         }
+        if(handler.getKeyManager().esc)
+        {
+            handler.getGame().getDisplay().getFrame().setVisible(false);
+            handler.getGame().getDisplay().getFrame().dispose();
+        }
     }
 
     @Override

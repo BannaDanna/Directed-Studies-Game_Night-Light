@@ -4,11 +4,13 @@ import handler.Handler;
 import handler.entities.Entity;
 import handler.tiles.Tile;
 
-public abstract class Creature extends Entity {
+import java.awt.*;
 
-    public static final float DEFAULT_SPEED = 4.0f;
-    public static final int DEFAULT_CREATURE_WIDTH =  192;
-    public static final int DEFAULT_CREATURE_HEIGHT =  192;
+public abstract class Creature extends Entity {
+    private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    public static final float DEFAULT_SPEED = (float) (screenSize.width / 320);
+    public static final int DEFAULT_CREATURE_WIDTH =  (int) (screenSize.width / 10);
+    public static final int DEFAULT_CREATURE_HEIGHT =  (int) (screenSize.width / 10);
     protected float speed;
     protected float xMove, yMove;
 //setters & getters

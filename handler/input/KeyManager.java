@@ -8,6 +8,7 @@ public class KeyManager implements KeyListener {
     private boolean[] keys, justPressed, cantPress;
     public boolean up, down, left, right;
     public boolean aUp, aDown, aLeft, aRight;
+    public boolean esc;
 
     public KeyManager()
     {
@@ -52,6 +53,8 @@ public class KeyManager implements KeyListener {
         aLeft = keys[KeyEvent.VK_LEFT];
         aRight = keys[KeyEvent.VK_RIGHT];
         aDown = keys[KeyEvent.VK_DOWN];
+
+        esc = keys[KeyEvent.VK_ESCAPE];
     }
 
     @Override

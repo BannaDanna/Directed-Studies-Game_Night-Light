@@ -32,6 +32,7 @@ public class Display
         device.setFullScreenWindow(Frame);
         Frame.setResizable(false);
         Frame.setLocationRelativeTo(null);
+        Frame.createBufferStrategy(2);
         Frame.setVisible(true);
 
         canvas = new Canvas();

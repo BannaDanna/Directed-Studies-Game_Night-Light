@@ -102,7 +102,7 @@ public class Game implements Runnable{
         }
 
         //stop drawin'
-        bs.show();
+        bs.show();  
         g.dispose();
     }
 
