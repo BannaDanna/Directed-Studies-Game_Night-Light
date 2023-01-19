@@ -232,6 +232,7 @@ public class Player extends Creature{
         {
             handler.getGame().getDisplay().getFrame().setVisible(false);
             handler.getGame().getDisplay().getFrame().dispose();
+            System.exit(0);
         }
     }
 
