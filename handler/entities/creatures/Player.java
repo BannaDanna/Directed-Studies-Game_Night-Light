@@ -13,10 +13,10 @@ import java.awt.image.BufferedImage;
 public class Player extends Creature{
 
 //animations
-    private Animation animIdle, animMoveLeft, animMoveRight, animMoveUp, animMoveDown, animAttackLeft, animAttackRight, animAttackUp, animAttackDown;
+    private Animation animIdle, animMoveLeft, animMoveRight, animMoveUp, animMoveDown, animAttackLeft, animAttackRight, animAttackUp, animAttackDown, lastAnimation;
     //attack and attack animation timer
     private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
-    private long lastAnimationTimer, animationCooldown = 500, animationTimer = animationCooldown;
+    private long lastAnimationTimer, animationCooldown = 800, animationTimer = animationCooldown;
     //inventory
     private Inventory inventory;
 
@@ -35,10 +35,10 @@ public class Player extends Creature{
 //        animMoveRight = new Animation(500, Assets.player_move_right);
 //        animMoveUp = new Animation(500, Assets.player_move_up);
 //        animMovDown = new Animation(500, Assets.player_move_down);
-//        animAttackLeft = new Animation(800, Assets.player_attack_left);
-//        animAttackRight = new Animation(800, Assets.player_attack_right);
-//        animAttackUp = new Animation(800, Assets.player_attack_up);
-//        animAttackDown = new Animation(800, Assets.player_attack_down);
+        animAttackLeft = new Animation(100, Assets.player_attack_left);
+        animAttackRight = new Animation(100, Assets.player_attack_right);
+        animAttackUp = new Animation(100, Assets.player_attack_up);
+        animAttackDown = new Animation(100, Assets.player_attack_down);
 
         inventory = new Inventory(handler);
         inventory.addItem(Item.batteriesItem);
@@ -56,10 +56,10 @@ public class Player extends Creature{
 //      animMoveRight.tick();
 //      animMoveUp.tick();
 //      animMoveDown.tick();
-//      animAttackLeft.tick();
-//      animAttackRight.tick();
-//      animAttackUp.tick();
-//      animAttackDown.tick();
+      animAttackLeft.tick();
+      animAttackRight.tick();
+      animAttackUp.tick();
+      animAttackDown.tick();
         //Movement
         getInput();
         move();
@@ -346,24 +346,35 @@ public class Player extends Creature{
 
     private BufferedImage getCurrentAnimationFrame()
     {
-//        animationTimer += System.currentTimeMillis() - lastAnimationTimer;
-//        lastAnimationTimer = System.currentTimeMillis();
-//        if(animationTimer > animationCooldown) {
-//            if(handler.getKeyManager().aUp)
-//            {
-//                animAttackUp.tick();
-//                return animAttackUp.getCurrentFrame();
-//            } else if (handler.getKeyManager().aDown) {
-//                animAttackDown.tick();
-//                return animAttackDown.getCurrentFrame();
-//            } else if (handler.getKeyManager().aLeft) {
-//                animAttackLeft.tick()
-//                return animAttackLeft.getCurrentFrame();
-//            } else if (handler.getKeyManager().aRight) {
-//                animAttackRight.tick();
-//                return animAttackRight.getCurrentFrame();
-//            }
-//        }
+        animationTimer += System.currentTimeMillis() - lastAnimationTimer;
+        lastAnimationTimer = System.currentTimeMillis();
+
+        if(animationTimer > animationCooldown) {
+            if(handler.getKeyManager().aUp)
+            {
+                animationTimer = 0;
+                lastAnimation = animAttackUp;
+                lastAnimation.setCurrentFrame(0);
+                return animAttackUp.getCurrentFrame();
+            } else if (handler.getKeyManager().aDown) {
+                animAttackDown.tick();
+                animationTimer = 0;
+                lastAnimation = animAttackDown;
+                lastAnimation.setCurrentFrame(0);
+                return animAttackDown.getCurrentFrame();
+            } else if (handler.getKeyManager().aLeft) {
+                animAttackLeft.tick();
+                animationTimer = 0;
+                lastAnimation = animAttackLeft;
+                lastAnimation.setCurrentFrame(0);
+                return animAttackLeft.getCurrentFrame();
+            } else if (handler.getKeyManager().aRight) {
+                animAttackRight.tick();
+                animationTimer = 0;
+                lastAnimation = animAttackRight;
+                lastAnimation.setCurrentFrame(0);
+                return animAttackRight.getCurrentFrame();
+            }
 
 //        if(xMove < 0) //left
 //        {
@@ -374,11 +385,14 @@ public class Player extends Creature{
 //
 //        }else if(yMove < 0){ //down
 //
-//        }else{
-        return animIdle.getCurrentFrame();
+//        }else{ //idle
+            lastAnimation = animIdle;
+            return animIdle.getCurrentFrame();
 //        }
-
+        }
+   return lastAnimation.getCurrentFrame();
     }
+
 
     @Override
      public void die()

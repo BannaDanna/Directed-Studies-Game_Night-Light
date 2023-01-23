@@ -2,6 +2,7 @@ package handler.gfx;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.nio.Buffer;
 
 public class Assets {
 
@@ -13,7 +14,7 @@ public class Assets {
     public static BufferedImage lamp, couch;
 
     //player animations
-    public static BufferedImage[] player_idle;
+    public static BufferedImage[] player_idle, player_attack_left, player_attack_right, player_attack_up, player_attack_down;
     //UI
     public static BufferedImage[] btn_start;
     //items
@@ -45,6 +46,42 @@ public class Assets {
 
         player_idle[0] = sheet.crop(0,0,width,height *2);
         player_idle[1] = sheet.crop(width, 0, width, height * 2);
+
+        player_attack_right = new BufferedImage[6];
+
+        player_attack_right[0] = sheet.crop(0, 0, width, height * 2);
+        player_attack_right[1] = sheet.crop(width, 0, width, height * 2);
+        player_attack_right[2] = sheet.crop(width * 2, 0, width, height * 2);
+        player_attack_right[3] = sheet.crop(width * 3, 0, width, height * 2);
+        player_attack_right[4] = sheet.crop(width * 4, 0, width, height * 2);
+        player_attack_right[5] = sheet.crop(width * 5, 0, width, height * 2);
+
+        player_attack_left = new BufferedImage[6];
+
+        player_attack_left[0] = sheet.crop(width * 4, height * 5, width, height * 2);
+        player_attack_left[1] = sheet.crop(width * 4, height * 5, width, height * 2);
+        player_attack_left[2] = sheet.crop(width * 4, height * 5, width, height * 2);
+        player_attack_left[3] = sheet.crop(width * 4, height * 5, width, height * 2);
+        player_attack_left[4] = sheet.crop(width * 4, height * 5, width, height * 2);
+        player_attack_left[5] = sheet.crop(width * 4, height * 5, width, height * 2);
+
+        player_attack_up = new BufferedImage[6];
+
+        player_attack_up[0] = sheet.crop(width * 4, height * 5, width, height * 2);
+        player_attack_up[1] = sheet.crop(width * 4, height * 5, width, height * 2);
+        player_attack_up[2] = sheet.crop(width * 4, height * 5, width, height * 2);
+        player_attack_up[3] = sheet.crop(width * 4, height * 5, width, height * 2);
+        player_attack_up[4] = sheet.crop(width * 4, height * 5, width, height * 2);
+        player_attack_up[5] = sheet.crop(width * 4, height * 5, width, height * 2);
+
+        player_attack_down = new BufferedImage[6];
+
+        player_attack_down[0] = sheet.crop(width * 4, height * 5, width, height * 2);
+        player_attack_down[1] = sheet.crop(width * 4, height * 5, width, height * 2);
+        player_attack_down[2] = sheet.crop(width * 4, height * 5, width, height * 2);
+        player_attack_down[3] = sheet.crop(width * 4, height * 5, width, height * 2);
+        player_attack_down[4] = sheet.crop(width * 4, height * 5, width, height * 2);
+        player_attack_down[5] = sheet.crop(width * 4, height * 5, width, height * 2);
 
         //tiles
         empty = sheet.crop(width*9, height*9, width, height);

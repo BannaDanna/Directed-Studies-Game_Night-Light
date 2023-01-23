@@ -38,4 +38,9 @@ public class Animation {
     {
         return frames[index];
     }
+
+    public void setCurrentFrame(int index)
+    {
+        this.index = index;
+    }
 }
