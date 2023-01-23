@@ -10,14 +10,14 @@ public class Item {
     //Handler
 
     public static Item[] items = new Item[256];
-    public static Item batteriesItem = new Item(Assets.batteries, "Batteries", 0);
+    public static Item batteriesItem = new Item(Assets.batteries, "Batteries", 0, "Typical double As" + "\r\n" + "use these to fuel your light and keep whatever's in the dark away.");
 
     //Class
     public static final int ITEMWIDTH = 48, ITEMHEIGHT = 48;
 
     protected Handler handler;
     protected BufferedImage texture;
-    protected String name;
+    protected String name, desc;
     protected final int id;
 
     protected int x, y, count;
@@ -25,10 +25,11 @@ public class Item {
 
     protected Rectangle bounds;
 
-    public Item(BufferedImage texture, String name, int id)
+    public Item(BufferedImage texture, String name, int id, String desc)
     {
         this.texture = texture;
         this.name = name;
+        this.desc = desc;
         this.id = id;
         count = 1;
 
@@ -61,7 +62,7 @@ public class Item {
 
     public Item createNew(int count)
     {
-        Item i = new Item(texture, name, id);
+        Item i = new Item(texture, name, id, desc);
         i.setPickedUp(true);
         i.setCount(count);
         return i;
@@ -69,7 +70,7 @@ public class Item {
 
     public Item createNew(int x, int y)
     {
-        Item i = new Item(texture, name, id);
+        Item i = new Item(texture, name, id, desc);
         i.setPosition(x,y);
         return i;
     }
@@ -141,5 +142,13 @@ public class Item {
 
     public void setPickedUp(boolean pickedUp) {
         PickedUp = pickedUp;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }

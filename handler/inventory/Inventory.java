@@ -19,6 +19,8 @@ public class Inventory {
 
     private int invCountX, invCountY;
 
+    private int invDescX, invDescY;
+
 
     private int selectedItem = 0;
 
@@ -40,6 +42,8 @@ public class Inventory {
         invImageHeight = invImageWidth;
         invCountX = (int) (handler.getWidth() / 1.1666);
         invCountY = (int) (handler.getHeight() / 1.7143);
+        invDescX = (int) (handler.getWidth() / 1.1666);
+        invDescY = (int) (handler.getHeight() / 1.1444);
     }
 
     public void tick() {
@@ -93,6 +97,7 @@ public class Inventory {
 
         Item item = inventoryItems.get(selectedItem);
         g.drawImage(item.getTexture(), invImageX, invImageY, invImageWidth, invImageHeight, null);
+        Text.drawString(g, item.getDesc(), invDescX, invDescY, true, Color.BLACK, Assets.font14);
         Text.drawString(g, Integer.toString(item.getCount()), invCountX, invCountY, true, Color.BLACK, Assets.font28);
     }
 
@@ -101,11 +106,11 @@ public class Inventory {
     public void addItem(Item item){
         for(Item i : inventoryItems)
         {
-//            if(i.getId() == item.getId())
-//            {
-//                i.setCount(i.getCount() + item.getCount());
-//                return;
-//            }
+            if(i.getId() == item.getId())
+            {
+                i.setCount(i.getCount() + item.getCount());
+                return;
+            }
         }
         inventoryItems.add(item);
     }
