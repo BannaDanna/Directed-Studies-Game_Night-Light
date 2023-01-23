@@ -25,6 +25,7 @@ public class Couch extends StaticEntity{
     @Override
     public void render(Graphics g) {
     g.drawImage(Assets.couch, (int) (x- handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+    g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()), (int) (y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
     }
 
     @Override

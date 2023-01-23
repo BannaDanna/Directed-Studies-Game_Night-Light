@@ -26,8 +26,8 @@ public class Player extends Creature{
 
         bounds.x = handler.getWidth() / 64;
         bounds.y = (int)(handler.getHeight() / 9.6);
-        bounds.height = (int)(handler.getWidth() / 6.4);
-        bounds.width = (int) (handler.getHeight() / 5.3333);
+        bounds.height = (int)(handler.getWidth() / 7);
+        bounds.width = (int) (handler.getHeight() / 9.5555);
 
         //Animations
         animIdle = new Animation(500, Assets.player_idle);
@@ -239,7 +239,7 @@ public class Player extends Creature{
     @Override
     public void render(Graphics g) {
         g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),width, height * 2, null);
-
+        g.drawRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()), (int) (y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
 //        g.setColor(Color.red);
 //        Rectangle cb = getCollisionBounds(0,0);
 //        Rectangle ar = new Rectangle();
