@@ -10,7 +10,7 @@ public class Item {
     //Handler
 
     public static Item[] items = new Item[256];
-    public static Item batteriesItem = new Item(Assets.batteries, "Batteries", 0, "Typical double As" + "\r\n" + "use these to fuel your light and keep whatever's in the dark away.");
+    public static Item batteriesItem = new Item(Assets.batteries, "Batteries", 0, "Typical double As\nuse these to fuel your light and \nkeep whatever's in the dark away.");
 
     //Class
     public static final int ITEMWIDTH = 48, ITEMHEIGHT = 48;

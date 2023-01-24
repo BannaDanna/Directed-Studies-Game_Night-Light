@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class Inventory {
 
-    private int invX = 0, invY = 0, invWidth, invHeight, invListCenterX, invListCenterY, invListSpacing = 50;
+    private int invX = 0, invY = 0, invWidth, invHeight, invListCenterX, invListCenterY, invListSpacing;
 
     private int invImageX, invImageY,
             invImageWidth, invImageHeight;
@@ -36,14 +36,14 @@ public class Inventory {
         invListCenterX = (int) invX + (invWidth / 2) - 200;
         invListCenterY = (int) invY + (invHeight / 2);
         invListSpacing = (int)(handler.getWidth() / 10);
-        invImageX = (int) (handler.getWidth() / 1.2857);
+        invImageX = (int) (handler.getWidth() / 1.315);
         invImageY = (int) (handler.getHeight() / 7.2);
         invImageWidth = (int) (handler.getWidth() / 6);
         invImageHeight = invImageWidth;
-        invCountX = (int) (handler.getWidth() / 1.1666);
+        invCountX = (int) (handler.getWidth() / 1.1777);
         invCountY = (int) (handler.getHeight() / 1.7143);
-        invDescX = (int) (handler.getWidth() / 1.1666);
-        invDescY = (int) (handler.getHeight() / 1.1444);
+        invDescX = (int) (handler.getWidth() / 1.1777);
+        invDescY = (int) (handler.getHeight() / 1.5);
     }
 
     public void tick() {
@@ -97,7 +97,7 @@ public class Inventory {
 
         Item item = inventoryItems.get(selectedItem);
         g.drawImage(item.getTexture(), invImageX, invImageY, invImageWidth, invImageHeight, null);
-        Text.drawString(g, item.getDesc(), invDescX, invDescY, true, Color.BLACK, Assets.font14);
+        drawBrokeString(g, item.getDesc(), invDescX, invDescY, true, Color.BLACK, Assets.font14);
         Text.drawString(g, Integer.toString(item.getCount()), invCountX, invCountY, true, Color.BLACK, Assets.font28);
     }
 
@@ -127,5 +127,10 @@ public class Inventory {
 
     public boolean isActive() {
         return active;
+    }
+
+    private void drawBrokeString(Graphics g, String text, int x, int y, boolean center, Color color, Font font) {
+        for (String line : text.split("\n"))
+            Text.drawString(g,line, x, y += g.getFontMetrics().getHeight(), center, color, font);
     }
 }
