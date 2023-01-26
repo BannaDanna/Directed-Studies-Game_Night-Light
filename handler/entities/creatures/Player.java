@@ -13,7 +13,9 @@ import java.awt.image.BufferedImage;
 public class Player extends Creature{
 
 //animations
-    private Animation animIdle, animMoveLeft, animMoveRight, animMoveUp, animMoveDown, animAttackLeft, animAttackRight, animAttackUp, animAttackDown, lastAnimation;
+
+    private Animation[] movingAttacksLeft, movingAttacksRight, movingAttacksUp, movingAttacksDown;
+    private Animation animIdle, animMoveLeft, animMoveRight, animMoveUp, animMoveDown, animAttackLeft, animAttackRight, animAttackUp, animAttackDown, lastAnimation, movingAttacksLeftUp, movingAttacksLeftDown, movingAttacksLeftLeft, movingAttacksLeftRight, movingAttacksRightUp, movingAttacksRightDown, movingAttacksRightLeft, movingAttacksRightRight, movingAttacksUpUp, movingAttacksUpDown, movingAttacksUpLeft, movingAttacksUpRight, movingAttacksDownUp, movingAttacksDownDown, movingAttacksDownLeft, movingAttacksDownRight;
     //attack and attack animation timer
     private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
     private long lastAnimationTimer, animationCooldown = 800, animationTimer = animationCooldown;
@@ -23,6 +25,10 @@ public class Player extends Creature{
     public Player(Handler handler, float x, float y)
     {
         super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+        Animation movingAttacksUp[] = new Animation[4];
+        Animation movingAttacksDown[] = new Animation[4];
+        Animation movingAttacksLeft[] = new Animation[4];
+        Animation movingAttacksRight[] = new Animation[4];
 
         bounds.x = handler.getWidth() / 64;
         bounds.y = (int)(handler.getHeight() / 9.6);
@@ -39,6 +45,39 @@ public class Player extends Creature{
         animAttackRight = new Animation(100, Assets.player_attack_right);
         animAttackUp = new Animation(100, Assets.player_attack_up);
         animAttackDown = new Animation(100, Assets.player_attack_down);
+        movingAttacksUpUp = new Animation(100, Assets.player_attack_down);
+        movingAttacksUpDown = new Animation(100, Assets.player_attack_down);
+        movingAttacksUpLeft = new Animation(100, Assets.player_attack_down);
+        movingAttacksUpRight = new Animation(100, Assets.player_attack_down);
+        movingAttacksDownUp = new Animation(100, Assets.player_attack_down);
+        movingAttacksDownDown = new Animation(100, Assets.player_attack_down);
+        movingAttacksDownLeft = new Animation(100, Assets.player_attack_down);
+        movingAttacksDownRight = new Animation(100, Assets.player_attack_down);
+        movingAttacksLeftUp = new Animation(100, Assets.player_attack_down);
+        movingAttacksLeftDown = new Animation(100, Assets.player_attack_down);
+        movingAttacksLeftLeft = new Animation(100, Assets.player_attack_down);
+        movingAttacksLeftRight = new Animation(100, Assets.player_attack_down);
+        movingAttacksRightUp = new Animation(100, Assets.player_attack_down);
+        movingAttacksRightDown = new Animation(100, Assets.player_attack_down);
+        movingAttacksRightLeft = new Animation(100, Assets.player_attack_down);
+        movingAttacksRightRight = new Animation(100, Assets.player_attack_down);
+        movingAttacksDown[0] = movingAttacksDownUp;
+        movingAttacksDown[1] = movingAttacksDownDown;
+        movingAttacksDown[2] = movingAttacksDownLeft;
+        movingAttacksDown[3] = movingAttacksDownRight;
+        movingAttacksUp[0] = movingAttacksUpUp;
+        movingAttacksUp[1] = movingAttacksUpDown;
+        movingAttacksUp[2] = movingAttacksUpLeft;
+        movingAttacksUp[3] = movingAttacksUpRight;
+        movingAttacksLeft[0] = movingAttacksLeftUp;
+        movingAttacksLeft[1] = movingAttacksLeftDown;
+        movingAttacksLeft[2] = movingAttacksLeftLeft;
+        movingAttacksLeft[3] = movingAttacksLeftRight;
+        movingAttacksRight[0] = movingAttacksRightUp;
+        movingAttacksRight[1] = movingAttacksRightDown;
+        movingAttacksRight[2] = movingAttacksRightLeft;
+        movingAttacksRight[3] = movingAttacksRightRight;
+
 
         inventory = new Inventory(handler);
         inventory.addItem(Item.batteriesItem);
@@ -218,6 +257,13 @@ public class Player extends Creature{
             return;
         }
 
+        if(handler.getKeyManager().run)
+        {
+            speed = (float) (DEFAULT_SPEED * 1.40);
+        } else {
+            speed = DEFAULT_SPEED;
+        }
+
         if(handler.getKeyManager().up)
         {
             yMove = -speed;
@@ -353,6 +399,10 @@ public class Player extends Creature{
             if(handler.getKeyManager().aUp)
             {
                 animationTimer = 0;
+                if(xMove != 0 || yMove != 0)
+                {
+                    return checkMovingAttack(movingAttacksDown).getCurrentFrame();
+                }
                 lastAnimation = animAttackUp;
                 lastAnimation.setCurrentFrame(0);
                 return animAttackUp.getCurrentFrame();
@@ -406,5 +456,28 @@ public class Player extends Creature{
 
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
+    }
+
+    private Animation checkMovingAttack(Animation[] attackDir)
+    {
+        int up = 0;
+        int down = 1;
+        int left = 2;
+        int right = 3;
+        if(attackDir == null)
+        {
+            return lastAnimation;
+        }
+        if(xMove < 0)
+        {
+            return attackDir[left];
+        } else if (xMove > 0) {
+            return attackDir[right];
+        } else if (yMove < 0) {
+            return attackDir[up];
+        }else if (yMove > 0) {
+            return attackDir[down];
+        }
+        return attackDir[1];
     }
 }
