@@ -401,7 +401,9 @@ public class Player extends Creature{
                 animationTimer = 0;
                 if(xMove != 0 || yMove != 0)
                 {
-                    return checkMovingAttack(movingAttacksDown).getCurrentFrame();
+                    lastAnimation = checkMovingAttack(movingAttacksUp);
+                    lastAnimation.setCurrentFrame(0);
+                    return lastAnimation.getCurrentFrame();
                 }
                 lastAnimation = animAttackUp;
                 lastAnimation.setCurrentFrame(0);
@@ -471,11 +473,14 @@ public class Player extends Creature{
         if(xMove < 0)
         {
             return attackDir[left];
-        } else if (xMove > 0) {
+        }
+        if (xMove > 0) {
             return attackDir[right];
-        } else if (yMove < 0) {
+        }
+        if (yMove < 0) {
             return attackDir[up];
-        }else if (yMove > 0) {
+        }
+        if (yMove > 0) {
             return attackDir[down];
         }
         return attackDir[1];

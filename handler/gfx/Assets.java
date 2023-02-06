@@ -88,9 +88,36 @@ public class Assets {
         player_attack_move_right[0] = sheet.crop(0, 0, width, height * 2);
         player_attack_move_right[1] = sheet.crop(width, 0, width, height * 2);
         player_attack_move_right[2] = sheet.crop(width * 2, 0, width, height * 2);
-        player_attack_right[3] = sheet.crop(width * 3, 0, width, height * 2);
-        player_attack_right[4] = sheet.crop(width * 4, 0, width, height * 2);
-        player_attack_right[5] = sheet.crop(width * 5, 0, width, height * 2);
+        player_attack_move_right[3] = sheet.crop(width * 3, 0, width, height * 2);
+        player_attack_move_right[4] = sheet.crop(width * 4, 0, width, height * 2);
+        player_attack_move_right[5] = sheet.crop(width * 5, 0, width, height * 2);
+
+        player_attack_move_left = new BufferedImage[6];
+
+        player_attack_move_left[0] = sheet.crop(0, 0, width, height * 2);
+        player_attack_move_left[1] = sheet.crop(width, 0, width, height * 2);
+        player_attack_move_left[2] = sheet.crop(width * 2, 0, width, height * 2);
+        player_attack_move_left[3] = sheet.crop(width * 3, 0, width, height * 2);
+        player_attack_move_left[4] = sheet.crop(width * 4, 0, width, height * 2);
+        player_attack_move_left[5] = sheet.crop(width * 5, 0, width, height * 2);
+
+        player_attack_move_up = new BufferedImage[6];
+
+        player_attack_move_up[0] = sheet.crop(0, 0, width, height * 2);
+        player_attack_move_up[1] = sheet.crop(width, 0, width, height * 2);
+        player_attack_move_up[2] = sheet.crop(width * 2, 0, width, height * 2);
+        player_attack_move_up[3] = sheet.crop(width * 3, 0, width, height * 2);
+        player_attack_move_up[4] = sheet.crop(width * 4, 0, width, height * 2);
+        player_attack_move_up[5] = sheet.crop(width * 5, 0, width, height * 2);
+
+        player_attack_move_down = new BufferedImage[6];
+
+        player_attack_move_down[0] = sheet.crop(0, 0, width, height * 2);
+        player_attack_move_down[1] = sheet.crop(width, 0, width, height * 2);
+        player_attack_move_down[2] = sheet.crop(width * 2, 0, width, height * 2);
+        player_attack_move_down[3] = sheet.crop(width * 3, 0, width, height * 2);
+        player_attack_move_down[4] = sheet.crop(width * 4, 0, width, height * 2);
+        player_attack_move_down[5] = sheet.crop(width * 5, 0, width, height * 2);
 
         //tiles
         empty = sheet.crop(width*9, height*9, width, height);
