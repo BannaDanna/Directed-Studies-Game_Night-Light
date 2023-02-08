@@ -6,6 +6,7 @@ import handler.gfx.Animation;
 import handler.gfx.Assets;
 import handler.inventory.Inventory;
 import handler.items.Item;
+import handler.sounds.SoundManager;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -21,10 +22,12 @@ public class Player extends Creature{
     private long lastAnimationTimer, animationCooldown = 800, animationTimer = animationCooldown;
     //inventory
     private Inventory inventory;
+    private SoundManager audioManager;
 
     public Player(Handler handler, float x, float y)
     {
         super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+        audioManager = new SoundManager();
         Animation movingAttacksUp[] = new Animation[4];
         Animation movingAttacksDown[] = new Animation[4];
         Animation movingAttacksLeft[] = new Animation[4];

@@ -2,7 +2,6 @@ package handler.gfx;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.nio.Buffer;
 
 public class Assets {
 
@@ -25,8 +24,11 @@ public class Assets {
     public static Font font28, font56, font14;
 
 
+
     public static void init()
     {
+
+        //fonts
         font28 = FontLoader.loadFont("res/fonts/Pixellettersfull-BnJ5.ttf", 28);
         font14 = FontLoader.loadFont("res/fonts/Pixellettersfull-BnJ5.ttf", 14);
         font56 = FontLoader.loadFont("res/fonts/Pixellettersfull-BnJ5.ttf", 56);
