@@ -43,4 +43,13 @@ public class Animation {
     {
         this.index = index;
     }
+    public void setSpeed(int speed)
+    {
+        this.speed = speed;
+    }
+
+    public int getSpeed()
+    {
+        return speed;
+    }
 }
