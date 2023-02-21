@@ -40,10 +40,10 @@ public class Player extends Creature{
 
         //Animations
         animIdle = new Animation(500, Assets.player_idle);
-//        animMoveLeft = new Animation(500, Assets.player_move_left);
-//        animMoveRight = new Animation(500, Assets.player_move_right);
-//        animMoveUp = new Animation(500, Assets.player_move_up);
-//        animMovDown = new Animation(500, Assets.player_move_down);
+        animMoveLeft = new Animation(500, Assets.player_left);
+        animMoveRight = new Animation(500, Assets.player_right);
+        animMoveUp = new Animation(500, Assets.player_up);
+        animMoveDown = new Animation(500, Assets.player_down);
         animAttackLeft = new Animation(100, Assets.player_attack_left);
         animAttackRight = new Animation(100, Assets.player_attack_right);
         animAttackUp = new Animation(100, Assets.player_attack_up);
@@ -94,10 +94,10 @@ public class Player extends Creature{
     public void tick() {
         //Animations
         animIdle.tick();
-//      animMoveLeft.tick();
-//      animMoveRight.tick();
-//      animMoveUp.tick();
-//      animMoveDown.tick();
+      animMoveLeft.tick();
+      animMoveRight.tick();
+      animMoveUp.tick();
+      animMoveDown.tick();
       animAttackLeft.tick();
       animAttackRight.tick();
       animAttackUp.tick();
@@ -263,8 +263,16 @@ public class Player extends Creature{
         if(handler.getKeyManager().run)
         {
             speed = (float) (DEFAULT_SPEED * 1.40);
+            animMoveLeft.setSpeed((int) (animMoveLeft.getSpeed() * 1.4));
+            animMoveUp.setSpeed((int) (animMoveUp.getSpeed() * 1.4));
+            animMoveDown.setSpeed((int) (animMoveDown.getSpeed() * 1.4));
+            animMoveRight.setSpeed((int) (animMoveRight.getSpeed() * 1.4));
         } else {
             speed = DEFAULT_SPEED;
+            animMoveLeft.setSpeed(500);
+            animMoveUp.setSpeed(500);
+            animMoveDown.setSpeed(500);
+            animMoveRight.setSpeed(500);
         }
 
         if(handler.getKeyManager().up)
@@ -412,38 +420,57 @@ public class Player extends Creature{
                 lastAnimation.setCurrentFrame(0);
                 return animAttackUp.getCurrentFrame();
             } else if (handler.getKeyManager().aDown) {
-                animAttackDown.tick();
                 animationTimer = 0;
+                if(xMove != 0 || yMove != 0)
+                {
+                    lastAnimation = checkMovingAttack(movingAttacksDown);
+                    lastAnimation.setCurrentFrame(0);
+                    return lastAnimation.getCurrentFrame();
+                }
                 lastAnimation = animAttackDown;
                 lastAnimation.setCurrentFrame(0);
                 return animAttackDown.getCurrentFrame();
             } else if (handler.getKeyManager().aLeft) {
-                animAttackLeft.tick();
                 animationTimer = 0;
+                if(xMove != 0 || yMove != 0)
+                {
+                    lastAnimation = checkMovingAttack(movingAttacksLeft);
+                    lastAnimation.setCurrentFrame(0);
+                    return lastAnimation.getCurrentFrame();
+                }
                 lastAnimation = animAttackLeft;
                 lastAnimation.setCurrentFrame(0);
                 return animAttackLeft.getCurrentFrame();
             } else if (handler.getKeyManager().aRight) {
-                animAttackRight.tick();
                 animationTimer = 0;
+                if(xMove != 0 || yMove != 0)
+                {
+                    lastAnimation = checkMovingAttack(movingAttacksRight);
+                    lastAnimation.setCurrentFrame(0);
+                    return lastAnimation.getCurrentFrame();
+                }
                 lastAnimation = animAttackRight;
                 lastAnimation.setCurrentFrame(0);
                 return animAttackRight.getCurrentFrame();
             }
 
-//        if(xMove < 0) //left
-//        {
-//
-//        } else if(xMove > 0){ //right
-//
-//        } else if(yMove < 0){ //up
-//
-//        }else if(yMove < 0){ //down
-//
-//        }else{ //idle
+        if(xMove < 0) //left
+        {
+            lastAnimation = animMoveLeft;
+            return animMoveLeft.getCurrentFrame();
+        } else if(xMove > 0){ //right
+            lastAnimation = animMoveRight;
+            return animMoveRight.getCurrentFrame();
+        } else if(yMove < 0){ //up
+            lastAnimation = animMoveUp;
+            return animMoveUp.getCurrentFrame();
+        }else if(yMove > 0){ //down
+            lastAnimation = animMoveDown;
+            return animMoveDown.getCurrentFrame();
+        }else{ //idle
             lastAnimation = animIdle;
             return animIdle.getCurrentFrame();
-//        }
+        }
         }
    return lastAnimation.getCurrentFrame();
     }
