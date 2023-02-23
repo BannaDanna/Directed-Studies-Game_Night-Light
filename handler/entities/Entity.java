@@ -13,6 +13,7 @@ public abstract class Entity {
     protected int health;
     protected boolean active = true;
     protected boolean killable = true;
+    protected boolean solid = true;
     public static final int DEFAULT_HEALTH = 10;
 
 
@@ -72,6 +73,14 @@ public abstract class Entity {
         this.killable = killable;
     }
 
+    public boolean isSolid() {
+        return solid;
+    }
+
+    public void setSolid(boolean solid) {
+        this.solid = solid;
+    }
+
     public Entity(Handler handler, float x, float y, int width, int height)
     {
         health = DEFAULT_HEALTH;
@@ -91,7 +100,7 @@ public abstract class Entity {
     {
         for(Entity e : handler.getWorld().getEntityManager().getEntities())
         {
-            if(e.equals(this))
+            if(e.equals(this) || !e.isSolid())
             {
                 continue;
             }
