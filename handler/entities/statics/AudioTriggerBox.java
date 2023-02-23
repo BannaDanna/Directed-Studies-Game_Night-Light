@@ -1,6 +1,7 @@
 package handler.entities.statics;
 
 import handler.Handler;
+import handler.entities.creatures.Player;
 import handler.sounds.SoundManager;
 
 import java.awt.*;
@@ -23,7 +24,7 @@ public class AudioTriggerBox extends StaticEntity{
 
     @Override
     public void tick() {
-        if(checkEntityCollisions(0,0))
+        if(handler.getWorld().getEntityManager().getPlayer().getCollisionBounds(0f,0f).intersects(getCollisionBounds(0,0)))
         {
             audiomanager.playSound(path);
             active = false;
