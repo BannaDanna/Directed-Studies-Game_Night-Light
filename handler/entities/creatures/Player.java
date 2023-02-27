@@ -15,7 +15,7 @@ public class Player extends Creature{
 
 //animations
 
-    private Animation[] movingAttacksLeft, movingAttacksRight, movingAttacksUp, movingAttacksDown;
+    private Animation[] movingAttacksLeft = new Animation[4], movingAttacksRight = new Animation[4], movingAttacksUp = new Animation[4], movingAttacksDown = new Animation[4];
     private Animation animIdle, animMoveLeft, animMoveRight, animMoveUp, animMoveDown, animAttackLeft, animAttackRight, animAttackUp, animAttackDown, lastAnimation, movingAttacksLeftUp, movingAttacksLeftDown, movingAttacksLeftLeft, movingAttacksLeftRight, movingAttacksRightUp, movingAttacksRightDown, movingAttacksRightLeft, movingAttacksRightRight, movingAttacksUpUp, movingAttacksUpDown, movingAttacksUpLeft, movingAttacksUpRight, movingAttacksDownUp, movingAttacksDownDown, movingAttacksDownLeft, movingAttacksDownRight;
     //attack and attack animation timer
     private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
@@ -28,10 +28,6 @@ public class Player extends Creature{
     {
         super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
         audioManager = new SoundManager();
-        Animation movingAttacksUp[] = new Animation[4];
-        Animation movingAttacksDown[] = new Animation[4];
-        Animation movingAttacksLeft[] = new Animation[4];
-        Animation movingAttacksRight[] = new Animation[4];
 
         bounds.x = handler.getWidth() / 64;
         bounds.y = (int)(handler.getHeight() / 9.6);
@@ -496,10 +492,6 @@ public class Player extends Creature{
         int down = 1;
         int left = 2;
         int right = 3;
-        if(attackDir == null)
-        {
-            return lastAnimation;
-        }
         if(xMove < 0)
         {
             return attackDir[left];
@@ -513,6 +505,6 @@ public class Player extends Creature{
         if (yMove > 0) {
             return attackDir[down];
         }
-        return attackDir[1];
+        return null;
     }
 }
