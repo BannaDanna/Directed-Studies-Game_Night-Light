@@ -70,6 +70,10 @@ public class EntityManager {
         {
             entities.add(activelyAdd.get(i));
         }
+        for(int i = 0; i < activelyAdd.size(); i++)
+        {
+            activelyAdd.remove(i);
+        }
     }
 
     public void addEntity(Entity e)
