@@ -3,9 +3,11 @@ package handler.worlds;
 import handler.Handler;
 import handler.entities.EntityManager;
 import handler.entities.creatures.Player;
+import handler.entities.creatures.Tanx;
 import handler.entities.statics.Couch;
 import handler.entities.statics.Lamp;
-import handler.entities.statics.AudioTriggerBox;
+import handler.entities.statics.GameTriggerBox;
+import handler.events.EntityEvent;
 import handler.items.ItemManager;
 import handler.tiles.Tile;
 import handler.utils.Utils;
@@ -31,7 +33,9 @@ public class World {
         entityManager.addEntity(new Lamp(handler, 2100, 150));
         entityManager.addEntity(new Lamp(handler, 1200, 300));
         entityManager.addEntity(new Couch(handler, 1068, 450));
-        entityManager.addEntity(new AudioTriggerBox(handler, 900, 900, 900, 900, "res/sounds/Glass-Break.wav"));
+//        entityManager.addEntity(new Tanx(handler, 400, 300));
+        entityManager.addEntity(new GameTriggerBox(handler, 900, 900, 900, 900, "res/sounds/Glass-Break.wav"));
+        entityManager.addEntity(new GameTriggerBox(handler, 100, 900, 900, 900, new EntityEvent(handler, entityManager, new Tanx(handler, 400, 300), 1)));
         loadWorld(path);
 
         entityManager.getPlayer().setX(spawnX);

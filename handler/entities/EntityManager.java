@@ -12,7 +12,7 @@ public class EntityManager {
 
     private Handler handler;
     private Player player;
-    private ArrayList<Entity> entities;
+    private ArrayList<Entity> entities, activelyAdd;
     private Comparator<Entity> renderSorter = new Comparator<Entity>() {
         @Override
         public int compare(Entity a, Entity b) {
@@ -29,13 +29,15 @@ public class EntityManager {
         this.handler = handler;
         this.player = player;
         entities = new ArrayList<Entity>();
+        activelyAdd = new ArrayList<Entity>();
         addEntity(player);
     }
 
 
     public void tick()
     {
-        Iterator<Entity> it = entities.iterator();
+        activelyAddEntities();
+        Iterator<Entity> it = entities.listIterator();
         while(it.hasNext())
         {
             Entity e = it.next();
@@ -55,6 +57,19 @@ public class EntityManager {
             e.render(g);
         }
         player.postRender(g);
+    }
+
+    public void activelyAddEntity(Entity e)
+    {
+        activelyAdd.add(e);
+    }
+
+    public void activelyAddEntities()
+    {
+        for(int i = 0; i < activelyAdd.size(); i++)
+        {
+            entities.add(activelyAdd.get(i));
+        }
     }
 
     public void addEntity(Entity e)

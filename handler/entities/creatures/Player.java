@@ -98,6 +98,22 @@ public class Player extends Creature{
       animAttackRight.tick();
       animAttackUp.tick();
       animAttackDown.tick();
+        movingAttacksUpUp.tick();
+        movingAttacksUpDown.tick();
+        movingAttacksUpRight.tick();
+        movingAttacksUpLeft.tick();
+        movingAttacksRightRight.tick();
+        movingAttacksRightLeft.tick();
+        movingAttacksRightDown.tick();
+        movingAttacksRightUp.tick();
+        movingAttacksLeftRight.tick();
+        movingAttacksLeftLeft.tick();
+        movingAttacksLeftUp.tick();
+        movingAttacksLeftDown.tick();
+        movingAttacksDownRight.tick();
+        movingAttacksDownLeft.tick();
+        movingAttacksDownUp.tick();
+        movingAttacksDownDown.tick();
         //Movement
         getInput();
         move();
@@ -292,7 +308,7 @@ public class Player extends Creature{
     @Override
     public void render(Graphics g) {
         g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),width, height * 2, null);
-//        g.drawRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()), (int) (y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
+        g.drawRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()), (int) (y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
 //        g.setColor(Color.red);
 //        Rectangle cb = getCollisionBounds(0,0);
 //        Rectangle ar = new Rectangle();

@@ -14,8 +14,17 @@ public abstract class Entity {
     protected boolean active = true;
     protected boolean killable = true;
     protected boolean solid = true;
+
+    protected boolean activelyAdd = false;
     public static final int DEFAULT_HEALTH = 10;
 
+    public boolean isActivelyAdd() {
+        return activelyAdd;
+    }
+
+    public void setActivelyAdd(boolean activelyAdd) {
+        this.activelyAdd = activelyAdd;
+    }
 
     public float getX() {
         return x;
