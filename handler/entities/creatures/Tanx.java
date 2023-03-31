@@ -1,6 +1,7 @@
 package handler.entities.creatures;
 
 import handler.Handler;
+import handler.entities.Entity;
 import handler.gfx.Animation;
 import handler.gfx.Assets;
 import handler.items.Item;
@@ -39,6 +40,31 @@ public class Tanx extends Creature {
     @Override
     public void render(Graphics g) {
         g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()), (int) (y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
+
+        Rectangle cb = getCollisionBounds(0, 0);
+        Rectangle ar = new Rectangle();
+
+        ar.width = handler.getWidth() / 40;
+        ar.height = handler.getWidth() / 30;
+
+        if (attackDir == 1) {
+            ar.x = cb.x + cb.width / 2;
+            ar.y = cb.y - ar.width;
+        } else if (attackDir == 2)
+        {
+            ar.x = cb.x +cb.width / 2 - cb.width / 2 + 20;
+            ar.y = cb.y + cb.height - 70;
+        } else if (attackDir == 3)
+        {
+            ar.x = cb.x - cb.width;
+            ar.y = cb.y + cb.height / 2 - cb.height / 2 - 48;
+        } else if(attackDir == 4)
+        {
+            ar.x = cb.x + cb.width;
+            ar.y = cb.y + cb.height / 2 - cb.height / 2 - 48;
+        }
+
+        g.fillRect(ar.x, ar.y, ar.width, ar.height);
     }
 
     @Override
@@ -81,13 +107,39 @@ public class Tanx extends Creature {
 
         if (attackDir == 1) {
             ar.x = cb.x + cb.width / 2;
-            ar.y = cb.y;
+            ar.y = cb.y - ar.width;
+        } else if (attackDir == 2)
+        {
+            ar.x = cb.x +cb.width / 2 - cb.width / 2 + 20;
+            ar.y = cb.y + cb.height - 70;
+        } else if (attackDir == 3)
+        {
+            ar.x = cb.x - cb.width;
+            ar.y = cb.y + cb.height / 2 - cb.height / 2 - 48;
+        } else if(attackDir == 4)
+        {
+            ar.x = cb.x + cb.width;
+            ar.y = cb.y + cb.height / 2 - cb.height / 2 - 48;
+        } else {
+            return;
         }
 
-        if (handler.getWorld().getEntityManager().getPlayer().getCollisionBounds(0, 0).intersects(ar)) {
-            handler.getWorld().getEntityManager().getPlayer().hurt(5);
-            System.out.println("GoTChA");
-            attackDir = 0;
+        for(Entity e : handler.getWorld().getEntityManager().getEntities())
+        {
+            if(e.equals(this))
+            {
+                continue;
+            }
+            if(!e.isKillable())
+            {
+                continue;
+            }
+                if(e.getCollisionBounds(0,0).intersects(ar))
+                {
+                    e.hurt(5);
+                    System.out.println("GoTChA");
+                    attackDir = 0;
+                }
         }
     }
 

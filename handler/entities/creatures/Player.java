@@ -261,12 +261,6 @@ public class Player extends Creature{
 
         xMove = 0;
         yMove = 0;
-        if(handler.getKeyManager().esc)
-        {
-            handler.getGame().getDisplay().getFrame().setVisible(false);
-            handler.getGame().getDisplay().getFrame().dispose();
-            System.exit(0);
-        }
         if(inventory.isActive())
         {
             return;

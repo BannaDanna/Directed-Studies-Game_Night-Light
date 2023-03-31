@@ -34,6 +34,7 @@ public class Lamp extends StaticEntity{
     @Override
     public void die()
     {
+        System.out.println("Batteries dropped");
         handler.getWorld().getItemManager().addItem(Item.batteriesItem.createNew((int) (x + bounds.width / 2), (int) (y + bounds.y + bounds.height)));
     }
 }
