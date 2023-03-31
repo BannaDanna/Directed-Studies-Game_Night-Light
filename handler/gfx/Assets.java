@@ -7,7 +7,7 @@ public class Assets {
 
     private static final int width = 256, height = width;
     //tiles
-    public static BufferedImage empty, wall, carpet, leftSideWall, rightSideWall, bottomSideWall, bottomWall;
+    public static BufferedImage empty, wall, carpet, leftSideWall, rightSideWall, bottomSideWall, bottomWall, rightDoor;
 
     //static entities
     public static BufferedImage lamp, couch;
@@ -134,6 +134,7 @@ public class Assets {
         rightSideWall = sheet.crop(width * 3, height, width, height);
         bottomSideWall = sheet.crop(width * 4, height, width, height);
         bottomWall = sheet.crop(width * 2, height, width, height);
+        rightDoor = sheet.crop(width * 9, height * 9, width, height);
 
         //static entities
         lamp = sheet.crop(width * 9, 0, width, height * 2);
