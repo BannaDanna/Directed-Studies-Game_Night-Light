@@ -12,7 +12,7 @@ public class Tanx extends Creature {
 
     private Animation animIdle;
 
-    private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
+    private long lastAttackTimer, attackCooldown = 1000, attackTimer = attackCooldown;
 
     private int attackDir;
 
@@ -136,7 +136,7 @@ public class Tanx extends Creature {
             }
                 if(e.getCollisionBounds(0,0).intersects(ar))
                 {
-                    e.hurt(5);
+                    e.hurt(2);
                     System.out.println("GoTChA");
                     attackDir = 0;
                 }

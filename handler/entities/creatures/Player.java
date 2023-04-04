@@ -1,5 +1,6 @@
 package handler.entities.creatures;
 
+import handler.HUD.HUD;
 import handler.Handler;
 import handler.entities.Entity;
 import handler.gfx.Animation;
@@ -17,17 +18,25 @@ public class Player extends Creature{
 
     private Animation[] movingAttacksLeft = new Animation[4], movingAttacksRight = new Animation[4], movingAttacksUp = new Animation[4], movingAttacksDown = new Animation[4];
     private Animation animIdle, animMoveLeft, animMoveRight, animMoveUp, animMoveDown, animAttackLeft, animAttackRight, animAttackUp, animAttackDown, lastAnimation, movingAttacksLeftUp, movingAttacksLeftDown, movingAttacksLeftLeft, movingAttacksLeftRight, movingAttacksRightUp, movingAttacksRightDown, movingAttacksRightLeft, movingAttacksRightRight, movingAttacksUpUp, movingAttacksUpDown, movingAttacksUpLeft, movingAttacksUpRight, movingAttacksDownUp, movingAttacksDownDown, movingAttacksDownLeft, movingAttacksDownRight;
-    //attack and attack animation timer
+    //attack, attack animation, and stamina regen timer
     private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
     private long lastAnimationTimer, animationCooldown = 800, animationTimer = animationCooldown;
+    private long lastStamRegen, stamRegenCooldown = 1500, stamRegenTimer = stamRegenCooldown;
     //inventory
     private Inventory inventory;
+    //HUD
+    private HUD hud;
+    //soundManager
     private SoundManager audioManager;
+    //stamina
+    private int stamina;
+    private boolean running;
 
     public Player(Handler handler, float x, float y)
     {
         super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
         audioManager = new SoundManager();
+        stamina = 100;
 
         bounds.x = handler.getWidth() / 64;
         bounds.y = (int)(handler.getHeight() / 9.6);
@@ -77,7 +86,7 @@ public class Player extends Creature{
         movingAttacksRight[2] = movingAttacksRightLeft;
         movingAttacksRight[3] = movingAttacksRightRight;
 
-
+        hud = new HUD(handler);
         inventory = new Inventory(handler);
         inventory.addItem(Item.batteriesItem);
         inventory.addItem(Item.batteriesItem);
@@ -122,6 +131,24 @@ public class Player extends Creature{
         checkAttacks();
         //Inventory
         inventory.tick();
+        //hud
+        hud.tick();
+
+        stamRegenTimer += System.currentTimeMillis() - lastStamRegen;
+        lastStamRegen = System.currentTimeMillis();
+        if(stamRegenTimer >= stamRegenCooldown && !running) {
+            stamina += 1;
+            if(stamina > 100)
+            {
+                stamina = 100;
+            }
+            stamRegenTimer = 0;
+        }
+        if(stamina < 0)
+        {
+            stamina = 0;
+        }
+
     }
 
     private void checkAttacks()
@@ -266,14 +293,16 @@ public class Player extends Creature{
             return;
         }
 
-        if(handler.getKeyManager().run)
+        if(handler.getKeyManager().run && stamina > 0)
         {
+            running = true;
             speed = (float) (DEFAULT_SPEED * 1.40);
             animMoveLeft.setSpeed((int) (animMoveLeft.getSpeed() * 1.4));
             animMoveUp.setSpeed((int) (animMoveUp.getSpeed() * 1.4));
             animMoveDown.setSpeed((int) (animMoveDown.getSpeed() * 1.4));
             animMoveRight.setSpeed((int) (animMoveRight.getSpeed() * 1.4));
         } else {
+            running = false;
             speed = DEFAULT_SPEED;
             animMoveLeft.setSpeed(500);
             animMoveUp.setSpeed(500);
@@ -284,18 +313,34 @@ public class Player extends Creature{
         if(handler.getKeyManager().up)
         {
             yMove = -speed;
+            if(running)
+            {
+                stamina -= 2;
+            }
         }
         if(handler.getKeyManager().down)
         {
             yMove = speed;
+            if(running)
+            {
+                stamina -= 2;
+            }
         }
         if(handler.getKeyManager().left)
         {
             xMove = -speed;
+            if(running)
+            {
+                stamina -= 2;
+            }
         }
         if(handler.getKeyManager().right)
         {
             xMove = speed;
+            if(running)
+            {
+                stamina -= 2;
+            }
         }
     }
 
@@ -404,6 +449,7 @@ public class Player extends Creature{
 
     public void postRender(Graphics g)
     {
+        hud.render(g);
         inventory.render(g);
     }
 
@@ -494,6 +540,14 @@ public class Player extends Creature{
 
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
+    }
+
+    public int getStamina() {
+        return stamina;
+    }
+
+    public void setStamina(int stamina) {
+        this.stamina = stamina;
     }
 
     private Animation checkMovingAttack(Animation[] attackDir)
