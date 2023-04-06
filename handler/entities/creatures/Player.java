@@ -21,10 +21,11 @@ public class Player extends Creature{
     //attack, attack animation, and stamina regen timer
     private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
     private long lastAnimationTimer, animationCooldown = 800, animationTimer = animationCooldown;
-    private long lastStamRegen, stamRegenCooldown = 1000, stamRegenTimer = stamRegenCooldown;
+    private long lastStamRegen, stamRegenCooldown = 150, stamRegenTimer = stamRegenCooldown;
 
     private long lastStamTick, stamTickCooldown = 200, stamTickTimer = stamTickCooldown;
 
+    private long lastDelayTimer, delayCooldown = 2500, delayTimer = delayCooldown;
     //inventory
     private Inventory inventory;
     //HUD
@@ -139,6 +140,8 @@ public class Player extends Creature{
 
         stamRegenTimer += System.currentTimeMillis() - lastStamRegen;
         lastStamRegen = System.currentTimeMillis();
+        delayTimer += System.currentTimeMillis() - lastDelayTimer;
+        lastDelayTimer = System.currentTimeMillis();
         if(stamRegenTimer >= stamRegenCooldown && !running) {
             if(stamina < 0)
             {
@@ -152,7 +155,10 @@ public class Player extends Creature{
             {
                 tired = true;
             }
-            stamina += 5;
+            if(delayTimer >= delayCooldown)
+            {
+                stamina += 1;
+            }
             if(stamina > 100)
             {
                 stamina = 100;
@@ -333,6 +339,7 @@ public class Player extends Creature{
             {
                 stamina -= 2;
                 stamTickTimer = 0;
+                delayTimer = 0;
             }
         }
         if(handler.getKeyManager().down)
@@ -342,6 +349,7 @@ public class Player extends Creature{
             {
                 stamina -= 2;
                 stamTickTimer = 0;
+                delayTimer = 0;
             }
         }
         if(handler.getKeyManager().left)
@@ -351,6 +359,7 @@ public class Player extends Creature{
             {
                 stamina -= 2;
                 stamTickTimer = 0;
+                delayTimer = 0;
             }
         }
         if(handler.getKeyManager().right)
@@ -360,6 +369,7 @@ public class Player extends Creature{
             {
                 stamina -= 2;
                 stamTickTimer = 0;
+                delayTimer = 0;
             }
         }
     }
