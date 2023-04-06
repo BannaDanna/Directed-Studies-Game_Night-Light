@@ -22,6 +22,9 @@ public class Player extends Creature{
     private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
     private long lastAnimationTimer, animationCooldown = 800, animationTimer = animationCooldown;
     private long lastStamRegen, stamRegenCooldown = 1000, stamRegenTimer = stamRegenCooldown;
+
+    private long lastStamTick, stamTickCooldown = 200, stamTickTimer = stamTickCooldown;
+
     //inventory
     private Inventory inventory;
     //HUD
@@ -137,13 +140,13 @@ public class Player extends Creature{
         stamRegenTimer += System.currentTimeMillis() - lastStamRegen;
         lastStamRegen = System.currentTimeMillis();
         if(stamRegenTimer >= stamRegenCooldown && !running) {
-            if(stamina >= 50 && tired)
-            {
-                tired = false;
-            }
             if(stamina < 0)
             {
                 stamina = 0;
+            }
+            if(stamina >= 50 && tired)
+            {
+                tired = false;
             }
             if(stamina == 0)
             {
@@ -302,7 +305,7 @@ public class Player extends Creature{
             return;
         }
 
-        if((handler.getKeyManager().run && !tired) && stamina > 2)
+        if((handler.getKeyManager().run && !tired) && stamina > 0)
         {
             running = true;
             speed = (float) (DEFAULT_SPEED * 1.40);
@@ -319,36 +322,44 @@ public class Player extends Creature{
             animMoveRight.setSpeed(500);
         }
 
+        stamTickTimer += System.currentTimeMillis() - lastStamTick;
+        lastStamTick = System.currentTimeMillis();
+
+
         if(handler.getKeyManager().up)
         {
             yMove = -speed;
-            if(running)
+            if(running && stamTickTimer >= stamTickCooldown)
             {
                 stamina -= 2;
+                stamTickTimer = 0;
             }
         }
         if(handler.getKeyManager().down)
         {
             yMove = speed;
-            if(running)
+            if(running && stamTickTimer >= stamTickCooldown)
             {
                 stamina -= 2;
+                stamTickTimer = 0;
             }
         }
         if(handler.getKeyManager().left)
         {
             xMove = -speed;
-            if(running)
+            if(running && stamTickTimer >= stamTickCooldown)
             {
                 stamina -= 2;
+                stamTickTimer = 0;
             }
         }
         if(handler.getKeyManager().right)
         {
             xMove = speed;
-            if(running)
+            if(running && stamTickTimer >= stamTickCooldown)
             {
                 stamina -= 2;
+                stamTickTimer = 0;
             }
         }
     }
