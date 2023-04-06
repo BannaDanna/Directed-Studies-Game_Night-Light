@@ -21,7 +21,7 @@ public class Player extends Creature{
     //attack, attack animation, and stamina regen timer
     private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
     private long lastAnimationTimer, animationCooldown = 800, animationTimer = animationCooldown;
-    private long lastStamRegen, stamRegenCooldown = 1500, stamRegenTimer = stamRegenCooldown;
+    private long lastStamRegen, stamRegenCooldown = 1000, stamRegenTimer = stamRegenCooldown;
     //inventory
     private Inventory inventory;
     //HUD
@@ -30,7 +30,7 @@ public class Player extends Creature{
     private SoundManager audioManager;
     //stamina
     private int stamina;
-    private boolean running;
+    private boolean running, tired = false;
 
     public Player(Handler handler, float x, float y)
     {
@@ -137,17 +137,26 @@ public class Player extends Creature{
         stamRegenTimer += System.currentTimeMillis() - lastStamRegen;
         lastStamRegen = System.currentTimeMillis();
         if(stamRegenTimer >= stamRegenCooldown && !running) {
-            stamina += 1;
+            if(stamina >= 50 && tired)
+            {
+                tired = false;
+            }
+            if(stamina < 0)
+            {
+                stamina = 0;
+            }
+            if(stamina == 0)
+            {
+                tired = true;
+            }
+            stamina += 5;
             if(stamina > 100)
             {
                 stamina = 100;
             }
             stamRegenTimer = 0;
         }
-        if(stamina < 0)
-        {
-            stamina = 0;
-        }
+
 
     }
 
@@ -293,7 +302,7 @@ public class Player extends Creature{
             return;
         }
 
-        if(handler.getKeyManager().run && stamina > 0)
+        if((handler.getKeyManager().run && !tired) && stamina > 2)
         {
             running = true;
             speed = (float) (DEFAULT_SPEED * 1.40);

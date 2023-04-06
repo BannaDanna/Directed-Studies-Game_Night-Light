@@ -124,6 +124,7 @@ public class Tanx extends Creature {
             return;
         }
 
+        attackTimer = 0;
         for(Entity e : handler.getWorld().getEntityManager().getEntities())
         {
             if(e.equals(this))
