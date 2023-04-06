@@ -8,11 +8,10 @@ import java.awt.*;
 
 public class HUD {
 
-    int HPIconX = 0, HPIconY = 0, HPIconWidth, HPIconHeight, HPx, HPy;
+    int HPIconX, HPIconY, HPIconWidth, HPIconHeight, HPx, HPy;
     int staminaX, staminaY;
 
     private Handler handler;
-    private boolean active = true;
 
     public HUD(Handler handler)
     {
