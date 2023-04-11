@@ -8,7 +8,7 @@ import java.awt.*;
 
 public abstract class Creature extends Entity {
     private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    public static final float DEFAULT_SPEED = (float) (screenSize.width / 320);
+    public static final float DEFAULT_SPEED = (float) (screenSize.height / 200);
     public static final int DEFAULT_CREATURE_WIDTH =  (int) (screenSize.width / 10);
     public static final int DEFAULT_CREATURE_HEIGHT =  (int) (screenSize.width / 10);
     protected float speed;

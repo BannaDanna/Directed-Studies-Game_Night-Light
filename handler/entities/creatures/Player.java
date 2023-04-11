@@ -18,7 +18,7 @@ public class Player extends Creature{
 
     private Animation[] movingAttacksLeft = new Animation[4], movingAttacksRight = new Animation[4], movingAttacksUp = new Animation[4], movingAttacksDown = new Animation[4];
     private Animation animIdle, animMoveLeft, animMoveRight, animMoveUp, animMoveDown, animAttackLeft, animAttackRight, animAttackUp, animAttackDown, lastAnimation, movingAttacksLeftUp, movingAttacksLeftDown, movingAttacksLeftLeft, movingAttacksLeftRight, movingAttacksRightUp, movingAttacksRightDown, movingAttacksRightLeft, movingAttacksRightRight, movingAttacksUpUp, movingAttacksUpDown, movingAttacksUpLeft, movingAttacksUpRight, movingAttacksDownUp, movingAttacksDownDown, movingAttacksDownLeft, movingAttacksDownRight;
-    //attack, attack animation, and stamina regen timer
+    //attack, attack animation, and stamina regen timer & delay
     private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
     private long lastAnimationTimer, animationCooldown = 800, animationTimer = animationCooldown;
     private long lastStamRegen, stamRegenCooldown = 150, stamRegenTimer = stamRegenCooldown;

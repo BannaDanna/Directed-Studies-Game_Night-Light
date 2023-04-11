@@ -16,6 +16,8 @@ public class Tanx extends Creature {
 
     private int attackDir;
 
+    private int action, repeat, lastAction;
+
     public Tanx(Handler handler, float x, float y) {
         super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
 
@@ -52,16 +54,16 @@ public class Tanx extends Creature {
             ar.y = cb.y - ar.width;
         } else if (attackDir == 2)
         {
-            ar.x = cb.x +cb.width / 2 - cb.width / 2 + 20;
-            ar.y = cb.y + cb.height - 70;
+            ar.x = cb.x +cb.width / 2 - cb.width / 2;
+            ar.y = cb.y + cb.height;
         } else if (attackDir == 3)
         {
             ar.x = cb.x - cb.width;
-            ar.y = cb.y + cb.height / 2 - cb.height / 2 - 48;
+            ar.y = cb.y + cb.height / 2 - cb.height / 2;
         } else if(attackDir == 4)
         {
             ar.x = cb.x + cb.width;
-            ar.y = cb.y + cb.height / 2 - cb.height / 2 - 48;
+            ar.y = cb.y + cb.height / 2 - cb.height / 2;
         }
 
         g.fillRect(ar.x, ar.y, ar.width, ar.height);
@@ -75,20 +77,39 @@ public class Tanx extends Creature {
     private void getinput() {
         xMove = 0;
         yMove = 0;
-        int action;
 
-        action = Math.round(Math.round((Math.random() * 4) + 1));
+//        action = (int) ((Math.random() * 5) + 1);
 
         if (action == 1) {
             xMove = speed;
+            action = 0;
+            lastAction = 1;
         } else if (action == 2) {
             xMove = -speed;
+            action = 0;
+            lastAction = 2;
         } else if (action == 3) {
             yMove = speed;
+            action = 0;
+            lastAction = 3;
         } else if (action == 4) {
             yMove = -speed;
+            action = 0;
+            lastAction = 4;
         } else if (action == 5) {
             attackDir = Math.round(Math.round((Math.random() * 3) + 1));
+            action = 0;
+            lastAction = 5;
+        }
+        if(repeat == 0)
+        {
+            repeat = (int) (Math.random() * 100);
+            action = (int) ((Math.random() * 5) + 1);
+        }
+        if(action == 0)
+        {
+            action = lastAction;
+            repeat -= 1;
         }
     }
 
@@ -110,16 +131,16 @@ public class Tanx extends Creature {
             ar.y = cb.y - ar.width;
         } else if (attackDir == 2)
         {
-            ar.x = cb.x +cb.width / 2 - cb.width / 2 + 20;
-            ar.y = cb.y + cb.height - 70;
+            ar.x = cb.x +cb.width / 2 - cb.width / 2;
+            ar.y = cb.y + cb.height;
         } else if (attackDir == 3)
         {
             ar.x = cb.x - cb.width;
-            ar.y = cb.y + cb.height / 2 - cb.height / 2 - 48;
+            ar.y = cb.y + cb.height / 2 - cb.height / 2;
         } else if(attackDir == 4)
         {
             ar.x = cb.x + cb.width;
-            ar.y = cb.y + cb.height / 2 - cb.height / 2 - 48;
+            ar.y = cb.y + cb.height / 2 - cb.height / 2;
         } else {
             return;
         }
