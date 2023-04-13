@@ -1,6 +1,7 @@
 package handler;
 
 import handler.gfx.GameCamera;
+import handler.input.ControllerManager;
 import handler.input.KeyManager;
 import handler.input.MouseManager;
 import handler.worlds.World;
@@ -54,5 +55,10 @@ public class Handler {
     public Handler(Game game)
     {
         this.game = game;
+    }
+
+    public ControllerManager getControllerManager()
+    {
+        return game.getControllerManager();
     }
 }

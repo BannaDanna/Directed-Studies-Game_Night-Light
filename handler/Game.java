@@ -4,6 +4,7 @@ import handler.display.Display;
 import handler.gfx.Assets;
 import handler.gfx.GameCamera;
 import handler.gfx.SpriteSheet;
+import handler.input.ControllerManager;
 import handler.input.KeyManager;
 import handler.input.MouseManager;
 import handler.states.GameState;
@@ -41,6 +42,8 @@ public class Game implements Runnable{
     private KeyManager keyManager;
     private MouseManager mouseManager;
 
+    private ControllerManager controllerManager;
+
     private GameCamera gameCamera;
 
     public Handler handler;
@@ -52,6 +55,7 @@ public class Game implements Runnable{
         this.Title = Title;
         keyManager = new KeyManager();
         mouseManager = new MouseManager();
+        controllerManager = new ControllerManager();
     }
 
     private void init()
@@ -76,6 +80,7 @@ public class Game implements Runnable{
     private void tick()
     {
         keyManager.tick();
+        controllerManager.tick();
 
         if(State.getState() != null)
         {
@@ -160,6 +165,10 @@ public class Game implements Runnable{
     public GameCamera getGameCamera()
     {
         return gameCamera;
+    }
+    public ControllerManager getControllerManager()
+    {
+        return controllerManager;
     }
     public synchronized void start()
     {
