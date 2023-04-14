@@ -193,7 +193,7 @@ public class Player extends Creature{
         ar.width = arSize;
         ar.height = arSize;
 
-        if(handler.getKeyManager().aUp)
+        if(handler.getKeyManager().aUp || handler.getControllerManager().yAttack > 0)
         {
             ar2.width = arSize * 2;
             ar2.height = arSize;
@@ -213,7 +213,7 @@ public class Player extends Creature{
             ar4.y = cb.y - arSize - ar3.height * 3;
             ar5.x = (int) (cb.x + cb.width / 2 - arSize * 2.5);
             ar5.y = cb.y - arSize - ar3.height * 4;
-        } else if(handler.getKeyManager().aDown)
+        } else if(handler.getKeyManager().aDown || handler.getControllerManager().yAttack < 0)
         {
             ar2.width = arSize * 2;
             ar2.height = arSize;
@@ -233,7 +233,7 @@ public class Player extends Creature{
             ar4.y = cb.y + cb.height + arSize * 3 - 240;
             ar5.x = (int) (cb.x + cb.width / 2 - arSize * 2.5 + 20);
             ar5.y = cb.y + cb.height + arSize * 4 - 240;
-        } else if(handler.getKeyManager().aLeft)
+        } else if(handler.getKeyManager().aLeft || handler.getControllerManager().xAttack < 0)
         {
             ar2.width = arSize;
             ar2.height = arSize * 2;
@@ -253,7 +253,7 @@ public class Player extends Creature{
             ar4.y = cb.y + cb.height / 2 - arSize * 2 - 48;
             ar5.x = cb.x - arSize * 5;
             ar5.y = (int)(cb.y + cb.height / 2 - arSize * 2.5 - 48);
-        } else if(handler.getKeyManager().aRight)
+        } else if(handler.getKeyManager().aRight || handler.getControllerManager().xAttack > 0)
         {
             ar2.width = arSize;
             ar2.height = arSize * 2;
@@ -312,7 +312,7 @@ public class Player extends Creature{
             return;
         }
 
-        if((handler.getKeyManager().run && !tired) && stamina > 0)
+        if(((handler.getKeyManager().run || handler.getControllerManager().lJoystick)&& !tired) && stamina > 0)
         {
             running = true;
             speed = (float) (DEFAULT_SPEED * 1.40);
@@ -333,7 +333,7 @@ public class Player extends Creature{
         lastStamTick = System.currentTimeMillis();
 
 
-        if(handler.getKeyManager().up)
+        if(handler.getKeyManager().up || handler.getControllerManager().yMovement > 0.055)
         {
             yMove = -speed;
             if(running && stamTickTimer >= stamTickCooldown)
@@ -343,7 +343,7 @@ public class Player extends Creature{
                 delayTimer = 0;
             }
         }
-        if(handler.getKeyManager().down)
+        if(handler.getKeyManager().down || handler.getControllerManager().yMovement < -0.055)
         {
             yMove = speed;
             if(running && stamTickTimer >= stamTickCooldown)
@@ -353,7 +353,7 @@ public class Player extends Creature{
                 delayTimer = 0;
             }
         }
-        if(handler.getKeyManager().left)
+        if(handler.getKeyManager().left || handler.getControllerManager().xMovement < -0.055)
         {
             xMove = -speed;
             if(running && stamTickTimer >= stamTickCooldown)
@@ -363,7 +363,7 @@ public class Player extends Creature{
                 delayTimer = 0;
             }
         }
-        if(handler.getKeyManager().right)
+        if(handler.getKeyManager().right || handler.getControllerManager().xMovement > 0.055)
         {
             xMove = speed;
             if(running && stamTickTimer >= stamTickCooldown)

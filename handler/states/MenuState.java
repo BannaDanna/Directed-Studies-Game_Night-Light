@@ -225,6 +225,11 @@ public class MenuState extends State{
     @Override
     public void tick() {
         uiManager.tick();
+        if(handler.getControllerManager().options)
+        {
+            handler.getMouseManager().setUIManager(null);
+            State.setState(handler.getGame().gameState);
+        }
 
 //        if(handler.getMouseManager().isLeftPressed() )
 //        {
