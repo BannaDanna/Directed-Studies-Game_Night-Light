@@ -10,7 +10,7 @@ public class ControllerManager extends com.studiohartman.jamepad.ControllerManag
 
     private boolean[] actionButtons, dpad, joystickPress, joystickJustPressed;
 
-    public boolean square, triangle, circle, X, lJoystick, rJoystick, lJoystickJust, rJoystickJust, share, options;
+    public boolean square, triangle, circle, X, lJoystick, rJoystick, lJoystickJust, rJoystickJust, share, options, controllerConnected;
     public ControllerManager()
     {
         controllers.initSDLGamepad();
@@ -37,6 +37,7 @@ public class ControllerManager extends com.studiohartman.jamepad.ControllerManag
     {
             ControllerState currState = controllers.getState(0);
             if(!currState.isConnected) {
+                controllerConnected = false;
                 return;
             }
             xMovement = currState.leftStickX;
@@ -52,6 +53,7 @@ public class ControllerManager extends com.studiohartman.jamepad.ControllerManag
             rJoystick = currState.rightStickClick;
             share = currState.back;
             options = currState.start;
-            System.out.println(xMovement + ", " + yMovement);
+            controllerConnected = currState.isConnected;
+//            System.out.println(xMovement + ", " + yMovement + ", " +  controllerConnected);
     }
 }
