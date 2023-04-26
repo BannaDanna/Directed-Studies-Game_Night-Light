@@ -27,6 +27,7 @@ public class Inventory {
     private Handler handler;
     private boolean active = false;
     private ArrayList<Item> inventoryItems;
+    private long inventoryTimer , lastInventoryTimer, inventoryCooldown = 500;
 
     public Inventory(Handler handler) {
         this.handler = handler;
@@ -47,17 +48,24 @@ public class Inventory {
     }
 
     public void tick() {
-        if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_I))
+        inventoryTimer += System.currentTimeMillis() - lastInventoryTimer;
+        lastInventoryTimer = System.currentTimeMillis();
+
+
+        if ((handler.getKeyManager().keyJustPressed(KeyEvent.VK_I) || handler.getControllerManager().options) && inventoryTimer >= inventoryCooldown)
+        {
             active = !active;
+            inventoryTimer = 0;
+        }
         if (!active) {
             return;
         }
 
 
-        if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)) {
+        if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP) || handler.getControllerManager().yMovement > 0.15) {
             selectedItem--;
         }
-        if (handler.getKeyManager().keyJustPressed((KeyEvent.VK_DOWN))) {
+        if (handler.getKeyManager().keyJustPressed((KeyEvent.VK_DOWN)) || handler.getControllerManager().yMovement < -0.15) {
             selectedItem++;
         }
         if (selectedItem < 0) {
