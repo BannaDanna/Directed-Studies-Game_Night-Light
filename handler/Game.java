@@ -197,6 +197,7 @@ public class Game implements Runnable{
         {
             return;
         }
+        handler.getControllerManager().quitSDLGamepad();
         running = false;
         try {
             thread.join();

@@ -8,7 +8,7 @@ import handler.items.ItemManager;
 
 public abstract class EventManager {
 
-    private Handler handler;
+    public Handler handler;
 
     private EntityManager entityManager;
 

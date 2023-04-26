@@ -4,15 +4,16 @@ import com.studiohartman.jamepad.ControllerState;
 
 public class ControllerManager extends com.studiohartman.jamepad.ControllerManager {
 
-    com.studiohartman.jamepad.ControllerManager controllers = new com.studiohartman.jamepad.ControllerManager();
+    com.studiohartman.jamepad.ControllerManager controllers;
     private float[] joystick1, joystick2;
     public float xMovement, yMovement, xAttack, yAttack;
 
     private boolean[] actionButtons, dpad, joystickPress, joystickJustPressed;
 
-    public boolean square, triangle, circle, X, lJoystick, rJoystick, lJoystickJust, rJoystickJust, share, options;
+    public boolean square, triangle, circle, X, lJoystick, rJoystick, lJoystickJust, rJoystickJust, share, options, connected;
     public ControllerManager()
     {
+        controllers = new com.studiohartman.jamepad.ControllerManager();
         controllers.initSDLGamepad();
         joystick1 = new float[2];
         joystick2 = new float[2];
@@ -31,6 +32,7 @@ public class ControllerManager extends com.studiohartman.jamepad.ControllerManag
         joystickPress[1] = rJoystick;
         joystickJustPressed[0] = lJoystickJust;
         joystickJustPressed[1] = rJoystickJust;
+
     }
 
     public void tick()
@@ -52,6 +54,12 @@ public class ControllerManager extends com.studiohartman.jamepad.ControllerManag
             rJoystick = currState.rightStickClick;
             share = currState.back;
             options = currState.start;
-            System.out.println(xMovement + ", " + yMovement);
+            connected = currState.isConnected;
+//            System.out.println(xMovement + ", " + yMovement);
+    }
+
+    public void vibrate()
+    {
+        controllers.doVibration(0,1,1, 100000);
     }
 }
