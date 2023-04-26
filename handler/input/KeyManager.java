@@ -86,4 +86,13 @@ public class KeyManager implements KeyListener {
 
         return justPressed[keyCode];
     }
+
+    public boolean anyKeyJustPressed()
+    {
+        if(justPressed.length != 0)
+        {
+            return true;
+        }
+        return false;
+    }
 }

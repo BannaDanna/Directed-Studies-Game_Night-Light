@@ -132,6 +132,7 @@ public class Game implements Runnable{
 
         while(running)
         {
+//            System.out.println(handler.getControllerManager().xMovement + ", " + handler.getControllerManager().yMovement);
             now = System.nanoTime();
             delta += (now - lastTime) / timePerTick;
             timer += now - lastTime;
