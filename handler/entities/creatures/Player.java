@@ -8,6 +8,7 @@ import handler.gfx.Animation;
 import handler.gfx.Assets;
 import handler.inventory.Inventory;
 import handler.items.Item;
+import handler.pause.PauseMenu;
 import handler.sounds.SoundManager;
 
 import java.awt.*;
@@ -29,6 +30,10 @@ public class Player extends Creature{
     private long lastDelayTimer, delayCooldown = 2500, delayTimer = delayCooldown;
     //inventory
     private Inventory inventory;
+
+//    pause menu
+    private PauseMenu pauseMenu;
+
     //HUD
     private HUD hud;
     //soundManager
@@ -92,6 +97,7 @@ public class Player extends Creature{
         movingAttacksRight[3] = movingAttacksRightRight;
 
         hud = new HUD(handler);
+        pauseMenu = new PauseMenu(handler);
         inventory = new Inventory(handler);
         inventory.addItem(Item.batteriesItem);
         inventory.addItem(Item.batteriesItem);
@@ -138,6 +144,9 @@ public class Player extends Creature{
         inventory.tick();
         //hud
         hud.tick();
+        //pause menu
+        pauseMenu.tick();
+
 
         stamRegenTimer += System.currentTimeMillis() - lastStamRegen;
         lastStamRegen = System.currentTimeMillis();
@@ -178,7 +187,7 @@ public class Player extends Creature{
             return;
         }
 
-        if(inventory.isActive())
+        if(inventory.isActive() || pauseMenu.isActive())
         {
             return;
         }
@@ -307,7 +316,7 @@ public class Player extends Creature{
 
         xMove = 0;
         yMove = 0;
-        if(inventory.isActive())
+        if(inventory.isActive() || pauseMenu.isActive())
         {
             return;
         }
@@ -502,6 +511,7 @@ public class Player extends Creature{
     {
         hud.render(g);
         inventory.render(g);
+        pauseMenu.render(g);
     }
 
     private BufferedImage getCurrentAnimationFrame()
@@ -620,5 +630,9 @@ public class Player extends Creature{
             return attackDir[down];
         }
         return null;
+    }
+
+    public PauseMenu getPauseMenu() {
+        return pauseMenu;
     }
 }

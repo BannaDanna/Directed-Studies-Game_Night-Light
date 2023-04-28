@@ -38,6 +38,7 @@ public class ControllerManager extends com.studiohartman.jamepad.ControllerManag
     public void tick()
     {
             ControllerState currState = controllers.getState(0);
+        connected = currState.isConnected;
             if(!currState.isConnected) {
                 return;
             }
@@ -54,7 +55,6 @@ public class ControllerManager extends com.studiohartman.jamepad.ControllerManag
             rJoystick = currState.rightStickClick;
             share = currState.back;
             options = currState.start;
-            connected = currState.isConnected;
 //            System.out.println(xMovement + ", " + yMovement);
     }
 

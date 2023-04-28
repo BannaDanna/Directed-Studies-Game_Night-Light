@@ -27,7 +27,8 @@ public class Inventory {
     private Handler handler;
     private boolean active = false;
     private ArrayList<Item> inventoryItems;
-    private long inventoryTimer , lastInventoryTimer, inventoryCooldown = 500;
+    private long inventoryTimer , lastInventoryTimer, inventoryCooldown = 300;
+    private long listTimer, lastListTimer, listCooldown = 200;
 
     public Inventory(Handler handler) {
         this.handler = handler;
@@ -52,7 +53,7 @@ public class Inventory {
         lastInventoryTimer = System.currentTimeMillis();
 
 
-        if ((handler.getKeyManager().keyJustPressed(KeyEvent.VK_I) || handler.getControllerManager().options) && inventoryTimer >= inventoryCooldown)
+        if (((handler.getKeyManager().keyJustPressed(KeyEvent.VK_I) || handler.getControllerManager().options) && inventoryTimer >= inventoryCooldown) && !handler.getWorld().getEntityManager().getPlayer().getPauseMenu().isActive())
         {
             active = !active;
             inventoryTimer = 0;
@@ -61,12 +62,16 @@ public class Inventory {
             return;
         }
 
-
-        if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP) || handler.getControllerManager().yMovement > 0.15) {
+        listTimer += System.currentTimeMillis() - lastListTimer;
+        if ((handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP) || handler.getControllerManager().yMovement > 0.15) && listTimer >= listCooldown) {
             selectedItem--;
+            listTimer = 0;
         }
-        if (handler.getKeyManager().keyJustPressed((KeyEvent.VK_DOWN)) || handler.getControllerManager().yMovement < -0.15) {
+        lastListTimer = System.currentTimeMillis();
+
+        if ((handler.getKeyManager().keyJustPressed((KeyEvent.VK_DOWN)) || handler.getControllerManager().yMovement < -0.15)  && listTimer >= listCooldown) {
             selectedItem++;
+            listTimer = 0;
         }
         if (selectedItem < 0) {
             selectedItem = inventoryItems.size() - 1;

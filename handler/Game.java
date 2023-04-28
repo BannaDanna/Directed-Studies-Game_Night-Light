@@ -87,12 +87,7 @@ public class Game implements Runnable{
             State.getState().tick();
         }
 
-        if(handler.getKeyManager().esc || handler.getControllerManager().share)
-        {
-            handler.getGame().getDisplay().getFrame().setVisible(false);
-            handler.getGame().getDisplay().getFrame().dispose();
-            System.exit(0);
-        }
+
     }
 
     private void render()
