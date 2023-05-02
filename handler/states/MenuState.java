@@ -4,14 +4,13 @@ import com.sun.tools.javac.Main;
 import handler.Game;
 import handler.Handler;
 import handler.gfx.Assets;
-import handler.ui.ClickListener;
-import handler.ui.UIImageButton;
-import handler.ui.UIManager;
+import handler.ui.*;
 import handler.Launcher;
-import handler.ui.UIObject;
+import handler.ui.UIManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import static handler.tiles.Tile.setTILEWIDTH;
@@ -26,6 +25,9 @@ public class MenuState extends State{
     private UIObject settings;
     private static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private int selectedItem = 0;
+    private long mainListTimer, lastMainListTimer, mainListCooldown = 200;
+
 
     public MenuState(Handler handler)
     {
@@ -225,11 +227,32 @@ public class MenuState extends State{
     @Override
     public void tick() {
         uiManager.tick();
-        if(handler.getControllerManager().options)
-        {
-            handler.getMouseManager().setUIManager(null);
-            State.setState(handler.getGame().gameState);
+
+
+
+
+        mainListTimer += System.currentTimeMillis() - lastMainListTimer;
+        lastMainListTimer = System.currentTimeMillis();
+
+        if ((handler.getControllerManager().yMovement > 0.15) && mainListTimer >= mainListCooldown) {
+            selectedItem--;
+            mainListTimer = 0;
         }
+        if ((handler.getControllerManager().yMovement < -0.15)  && mainListTimer >= mainListCooldown) {
+            selectedItem++;
+            mainListTimer = 0;
+        }
+        if (selectedItem < 0) {
+            selectedItem = uiManager.getObjects().size() - 1;
+        } else if (selectedItem >= uiManager.getObjects().size())
+        {
+            selectedItem = 0;
+        }
+//        if(handler.getControllerManager().options)
+//        {
+//            handler.getMouseManager().setUIManager(null);
+//            State.setState(handler.getGame().gameState);
+//        }
 
 //        if(handler.getMouseManager().isLeftPressed() )
 //        {
@@ -243,6 +266,26 @@ public class MenuState extends State{
 
     @Override
     public void render(Graphics g) {
+        int len = uiManager.getObjects().size();
+        if(len == 0)
+        {
+            return;
+        }
+        if(handler.getControllerManager().connected)
+        {
+            for(int i = -5; i < 6; i++)
+            {
+                if(selectedItem + i < 0 || selectedItem + i >= len)
+                    continue;
+                if(i == 0)
+                {
+                    uiManager.getObjects().get(selectedItem + i).setHovering(true);
+                } else {
+                    uiManager.getObjects().get(selectedItem + i).setHovering(false);
+                }
+
+            }
+        }
         uiManager.render(g);
 //        g.drawImage(Assets.empty, 0, 0, null);
 //        g.fillRect(handler.getMouseManager().getMouseX(), handler.getMouseManager().getMouseY(), 10,10);

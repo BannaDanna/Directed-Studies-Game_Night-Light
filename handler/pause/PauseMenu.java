@@ -4,9 +4,7 @@ import handler.Handler;
 import handler.gfx.Assets;
 import handler.gfx.Text;
 import handler.items.Item;
-import handler.ui.ClickListener;
-import handler.ui.UIImageButton;
-import handler.ui.UIManager;
+import handler.ui.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -22,10 +20,10 @@ public class PauseMenu {
 
     private boolean active = false;
 
-    private long pauseTimer, lastPauseTimer, pauseCooldown = 300;
+//    private long pauseTimer, lastPauseTimer, pauseCooldown = 300;
     private long listTimer, lastListTimer, listCooldown = 200;
 
-    private int UIWidth, UIHeight;
+    private int UIWidth, UIHeight, numUIImageButton = 7;
 
     private UIManager uiManager;
 
@@ -36,48 +34,47 @@ public class PauseMenu {
         PauseHeight = handler.getHeight();
         PauseListCenterX = handler.getWidth()/5;
         PauseListCenterY = handler.getHeight()/2;
-        PauseListSpacing = handler.getHeight()/15;
+        PauseListSpacing = handler.getHeight()/9;
         UIHeight = handler.getHeight()/10;
         UIWidth = UIHeight * 2;
-        uiManager.addObject(new UIImageButton((float) PauseListCenterX, (float) PauseListCenterY, UIWidth, UIHeight, Assets.btn_start, new ClickListener() {
+        uiManager.addObject(new UIImageButton((float) PauseListCenterX, (float) handler.getHeight() / 5, UIWidth, UIHeight, Assets.btn_start, new ClickListener() {
             @Override
             public void onCLick() {
-                handler.getGame().getDisplay().getFrame().setVisible(false);
-                handler.getGame().getDisplay().getFrame().dispose();
-                System.exit(0);
+                active = !active;
             }
         }));
-        uiManager.addObject(new UIImageButton((float) PauseListCenterX, (float) PauseListCenterY, UIWidth, UIHeight, Assets.btn_start, new ClickListener() {
-            @Override
-            public void onCLick() {
 
-            }
-        }));
-        uiManager.addObject(new UIImageButton((float) PauseListCenterX, (float) PauseListCenterY, UIWidth, UIHeight, Assets.btn_start, new ClickListener() {
-            @Override
-            public void onCLick() {
+        for(int i = 1; i < numUIImageButton; i++)
+        {
+                uiManager.addObject(new UIImageButton((float) PauseListCenterX, ((uiManager.getObjects().get(0).getY()) + i * PauseListSpacing), UIWidth, UIHeight, Assets.btn_start, new ClickListener() {
+                    @Override
+                    public void onCLick() {
 
-            }
-        }));
-        uiManager.addObject(new UIImageButton((float) PauseListCenterX, (float) PauseListCenterY, UIWidth, UIHeight, Assets.btn_start, new ClickListener() {
-            @Override
-            public void onCLick() {
-
-            }
-        }));
+                    }
+                }) );
+        }
+         uiManager.getObjects().get(numUIImageButton - 1).setClicker(new ClickListener() {
+             @Override
+             public void onCLick()
+             {
+                 handler.getGame().getDisplay().getFrame().setVisible(false);
+                 handler.getGame().getDisplay().getFrame().dispose();
+                 System.exit(0);
+             }
+         });
     }
 
     public void tick() {
         uiManager.tick();
-        pauseTimer += System.currentTimeMillis() - lastPauseTimer;
-        lastPauseTimer = System.currentTimeMillis();
+//        pauseTimer += System.currentTimeMillis() - lastPauseTimer;
+//        lastPauseTimer = System.currentTimeMillis();
 
 
-        if (((handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE) || handler.getControllerManager().share) && pauseTimer >= pauseCooldown) && !handler.getWorld().getEntityManager().getPlayer().getInventory().isActive())
+        if (((handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE) || handler.getControllerManager().share) /* && pauseTimer >= pauseCooldown */) && !handler.getWorld().getEntityManager().getPlayer().getInventory().isActive())
         {
 //            System.out.println(active);
             active = !active;
-            pauseTimer = 0;
+//            pauseTimer = 0;
         }
         if (!active) {
             return;
@@ -88,11 +85,11 @@ public class PauseMenu {
         listTimer += System.currentTimeMillis() - lastListTimer;
         lastListTimer = System.currentTimeMillis();
 
-        if ((handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP) || handler.getControllerManager().yMovement > 0.15) && listTimer >= listCooldown) {
+        if ((handler.getControllerManager().yMovement > 0.15) && listTimer >= listCooldown) {
             selectedItem--;
             listTimer = 0;
         }
-        if ((handler.getKeyManager().keyJustPressed((KeyEvent.VK_DOWN)) || handler.getControllerManager().yMovement < -0.15)  && listTimer >= listCooldown) {
+        if ((handler.getControllerManager().yMovement < -0.15)  && listTimer >= listCooldown) {
             selectedItem++;
             listTimer = 0;
         }
@@ -113,30 +110,28 @@ public class PauseMenu {
 
         g.drawImage(Assets.inventoryScreen, PauseX, PauseY, PauseWidth, PauseHeight, null);
 
-        if(handler.getControllerManager().connected)
-        {
+
             int len = uiManager.getObjects().size();
             if(len == 0)
             {
                 return;
             }
-
-            for(int i = -5; i < 6; i++)
+            if(handler.getControllerManager().connected)
             {
-                if(selectedItem + i < 0 || selectedItem + i >= len)
-                    continue;
-                if(i == 0)
+                for(int i = -5; i < 6; i++)
                 {
-                    uiManager.getObjects().get(selectedItem + i).setY(PauseListCenterY);
-                    uiManager.getObjects().get(selectedItem + i).setHovering(true);
+                    if(selectedItem + i < 0 || selectedItem + i >= len)
+                        continue;
+                    if(i == 0)
+                    {
+                        uiManager.getObjects().get(selectedItem + i).setHovering(true);
+                    } else {
+                        uiManager.getObjects().get(selectedItem + i).setHovering(false);
+                    }
 
-                } else {
-                    uiManager.getObjects().get(selectedItem + i).setY(PauseListCenterY + i * PauseListSpacing);
-                    uiManager.getObjects().get(selectedItem + i).setHovering(false);
                 }
-
             }
-        }
+
         uiManager.render(g);
     }
 

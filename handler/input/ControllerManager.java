@@ -8,9 +8,9 @@ public class ControllerManager extends com.studiohartman.jamepad.ControllerManag
     private float[] joystick1, joystick2;
     public float xMovement, yMovement, xAttack, yAttack;
 
-    private boolean[] actionButtons, dpad, joystickPress, joystickJustPressed;
+    private boolean[] actionButtons, dpad, joystickPress;
 
-    public boolean square, triangle, circle, X, lJoystick, rJoystick, lJoystickJust, rJoystickJust, share, options, connected;
+    public boolean square, triangle, circle, X, lJoystick, rJoystick, share, options, connected;
     public ControllerManager()
     {
         controllers = new com.studiohartman.jamepad.ControllerManager();
@@ -19,7 +19,6 @@ public class ControllerManager extends com.studiohartman.jamepad.ControllerManag
         joystick2 = new float[2];
         actionButtons = new boolean[4];
         joystickPress = new boolean[2];
-        joystickJustPressed = new boolean[2];
         joystick1[0] = xMovement;
         joystick1[1] = yMovement;
         joystick2[0] = xAttack;
@@ -30,8 +29,6 @@ public class ControllerManager extends com.studiohartman.jamepad.ControllerManag
         actionButtons[3] = X;
         joystickPress[0] = lJoystick;
         joystickPress[1] = rJoystick;
-        joystickJustPressed[0] = lJoystickJust;
-        joystickJustPressed[1] = rJoystickJust;
 
     }
 
@@ -46,20 +43,19 @@ public class ControllerManager extends com.studiohartman.jamepad.ControllerManag
             yMovement = currState.leftStickY;
             xAttack = currState.rightStickX;
             yAttack = currState.rightStickY;
-            square = currState.x;
-            triangle = currState.y;
-            circle = currState.b;
-            X = currState.a;
-            lJoystick = currState.leftStickClick;
-            lJoystickJust = currState.leftStickJustClicked;
+            square = currState.xJustPressed;
+            triangle = currState.yJustPressed;
+            circle = currState.bJustPressed;
+            X = currState.aJustPressed;
+            lJoystick = currState.leftStickJustClicked;
             rJoystick = currState.rightStickClick;
-            share = currState.back;
-            options = currState.start;
+            share = currState.backJustPressed;
+            options = currState.startJustPressed;
 //            System.out.println(xMovement + ", " + yMovement);
     }
 
     public void vibrate()
     {
-        controllers.doVibration(0,1,1, 100000);
+        controllers.doVibration(0,0.5f,0.5f, 1000);
     }
 }
