@@ -79,7 +79,10 @@ public class Tanx extends Creature {
         yMove = 0;
 
 //        action = (int) ((Math.random() * 5) + 1);
-
+        if(handler.getWorld().getEntityManager().getPlayer().getInventory().isActive() || handler.getWorld().getEntityManager().getPlayer().getPauseMenu().isActive())
+        {
+            return;
+        }
         if (action == 1) {
             xMove = speed;
             action = 0;
@@ -117,6 +120,11 @@ public class Tanx extends Creature {
         attackTimer += System.currentTimeMillis() - lastAttackTimer;
         lastAttackTimer = System.currentTimeMillis();
         if (attackTimer < attackCooldown) {
+            return;
+        }
+
+        if(handler.getWorld().getEntityManager().getPlayer().getInventory().isActive() || handler.getWorld().getEntityManager().getPlayer().getPauseMenu().isActive())
+        {
             return;
         }
 
