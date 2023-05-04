@@ -47,7 +47,7 @@ public class ControllerManager extends com.studiohartman.jamepad.ControllerManag
             triangle = currState.yJustPressed;
             circle = currState.bJustPressed;
             X = currState.aJustPressed;
-            lJoystick = currState.leftStickJustClicked;
+            lJoystick = currState.leftStickClick;
             rJoystick = currState.rightStickClick;
             share = currState.backJustPressed;
             options = currState.startJustPressed;

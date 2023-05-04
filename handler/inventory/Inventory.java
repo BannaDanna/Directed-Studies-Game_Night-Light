@@ -49,14 +49,14 @@ public class Inventory {
     }
 
     public void tick() {
-        inventoryTimer += System.currentTimeMillis() - lastInventoryTimer;
-        lastInventoryTimer = System.currentTimeMillis();
+//        inventoryTimer += System.currentTimeMillis() - lastInventoryTimer;
+//        lastInventoryTimer = System.currentTimeMillis();
 
 
-        if (((handler.getKeyManager().keyJustPressed(KeyEvent.VK_I) || handler.getControllerManager().options) && inventoryTimer >= inventoryCooldown) && !handler.getWorld().getEntityManager().getPlayer().getPauseMenu().isActive())
+        if (((handler.getKeyManager().keyJustPressed(KeyEvent.VK_I) || handler.getControllerManager().options)/* && inventoryTimer >= inventoryCooldown*/) && !handler.getWorld().getEntityManager().getPlayer().getPauseMenu().isActive())
         {
             active = !active;
-            inventoryTimer = 0;
+//            inventoryTimer = 0;
         }
         if (!active) {
             return;

@@ -2,8 +2,8 @@ package handler.tiles;
 
 import handler.gfx.Assets;
 
-public class RightTopDoorTile extends Tile{
-    public RightTopDoorTile(int id) {
+public class TopDoorTile extends Tile{
+    public TopDoorTile(int id) {
         super(Assets.rightDoor, id);
     }
 

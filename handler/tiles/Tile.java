@@ -17,8 +17,8 @@ public class Tile {
     public static Tile rightSideWallTile = new RightSideWallTile(4);
     public static Tile bottomSideWallTile = new BottomSideWallTile(5);
     public static Tile bottomWallTile = new BottomWallTile(6);
-    public static Tile rightTopDoor = new RightTopDoorTile(7);
-    public static Tile rightBottomDoor = new RightBottomDoorTile(8);
+    public static Tile rightTopDoor = new TopDoorTile(7);
+    public static Tile rightBottomDoor = new BottomDoorTile(8);
 
     protected BufferedImage texture;
     protected final int id;

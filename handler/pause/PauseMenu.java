@@ -62,6 +62,8 @@ public class PauseMenu {
                  System.exit(0);
              }
          });
+
+        uiManager.getObjects().get(numUIImageButton - 1).setImages(Assets.btn_quit);
     }
 
     public void tick() {

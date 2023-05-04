@@ -4,6 +4,7 @@ import com.studiohartman.jamepad.ControllerManager;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 public abstract class UIObject {
 
@@ -89,6 +90,10 @@ public abstract class UIObject {
 
     public void setHovering(boolean hovering) {
         this.hovering = hovering;
+    }
+
+    public void setImages(BufferedImage[] Images){
+
     }
 
 

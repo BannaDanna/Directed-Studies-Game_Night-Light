@@ -1,6 +1,5 @@
 package handler.entities.creatures;
 
-import com.studiohartman.jamepad.ControllerState;
 import handler.HUD.HUD;
 import handler.Handler;
 import handler.entities.Entity;
@@ -14,7 +13,7 @@ import handler.sounds.SoundManager;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Player extends Creature{
+public class gabi extends Creature{
 
 //animations
 
@@ -42,7 +41,7 @@ public class Player extends Creature{
     private int stamina;
     private boolean running, tired = false;
 
-    public Player(Handler handler, float x, float y)
+    public gabi(Handler handler, float x, float y)
     {
         super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
         audioManager = new SoundManager();

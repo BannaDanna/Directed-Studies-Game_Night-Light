@@ -1,8 +1,6 @@
 package handler.states;
 
 import handler.Handler;
-import handler.entities.creatures.Player;
-import handler.entities.statics.Lamp;
 import handler.worlds.World;
 
 import java.awt.*;

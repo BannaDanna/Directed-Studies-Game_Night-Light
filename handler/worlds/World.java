@@ -2,8 +2,8 @@ package handler.worlds;
 
 import handler.Handler;
 import handler.entities.EntityManager;
-import handler.entities.creatures.Player;
-import handler.entities.creatures.Tanx;
+import handler.entities.creatures.gabi;
+import handler.entities.creatures.mumó;
 import handler.entities.statics.Couch;
 import handler.entities.statics.Lamp;
 import handler.entities.statics.GameTriggerBox;
@@ -26,8 +26,9 @@ public class World {
 
     private ItemManager itemManager;
     public World(Handler handler, String path){
+        //added in 1366 * 768 res display
         this.handler = handler;
-        entityManager = new EntityManager(handler, new Player(handler, 300, 300));
+        entityManager = new EntityManager(handler, new gabi(handler, 300, 300));
         itemManager = new ItemManager(handler);
         entityManager.addEntity(new Lamp(handler, 300, 150));
         entityManager.addEntity(new Lamp(handler, 2100, 150));
@@ -35,7 +36,7 @@ public class World {
         entityManager.addEntity(new Couch(handler, 1068, 450));
 //        entityManager.addEntity(new Tanx(handler, 400, 300));
         entityManager.addEntity(new GameTriggerBox(handler, 900, 900, 900, 900, "res/sounds/Glass-Break.wav"));
-        entityManager.addEntity(new GameTriggerBox(handler, 100, 900, 900, 900, new EntityEvent(handler, entityManager, new Tanx(handler, 400, 300), 1)));
+        entityManager.addEntity(new GameTriggerBox(handler, 900, 900, 900, 900, new EntityEvent(handler, entityManager, new mumó(handler, 400, 300), 1)));
         loadWorld(path);
 
         entityManager.getPlayer().setX(spawnX);
