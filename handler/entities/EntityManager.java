@@ -1,7 +1,7 @@
 package handler.entities;
 
 import handler.Handler;
-import handler.entities.creatures.Player;
+import handler.entities.creatures.gabi;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.Iterator;
 public class EntityManager {
 
     private Handler handler;
-    private Player player;
+    private gabi gabi;
     private ArrayList<Entity> entities, activelyAdd;
     private Comparator<Entity> renderSorter = new Comparator<Entity>() {
         @Override
@@ -24,13 +24,13 @@ public class EntityManager {
         }
     };
 
-    public EntityManager(Handler handler, Player player)
+    public EntityManager(Handler handler, gabi gabi)
     {
         this.handler = handler;
-        this.player = player;
+        this.gabi = gabi;
         entities = new ArrayList<Entity>();
         activelyAdd = new ArrayList<Entity>();
-        addEntity(player);
+        addEntity(gabi);
     }
 
 
@@ -56,7 +56,7 @@ public class EntityManager {
         {
             e.render(g);
         }
-        player.postRender(g);
+        gabi.postRender(g);
     }
 
     public void activelyAddEntity(Entity e)
@@ -91,12 +91,12 @@ public class EntityManager {
         this.handler = handler;
     }
 
-    public Player getPlayer() {
-        return player;
+    public gabi getPlayer() {
+        return gabi;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setPlayer(gabi gabi) {
+        this.gabi = gabi;
     }
 
     public ArrayList<Entity> getEntities() {

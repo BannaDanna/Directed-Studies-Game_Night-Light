@@ -8,7 +8,7 @@ import handler.items.Item;
 
 import java.awt.*;
 
-public class Tanx extends Creature {
+public class mumó extends Creature {
 
     private Animation animIdle;
 
@@ -18,7 +18,7 @@ public class Tanx extends Creature {
 
     private int action, repeat, lastAction;
 
-    public Tanx(Handler handler, float x, float y) {
+    public mumó(Handler handler, float x, float y) {
         super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
 
         bounds.x = handler.getWidth() / 64;
@@ -79,7 +79,10 @@ public class Tanx extends Creature {
         yMove = 0;
 
 //        action = (int) ((Math.random() * 5) + 1);
-
+        if(handler.getWorld().getEntityManager().getPlayer().getInventory().isActive() || handler.getWorld().getEntityManager().getPlayer().getPauseMenu().isActive())
+        {
+            return;
+        }
         if (action == 1) {
             xMove = speed;
             action = 0;
@@ -117,6 +120,11 @@ public class Tanx extends Creature {
         attackTimer += System.currentTimeMillis() - lastAttackTimer;
         lastAttackTimer = System.currentTimeMillis();
         if (attackTimer < attackCooldown) {
+            return;
+        }
+
+        if(handler.getWorld().getEntityManager().getPlayer().getInventory().isActive() || handler.getWorld().getEntityManager().getPlayer().getPauseMenu().isActive())
+        {
             return;
         }
 

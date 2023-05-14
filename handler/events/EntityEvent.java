@@ -17,6 +17,7 @@ public class EntityEvent extends EventManager{
         super(handler);
         this.manager = manager;
         this.entity = entity;
+        this.num = num;
     }
 
     @Override
@@ -28,5 +29,6 @@ public class EntityEvent extends EventManager{
             manager.activelyAddEntity(entity);
 //            System.out.println(entity.toString() + " added");
         }
+        handler.getControllerManager().vibrate();
     }
 }

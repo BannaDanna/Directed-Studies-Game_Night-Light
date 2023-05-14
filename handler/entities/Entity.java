@@ -94,10 +94,10 @@ public abstract class Entity {
     {
         health = DEFAULT_HEALTH;
         this.handler = handler;
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+        this.x = x/* * handler.getXFactor()*/;
+        this.y = y/* * handler.getYFactor()*/;
+        this.width = width/* * handler.getXFactor()*/;
+        this.height = height/* * handler.getYFactor()*/;
         bounds = new Rectangle(0, 0, width, height);
     }
 

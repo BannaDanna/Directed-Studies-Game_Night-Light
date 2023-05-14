@@ -1,6 +1,5 @@
 package handler.entities.creatures;
 
-import com.studiohartman.jamepad.ControllerState;
 import handler.HUD.HUD;
 import handler.Handler;
 import handler.entities.Entity;
@@ -8,12 +7,13 @@ import handler.gfx.Animation;
 import handler.gfx.Assets;
 import handler.inventory.Inventory;
 import handler.items.Item;
+import handler.pause.PauseMenu;
 import handler.sounds.SoundManager;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Player extends Creature{
+public class gabi extends Creature{
 
 //animations
 
@@ -29,6 +29,10 @@ public class Player extends Creature{
     private long lastDelayTimer, delayCooldown = 2500, delayTimer = delayCooldown;
     //inventory
     private Inventory inventory;
+
+//    pause menu
+    private PauseMenu pauseMenu;
+
     //HUD
     private HUD hud;
     //soundManager
@@ -37,7 +41,7 @@ public class Player extends Creature{
     private int stamina;
     private boolean running, tired = false;
 
-    public Player(Handler handler, float x, float y)
+    public gabi(Handler handler, float x, float y)
     {
         super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
         audioManager = new SoundManager();
@@ -92,6 +96,7 @@ public class Player extends Creature{
         movingAttacksRight[3] = movingAttacksRightRight;
 
         hud = new HUD(handler);
+        pauseMenu = new PauseMenu(handler);
         inventory = new Inventory(handler);
         inventory.addItem(Item.batteriesItem);
         inventory.addItem(Item.batteriesItem);
@@ -138,6 +143,9 @@ public class Player extends Creature{
         inventory.tick();
         //hud
         hud.tick();
+        //pause menu
+        pauseMenu.tick();
+
 
         stamRegenTimer += System.currentTimeMillis() - lastStamRegen;
         lastStamRegen = System.currentTimeMillis();
@@ -178,7 +186,7 @@ public class Player extends Creature{
             return;
         }
 
-        if(inventory.isActive())
+        if(inventory.isActive() || pauseMenu.isActive())
         {
             return;
         }
@@ -193,7 +201,7 @@ public class Player extends Creature{
         ar.width = arSize;
         ar.height = arSize;
 
-        if(handler.getKeyManager().aUp || handler.getControllerManager().yAttack > 0)
+        if(handler.getKeyManager().aUp || handler.getControllerManager().yAttack > 0.15)
         {
             ar2.width = arSize * 2;
             ar2.height = arSize;
@@ -213,7 +221,7 @@ public class Player extends Creature{
             ar4.y = cb.y - arSize - ar3.height * 3;
             ar5.x = (int) (cb.x + cb.width / 2 - arSize * 2.5);
             ar5.y = cb.y - arSize - ar3.height * 4;
-        } else if(handler.getKeyManager().aDown || handler.getControllerManager().yAttack < 0)
+        } else if(handler.getKeyManager().aDown || handler.getControllerManager().yAttack < -0.15)
         {
             ar2.width = arSize * 2;
             ar2.height = arSize;
@@ -233,7 +241,7 @@ public class Player extends Creature{
             ar4.y = cb.y + cb.height + arSize * 3 - 240;
             ar5.x = (int) (cb.x + cb.width / 2 - arSize * 2.5 + 20);
             ar5.y = cb.y + cb.height + arSize * 4 - 240;
-        } else if(handler.getKeyManager().aLeft || handler.getControllerManager().xAttack < 0)
+        } else if(handler.getKeyManager().aLeft || handler.getControllerManager().xAttack < -0.15)
         {
             ar2.width = arSize;
             ar2.height = arSize * 2;
@@ -253,7 +261,7 @@ public class Player extends Creature{
             ar4.y = cb.y + cb.height / 2 - arSize * 2 - 48;
             ar5.x = cb.x - arSize * 5;
             ar5.y = (int)(cb.y + cb.height / 2 - arSize * 2.5 - 48);
-        } else if(handler.getKeyManager().aRight || handler.getControllerManager().xAttack > 0)
+        } else if(handler.getKeyManager().aRight || handler.getControllerManager().xAttack > 0.15)
         {
             ar2.width = arSize;
             ar2.height = arSize * 2;
@@ -307,7 +315,7 @@ public class Player extends Creature{
 
         xMove = 0;
         yMove = 0;
-        if(inventory.isActive())
+        if(inventory.isActive() || pauseMenu.isActive())
         {
             return;
         }
@@ -333,9 +341,14 @@ public class Player extends Creature{
         lastStamTick = System.currentTimeMillis();
 
 
-        if(handler.getKeyManager().up || handler.getControllerManager().yMovement > 0.055)
+        if(handler.getKeyManager().up || handler.getControllerManager().yMovement > 0.15)
         {
-            yMove = -speed;
+            if(handler.getControllerManager().connected)
+            {
+                yMove = -speed * handler.getControllerManager().yMovement;
+            } else {
+                yMove = -speed;
+            }
             if(running && stamTickTimer >= stamTickCooldown)
             {
                 stamina -= 2;
@@ -343,9 +356,14 @@ public class Player extends Creature{
                 delayTimer = 0;
             }
         }
-        if(handler.getKeyManager().down || handler.getControllerManager().yMovement < -0.055)
+        if(handler.getKeyManager().down || handler.getControllerManager().yMovement < -0.15)
         {
-            yMove = speed;
+            if(handler.getControllerManager().connected)
+            {
+                yMove = speed * -handler.getControllerManager().yMovement;
+            } else {
+                yMove = speed;
+            }
             if(running && stamTickTimer >= stamTickCooldown)
             {
                 stamina -= 2;
@@ -353,9 +371,14 @@ public class Player extends Creature{
                 delayTimer = 0;
             }
         }
-        if(handler.getKeyManager().left || handler.getControllerManager().xMovement < -0.055)
+        if(handler.getKeyManager().left || handler.getControllerManager().xMovement < -0.15)
         {
-            xMove = -speed;
+            if(handler.getControllerManager().connected)
+            {
+                xMove = speed * handler.getControllerManager().xMovement;
+            } else {
+                xMove = -speed;
+            }
             if(running && stamTickTimer >= stamTickCooldown)
             {
                 stamina -= 2;
@@ -363,9 +386,14 @@ public class Player extends Creature{
                 delayTimer = 0;
             }
         }
-        if(handler.getKeyManager().right || handler.getControllerManager().xMovement > 0.055)
+        if(handler.getKeyManager().right || handler.getControllerManager().xMovement > 0.15)
         {
-            xMove = speed;
+            if(handler.getControllerManager().connected)
+            {
+                xMove = speed * handler.getControllerManager().xMovement;
+            } else {
+                xMove = speed;
+            }
             if(running && stamTickTimer >= stamTickCooldown)
             {
                 stamina -= 2;
@@ -482,6 +510,7 @@ public class Player extends Creature{
     {
         hud.render(g);
         inventory.render(g);
+        pauseMenu.render(g);
     }
 
     private BufferedImage getCurrentAnimationFrame()
@@ -490,7 +519,7 @@ public class Player extends Creature{
         lastAnimationTimer = System.currentTimeMillis();
 
         if(animationTimer > animationCooldown) {
-            if(handler.getKeyManager().aUp)
+            if(handler.getKeyManager().aUp || handler.getControllerManager().yAttack > 0.15)
             {
                 animationTimer = 0;
                 if(xMove != 0 || yMove != 0)
@@ -502,7 +531,7 @@ public class Player extends Creature{
                 lastAnimation = animAttackUp;
                 lastAnimation.setCurrentFrame(0);
                 return animAttackUp.getCurrentFrame();
-            } else if (handler.getKeyManager().aDown) {
+            } else if (handler.getKeyManager().aDown || handler.getControllerManager().yAttack < -0.15) {
                 animationTimer = 0;
                 if(xMove != 0 || yMove != 0)
                 {
@@ -513,7 +542,7 @@ public class Player extends Creature{
                 lastAnimation = animAttackDown;
                 lastAnimation.setCurrentFrame(0);
                 return animAttackDown.getCurrentFrame();
-            } else if (handler.getKeyManager().aLeft) {
+            } else if (handler.getKeyManager().aLeft || handler.getControllerManager().xAttack < -0.15) {
                 animationTimer = 0;
                 if(xMove != 0 || yMove != 0)
                 {
@@ -522,9 +551,8 @@ public class Player extends Creature{
                     return lastAnimation.getCurrentFrame();
                 }
                 lastAnimation = animAttackLeft;
-                lastAnimation.setCurrentFrame(0);
-                return animAttackLeft.getCurrentFrame();
-            } else if (handler.getKeyManager().aRight) {
+                lastAnimation.setCurrentFrame(0);                return animAttackLeft.getCurrentFrame();
+            } else if (handler.getKeyManager().aRight || handler.getControllerManager().xAttack > 0.15) {
                 animationTimer = 0;
                 if(xMove != 0 || yMove != 0)
                 {
@@ -601,5 +629,9 @@ public class Player extends Creature{
             return attackDir[down];
         }
         return null;
+    }
+
+    public PauseMenu getPauseMenu() {
+        return pauseMenu;
     }
 }

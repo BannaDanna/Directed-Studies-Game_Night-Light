@@ -1,6 +1,7 @@
 package handler.ui;
 
 import handler.Handler;
+import handler.input.ControllerManager;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -10,6 +11,7 @@ public class UIManager {
 
     private Handler handler;
     private ArrayList<UIObject> objects;
+
 
     public UIManager(Handler handler){
         this.handler = handler;
@@ -21,6 +23,10 @@ public class UIManager {
         for(UIObject o : objects)
         {
             o.tick();
+            if(o.hovering && handler.getControllerManager().X)
+            {
+                o.onClick();
+            }
         }
     }
 

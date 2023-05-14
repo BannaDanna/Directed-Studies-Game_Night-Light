@@ -61,4 +61,14 @@ public class Handler {
     {
         return game.getControllerManager();
     }
+
+//    public int getXFactor()
+//    {
+//        return world.getxFactor();
+//    }
+//
+//    public int getYFactor()
+//    {
+//        return world.getyFactor();
+//    }
 }

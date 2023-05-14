@@ -2,10 +2,8 @@ package handler.tiles;
 
 import handler.gfx.Assets;
 
-import java.awt.image.BufferedImage;
-
-public class RightDoorTile extends Tile{
-    public RightDoorTile(int id) {
+public class BottomDoorTile extends Tile{
+    public BottomDoorTile(int id) {
         super(Assets.rightDoor, id);
     }
 

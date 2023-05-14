@@ -2,6 +2,7 @@ package handler.gfx;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.nio.Buffer;
 
 public class Assets {
 
@@ -15,7 +16,7 @@ public class Assets {
     //player animations
     public static BufferedImage[] player_idle, player_left, player_right, player_up, player_down, player_attack_left, player_attack_right, player_attack_up, player_attack_down, player_attack_move_left, player_attack_move_down, player_attack_move_up, player_attack_move_right;
     //UI
-    public static BufferedImage[] btn_start;
+    public static BufferedImage[] btn_start, btn_quit;
     //items
     public static BufferedImage batteries;
     //inventory
@@ -42,6 +43,9 @@ public class Assets {
         btn_start = new BufferedImage[2];
         btn_start[0] = sheet.crop(width * 4, 0, width * 2, height);
         btn_start[1] = sheet.crop(width * 6, 0, width * 2, height);
+        btn_quit = new BufferedImage[2];
+        btn_quit[0] = sheet.crop(width * 7, height, width * 2, height);
+        btn_quit[1] = sheet.crop(0, height * 2, width * 2, height);
 
         //player animations
         player_idle = new BufferedImage[2];

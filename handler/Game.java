@@ -87,12 +87,7 @@ public class Game implements Runnable{
             State.getState().tick();
         }
 
-        if(handler.getKeyManager().esc || handler.getControllerManager().share)
-        {
-            handler.getGame().getDisplay().getFrame().setVisible(false);
-            handler.getGame().getDisplay().getFrame().dispose();
-            System.exit(0);
-        }
+
     }
 
     private void render()
@@ -132,6 +127,7 @@ public class Game implements Runnable{
 
         while(running)
         {
+//            System.out.println(handler.getControllerManager().xMovement + ", " + handler.getControllerManager().yMovement);
             now = System.nanoTime();
             delta += (now - lastTime) / timePerTick;
             timer += now - lastTime;
@@ -197,6 +193,7 @@ public class Game implements Runnable{
         {
             return;
         }
+        handler.getControllerManager().quitSDLGamepad();
         running = false;
         try {
             thread.join();

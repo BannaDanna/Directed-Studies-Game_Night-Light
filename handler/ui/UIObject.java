@@ -1,7 +1,10 @@
 package handler.ui;
 
+import com.studiohartman.jamepad.ControllerManager;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 public abstract class UIObject {
 
@@ -25,6 +28,9 @@ public abstract class UIObject {
 
     public abstract void onClick();
 
+
+    public abstract void setClicker(ClickListener clicker);
+
     public void onMouseMove(MouseEvent e)
     {
         if(bounds.contains(e.getX(), e.getY()))
@@ -42,6 +48,8 @@ public abstract class UIObject {
             onClick();
         }
     }
+
+
 
                             //getters and setters
     public float getX() {
@@ -83,4 +91,10 @@ public abstract class UIObject {
     public void setHovering(boolean hovering) {
         this.hovering = hovering;
     }
+
+    public void setImages(BufferedImage[] Images){
+
+    }
+
+
 }

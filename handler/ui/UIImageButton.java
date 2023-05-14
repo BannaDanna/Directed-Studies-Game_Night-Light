@@ -40,4 +40,9 @@ public class UIImageButton extends UIObject{
     public void setClicker(ClickListener clicker) {
         this.clicker = clicker;
     }
+
+    @Override
+    public void setImages(BufferedImage[] images) {
+        this.images = images;
+    }
 }
