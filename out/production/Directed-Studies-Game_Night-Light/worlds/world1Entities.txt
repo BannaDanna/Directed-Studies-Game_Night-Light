@@ -1,0 +1,8 @@
+4
+handler.entities.statics.Couch 1068 450
+handler.entities.statics.Lamp 300 150
+handler.entities.statics.Lamp 2100 150
+handler.entities.statics.Lamp 1200 300
+2
+900 900 900 900 res/sounds/Glass-Break.wav
+900 900 900 900 handler.events.EntityEvent Mumó 400 300 1
