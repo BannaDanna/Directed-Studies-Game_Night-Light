@@ -13,7 +13,7 @@ import handler.sounds.SoundManager;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class gabi extends Creature{
+public class Gabi extends Creature{
 
 //animations
 
@@ -41,7 +41,7 @@ public class gabi extends Creature{
     private int stamina;
     private boolean running, tired = false;
 
-    public gabi(Handler handler, float x, float y)
+    public Gabi(Handler handler, float x, float y)
     {
         super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
         audioManager = new SoundManager();
@@ -145,6 +145,8 @@ public class gabi extends Creature{
         hud.tick();
         //pause menu
         pauseMenu.tick();
+
+//        System.out.println(Couch.class.getName());
 
 
         stamRegenTimer += System.currentTimeMillis() - lastStamRegen;

@@ -8,7 +8,7 @@ import handler.items.Item;
 
 import java.awt.*;
 
-public class mumó extends Creature {
+public class Mumó extends Creature {
 
     private Animation animIdle;
 
@@ -18,7 +18,7 @@ public class mumó extends Creature {
 
     private int action, repeat, lastAction;
 
-    public mumó(Handler handler, float x, float y) {
+    public Mumó(Handler handler, float x, float y) {
         super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
 
         bounds.x = handler.getWidth() / 64;

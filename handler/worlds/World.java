@@ -3,15 +3,17 @@ package handler.worlds;
 import handler.Handler;
 import handler.entities.Entity;
 import handler.entities.EntityManager;
-import handler.entities.creatures.gabi;
-import handler.entities.creatures.mumó;
-import handler.entities.statics.Couch;
+import handler.entities.creatures.Gabi;
+import handler.entities.creatures.Mumó;
 import handler.entities.statics.Lamp;
 import handler.entities.statics.GameTriggerBox;
 import handler.events.EntityEvent;
+import handler.events.EventManager;
 import handler.items.ItemManager;
 import handler.tiles.Tile;
 import handler.utils.Utils;
+import jdk.jfr.Event;
+
 import java.lang.reflect.*;
 
 import java.awt.*;
@@ -32,26 +34,19 @@ public class World {
         this.handler = handler;
         xFactor = handler.getWidth() / 1366;
         yFactor = handler.getHeight() / 768;
-        entityManager = new EntityManager(handler, new gabi(handler, 300 * xFactor, 300 * yFactor));
+        entityManager = new EntityManager(handler, new Gabi(handler, 300 * xFactor, 300 * yFactor));
         itemManager = new ItemManager(handler);
-        entityManager.addEntity(new Lamp(handler, 300 * xFactor, 150 * yFactor));
-        entityManager.addEntity(new Lamp(handler, 2100 * xFactor, 150 * yFactor));
-        entityManager.addEntity(new Lamp(handler, 1200 * xFactor, 300 * yFactor));
+//        entityManager.addEntity(new Lamp(handler, 300 * xFactor, 150 * yFactor));
+//        entityManager.addEntity(new Lamp(handler, 2100 * xFactor, 150 * yFactor));
+//        entityManager.addEntity(new Lamp(handler, 1200 * xFactor, 300 * yFactor));
 //        entityManager.addEntity(new Couch(handler, 1068 * xFactor, 450 * yFactor));
 //        entityManager.addEntity(new Tanx(handler, 400, 300));
-        entityManager.addEntity(new GameTriggerBox(handler, 900 * xFactor, 900 * yFactor, 900 * xFactor, 900 * yFactor, "res/sounds/Glass-Break.wav"));
-        entityManager.addEntity(new GameTriggerBox(handler, 900 * xFactor, 900 * yFactor, 900 * xFactor, 900 * yFactor, new EntityEvent(handler, entityManager, new mumó(handler, 400 * xFactor, 300 * yFactor), 1)));
+//        entityManager.addEntity(new GameTriggerBox(handler, 900 * xFactor, 900 * yFactor, 900 * xFactor, 900 * yFactor, "res/sounds/Glass-Break.wav"));
+        entityManager.addEntity(new GameTriggerBox(handler, 900 * xFactor, 900 * yFactor, 900 * xFactor, 900 * yFactor, new EntityEvent(handler, entityManager, new Mumó(handler, 400 * xFactor, 300 * yFactor), 1)));
         try {
             loadWorld(path);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchMethodException e) {
-            throw new RuntimeException(e);
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
+        } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException |
+                 IllegalAccessException e) {
             throw new RuntimeException(e);
         }
 
@@ -107,19 +102,31 @@ public class World {
         height = Utils.parseInt(tokens[1]);
         spawnX = Utils.parseInt(tokens[2]);
         spawnY = Utils.parseInt(tokens[3]);
-        int numEnemies = Utils.parseInt(tokens[4]);
 
         tiles = new int[width][height];
         for(int y = 0; y < height; y++)
         {
             for(int x = 0; x < width; x++)
             {
-                tiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 5 + (numEnemies * 3)]);
+                tiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]);
             }
         }
 
-        for(int num = 4; num < (numEnemies * 4) + 4; num += 4) {
-            entityManager.addEntity((Entity) Class.forName(tokens[num + 5]).getConstructor(Handler.class,  float.class, float.class).newInstance(handler, Utils.parseInt(tokens[num + 6]), Utils.parseInt(tokens[num + 7])));
+        String args = Utils.loadFileAsString(tokens[(width * height) + 4]);
+        String[] enemyTokens = args.split("\\s+");
+        int staticsNum = Utils.parseInt(enemyTokens[0]);
+        int enemiesNum = Utils.parseInt(enemyTokens[(staticsNum * 3) + 1]);
+        for (int i = 1; i < (staticsNum * 3) + 1; i += 3) {
+            entityManager.addEntity((Entity) Class.forName(enemyTokens[i]).getConstructor(handler.getClass(), float.class, float.class).newInstance(handler, Utils.parseInt(enemyTokens[i + 1]), Utils.parseInt(enemyTokens[i + 2])));
+        }
+        for (int i = (staticsNum * 3) + 2; i < (enemiesNum * 3) + (staticsNum * 5) + 1; i += 5) {
+            if(Class.forName(enemyTokens[i + 4]).getClass().equals(String.class))
+            {
+                entityManager.addEntity(GameTriggerBox.class.getConstructor(handler.getClass(), float.class, float.class, int.class, int.class, String.class).newInstance(handler, Utils.parseInt(enemyTokens[i]), Utils.parseInt(enemyTokens[i + 1]), Utils.parseInt(enemyTokens[i + 2]), Utils.parseInt(enemyTokens[i + 3]), enemyTokens[i + 4]));
+            } else {
+                entityManager.addEntity(GameTriggerBox.class.getConstructor(handler.getClass(), float.class, float.class, int.class, int.class, EntityEvent.class, int.class).newInstance(handler, Utils.parseInt(enemyTokens[i]),Utils.parseInt(enemyTokens[i + 1]), Utils.parseInt(enemyTokens[i + 2]), Utils.parseInt(enemyTokens[i + 3]), Class.forName(enemyTokens[i + 4]).getConstructor(handler.getClass(), float.class, float.class).newInstance(handler, enemyTokens[i+5], enemyTokens[i+6]), enemyTokens[i+7]));
+                i += 4;
+            }
         }
     }
 
