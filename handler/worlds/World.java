@@ -42,7 +42,7 @@ public class World {
 //        entityManager.addEntity(new Couch(handler, 1068 * xFactor, 450 * yFactor));
 //        entityManager.addEntity(new Tanx(handler, 400, 300));
 //        entityManager.addEntity(new GameTriggerBox(handler, 900 * xFactor, 900 * yFactor, 900 * xFactor, 900 * yFactor, "res/sounds/Glass-Break.wav"));
-        entityManager.addEntity(new GameTriggerBox(handler, 900 * xFactor, 900 * yFactor, 900 * xFactor, 900 * yFactor, new EntityEvent(handler, entityManager, new Mumó(handler, 400 * xFactor, 300 * yFactor), 1)));
+//        entityManager.addEntity(new GameTriggerBox(handler, 900 * xFactor, 900 * yFactor, 900 * xFactor, 900 * yFactor, new EntityEvent(handler, entityManager, new Mumó(handler, 400 * xFactor, 300 * yFactor), 1)));
         try {
             loadWorld(path);
         } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException |
@@ -115,20 +115,25 @@ public class World {
         String args = Utils.loadFileAsString(tokens[(width * height) + 4]);
         String[] enemyTokens = args.split("\\s+");
         int staticsNum = Utils.parseInt(enemyTokens[0]);
-        int enemiesNum = Utils.parseInt(enemyTokens[(staticsNum * 3) + 1]);
+        int soundTriggerNum = Utils.parseInt(enemyTokens[(staticsNum * 3) + 1]);
+        int entityTriggerNum = Utils.parseInt(enemyTokens[(staticsNum * 3) + (soundTriggerNum * 5) + 2]);
         for (int i = 1; i < (staticsNum * 3) + 1; i += 3) {
+            System.out.println("static entity created");
             entityManager.addEntity((Entity) Class.forName(enemyTokens[i]).getConstructor(handler.getClass(), float.class, float.class).newInstance(handler, Utils.parseInt(enemyTokens[i + 1]), Utils.parseInt(enemyTokens[i + 2])));
         }
-        for (int i = (staticsNum * 3) + 2; i < (enemiesNum * 3) + (staticsNum * 5) + 1; i += 5) {
-            if(Class.forName(enemyTokens[i + 4]).getClass().equals(String.class))
-            {
-                entityManager.addEntity(GameTriggerBox.class.getConstructor(handler.getClass(), float.class, float.class, int.class, int.class, String.class).newInstance(handler, Utils.parseInt(enemyTokens[i]), Utils.parseInt(enemyTokens[i + 1]), Utils.parseInt(enemyTokens[i + 2]), Utils.parseInt(enemyTokens[i + 3]), enemyTokens[i + 4]));
-            } else {
-                entityManager.addEntity(GameTriggerBox.class.getConstructor(handler.getClass(), float.class, float.class, int.class, int.class, EntityEvent.class, int.class).newInstance(handler, Utils.parseInt(enemyTokens[i]),Utils.parseInt(enemyTokens[i + 1]), Utils.parseInt(enemyTokens[i + 2]), Utils.parseInt(enemyTokens[i + 3]), Class.forName(enemyTokens[i + 4]).getConstructor(handler.getClass(), float.class, float.class).newInstance(handler, enemyTokens[i+5], enemyTokens[i+6]), enemyTokens[i+7]));
-                i += 4;
+        for (int i = (staticsNum * 3) + 2; i < (staticsNum * 3) + (soundTriggerNum * 5) + 1; i += 5) {
+            System.out.println("sound event created");
+            entityManager.addEntity(GameTriggerBox.class.getConstructor(handler.getClass(), float.class, float.class, int.class, int.class, String.class).newInstance(handler, Utils.parseInt(enemyTokens[i]), Utils.parseInt(enemyTokens[i + 1]), Utils.parseInt(enemyTokens[i + 2]), Utils.parseInt(enemyTokens[i + 3]), enemyTokens[i + 4]));
+        }
+         for(int i = (staticsNum * 3) + (soundTriggerNum * 5) + 3; i < (staticsNum * 3) + (soundTriggerNum * 5) + (entityTriggerNum * 8) + 1; i += 8)
+         {
+             System.out.println("entity event created");
+//             System.out.println(enemyTokens[i] + " " + enemyTokens[i + 1] + " " + enemyTokens[i + 2] + " " + enemyTokens[i + 3] + " " + enemyTokens[i + 4] + " " + enemyTokens[i + 5] + " " + enemyTokens[i + 6] + " " + enemyTokens[i + 7] + " " );
+//             System.out.println(enemyTokens[i] + " " + enemyTokens[i + 1] + " " + enemyTokens[i + 2] + " " + enemyTokens[i + 3] + " " + enemyTokens[i + 4]);
+                entityManager.addEntity(GameTriggerBox.class.getConstructor(handler.getClass(), float.class, float.class, int.class, int.class, EntityEvent.class).newInstance(handler, Utils.parseInt(enemyTokens[i]),Utils.parseInt(enemyTokens[i + 1]), Utils.parseInt(enemyTokens[i + 2]), Utils.parseInt(enemyTokens[i + 3]), Class.forName(enemyTokens[i + 4]).getConstructor(handler.getClass(), entityManager.getClass(), Entity.class, int.class).newInstance(handler, entityManager, Class.forName(enemyTokens[i+5]).getConstructor(handler.getClass(), float.class, float.class).newInstance(handler, Utils.parseInt(enemyTokens[i + 6]), Utils.parseInt(enemyTokens[i + 7])), Utils.parseInt(enemyTokens[i+8]))));
             }
         }
-    }
+
 
     public int getWidth()
     {
