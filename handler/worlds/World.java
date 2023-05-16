@@ -9,6 +9,7 @@ import handler.entities.statics.Lamp;
 import handler.entities.statics.GameTriggerBox;
 import handler.events.EntityEvent;
 import handler.events.EventManager;
+import handler.events.WorldEvent;
 import handler.items.ItemManager;
 import handler.tiles.Tile;
 import handler.utils.Utils;
@@ -36,6 +37,7 @@ public class World {
         yFactor = handler.getHeight() / 768;
         entityManager = new EntityManager(handler, new Gabi(handler, 300 * xFactor, 300 * yFactor));
         itemManager = new ItemManager(handler);
+        entityManager.addEntity((new GameTriggerBox(handler, 400, 500 , 400, 500, new WorldEvent(handler, new World(handler, "res/worlds/world2.txt")))));
 //        entityManager.addEntity(new Lamp(handler, 300 * xFactor, 150 * yFactor));
 //        entityManager.addEntity(new Lamp(handler, 2100 * xFactor, 150 * yFactor));
 //        entityManager.addEntity(new Lamp(handler, 1200 * xFactor, 300 * yFactor));

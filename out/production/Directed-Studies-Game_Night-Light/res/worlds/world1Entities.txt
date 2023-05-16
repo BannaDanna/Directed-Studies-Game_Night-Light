@@ -7,3 +7,5 @@ handler.entities.statics.Lamp 1200 300
 900 900 900 900 res/sounds/Glass-Break.wav
 1
 900 900 900 900 handler.events.EntityEvent handler.entities.creatures.Mumó 400 300 1
+1
+400 500 400 500 handler.events.WorldEvent

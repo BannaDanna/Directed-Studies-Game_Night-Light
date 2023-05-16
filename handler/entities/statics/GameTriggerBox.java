@@ -5,6 +5,7 @@ import handler.entities.EntityManager;
 import handler.events.EntityEvent;
 import handler.events.EventManager;
 import handler.events.ItemEvent;
+import handler.events.WorldEvent;
 import handler.items.ItemManager;
 import handler.sounds.SoundManager;
 
@@ -42,6 +43,18 @@ public class GameTriggerBox extends StaticEntity{
     }
 
     public GameTriggerBox(Handler handler, float x, float y, int width, int height, ItemEvent event) {
+        super(handler, x, y, width, height);
+        bounds.x = 0;
+        bounds.y = 0;
+        bounds.width = width;
+        bounds.height = height;
+        killable = false;
+        solid = false;
+        this.event = event;
+//        System.out.println("Item event created");
+    }
+
+    public GameTriggerBox(Handler handler, float x, float y, int width, int height, WorldEvent event) {
         super(handler, x, y, width, height);
         bounds.x = 0;
         bounds.y = 0;
