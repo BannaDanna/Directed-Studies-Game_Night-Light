@@ -73,7 +73,7 @@ public class GameTriggerBox extends StaticEntity{
             if(path != null)
             {
                 System.out.println("Playing Sound");
-                audiomanager.playSound(path);
+                audiomanager.playSound(path, -15.0f);
             } else {
                 System.out.println("Playing Event");
                 event.playEvent();
@@ -84,7 +84,7 @@ public class GameTriggerBox extends StaticEntity{
 
     @Override
     public void render(Graphics g) {
-        g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()), (int) (y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
+//        g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()), (int) (y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
     }
 
     @Override

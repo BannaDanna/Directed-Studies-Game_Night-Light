@@ -11,6 +11,7 @@ import handler.events.EntityEvent;
 import handler.events.EventManager;
 import handler.events.WorldEvent;
 import handler.items.ItemManager;
+import handler.sounds.SoundManager;
 import handler.tiles.Tile;
 import handler.utils.Utils;
 import jdk.jfr.Event;
@@ -30,6 +31,8 @@ public class World {
     private EntityManager entityManager;
 
     private ItemManager itemManager;
+
+    private SoundManager soundManager;
     public World(Handler handler, String path){
         //added in 1366 * 768 res display
         this.handler = handler;
@@ -37,7 +40,8 @@ public class World {
         yFactor = handler.getHeight() / 768;
         entityManager = new EntityManager(handler, new Gabi(handler, 300 * xFactor, 300 * yFactor));
         itemManager = new ItemManager(handler);
-        entityManager.addEntity((new GameTriggerBox(handler, 400, 500 , 400, 500, new WorldEvent(handler, new World(handler, "res/worlds/world2.txt")))));
+        soundManager = new SoundManager();
+//        entityManager.addEntity((new GameTriggerBox(handler, 400, 500 , 400, 500, new WorldEvent(handler, new World(handler, "res/worlds/world2.txt")))));
 //        entityManager.addEntity(new Lamp(handler, 300 * xFactor, 150 * yFactor));
 //        entityManager.addEntity(new Lamp(handler, 2100 * xFactor, 150 * yFactor));
 //        entityManager.addEntity(new Lamp(handler, 1200 * xFactor, 300 * yFactor));
@@ -134,6 +138,7 @@ public class World {
 //             System.out.println(enemyTokens[i] + " " + enemyTokens[i + 1] + " " + enemyTokens[i + 2] + " " + enemyTokens[i + 3] + " " + enemyTokens[i + 4]);
                 entityManager.addEntity(GameTriggerBox.class.getConstructor(handler.getClass(), float.class, float.class, int.class, int.class, EntityEvent.class).newInstance(handler, Utils.parseInt(enemyTokens[i]),Utils.parseInt(enemyTokens[i + 1]), Utils.parseInt(enemyTokens[i + 2]), Utils.parseInt(enemyTokens[i + 3]), Class.forName(enemyTokens[i + 4]).getConstructor(handler.getClass(), entityManager.getClass(), Entity.class, int.class).newInstance(handler, entityManager, Class.forName(enemyTokens[i+5]).getConstructor(handler.getClass(), float.class, float.class).newInstance(handler, Utils.parseInt(enemyTokens[i + 6]), Utils.parseInt(enemyTokens[i + 7])), Utils.parseInt(enemyTokens[i+8]))));
             }
+            soundManager.playBGMusic("res/sounds/8bit-syndrome.wav");
         }
 
 

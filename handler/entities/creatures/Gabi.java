@@ -30,6 +30,8 @@ public class Gabi extends Creature{
     //inventory
     private Inventory inventory;
 
+    private boolean controllerConnected = handler.getControllerManager().connected;
+
 //    pause menu
     private PauseMenu pauseMenu;
 
@@ -321,7 +323,6 @@ public class Gabi extends Creature{
         {
             return;
         }
-
         if(((handler.getKeyManager().run || handler.getControllerManager().lJoystick)&& !tired) && stamina > 0)
         {
             running = true;
@@ -338,6 +339,11 @@ public class Gabi extends Creature{
             animMoveDown.setSpeed(500);
             animMoveRight.setSpeed(500);
         }
+        //normalize diagonal vectors
+        if(((handler.getKeyManager().right || handler.getKeyManager().left) && (handler.getKeyManager().up || handler.getKeyManager().down)) || (Math.abs(handler.getControllerManager().yMovement) > 0.15 && Math.abs(handler.getControllerManager().xMovement) > 0.15))
+        {
+            speed = (float) (Math.sqrt(Math.pow(speed, 2) / 2));
+        }
 
         stamTickTimer += System.currentTimeMillis() - lastStamTick;
         lastStamTick = System.currentTimeMillis();
@@ -345,7 +351,7 @@ public class Gabi extends Creature{
 
         if(handler.getKeyManager().up || handler.getControllerManager().yMovement > 0.15)
         {
-            if(handler.getControllerManager().connected)
+            if(controllerConnected)
             {
                 yMove = -speed * handler.getControllerManager().yMovement;
             } else {
@@ -360,7 +366,7 @@ public class Gabi extends Creature{
         }
         if(handler.getKeyManager().down || handler.getControllerManager().yMovement < -0.15)
         {
-            if(handler.getControllerManager().connected)
+            if(controllerConnected)
             {
                 yMove = speed * -handler.getControllerManager().yMovement;
             } else {
@@ -375,7 +381,7 @@ public class Gabi extends Creature{
         }
         if(handler.getKeyManager().left || handler.getControllerManager().xMovement < -0.15)
         {
-            if(handler.getControllerManager().connected)
+            if(controllerConnected)
             {
                 xMove = speed * handler.getControllerManager().xMovement;
             } else {
@@ -390,7 +396,7 @@ public class Gabi extends Creature{
         }
         if(handler.getKeyManager().right || handler.getControllerManager().xMovement > 0.15)
         {
-            if(handler.getControllerManager().connected)
+            if(controllerConnected)
             {
                 xMove = speed * handler.getControllerManager().xMovement;
             } else {
@@ -403,13 +409,15 @@ public class Gabi extends Creature{
                 delayTimer = 0;
             }
         }
+        System.out.println(speed);
     }
 
     @Override
     public void render(Graphics g) {
         g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),width, height * 2, null);
         g.drawRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()), (int) (y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
-//        g.setColor(Color.red);
+// attack area debug
+        //        g.setColor(Color.red);
 //        Rectangle cb = getCollisionBounds(0,0);
 //        Rectangle ar = new Rectangle();
 //        Rectangle ar2 = new Rectangle();
