@@ -10,6 +10,7 @@ public class Launcher
     {
         Game game = new Game("Night Light", screenSize.width, screenSize.height);
         game.start();
+
     }
 
 

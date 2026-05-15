@@ -30,14 +30,14 @@ public class Assets {
     {
 
         //fonts
-        font28 = FontLoader.loadFont("res/fonts/Pixellettersfull-BnJ5.ttf", 28);
-        font14 = FontLoader.loadFont("res/fonts/Pixellettersfull-BnJ5.ttf", 14);
-        font56 = FontLoader.loadFont("res/fonts/Pixellettersfull-BnJ5.ttf", 56);
+        font28 = FontLoader.loadFont("/fonts/Pixellettersfull-BnJ5.ttf", 28);
+        font14 = FontLoader.loadFont("/fonts/Pixellettersfull-BnJ5.ttf", 14);
+        font56 = FontLoader.loadFont("/fonts/Pixellettersfull-BnJ5.ttf", 56);
 
         SpriteSheet sheet = new SpriteSheet(ImageLoader.LoadImage("/textures/squareSheet.png"));
 
         //inventory
-        inventoryScreen = ImageLoader.LoadImage("/textures/inventoryScreen.png");
+        inventoryScreen = ImageLoader.LoadImage("/textures/inventoryScreen.PNG");
 
         //UI
         btn_start = new BufferedImage[2];

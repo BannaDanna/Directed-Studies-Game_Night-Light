@@ -1,8 +1,7 @@
 package handler.utils;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.net.URL;
 
 public class Utils {
 
@@ -11,7 +10,12 @@ public class Utils {
         StringBuilder builder = new StringBuilder();
 
         try{
-            BufferedReader br = new BufferedReader((new FileReader(path)));
+            System.out.println(path);
+            URL url = Utils.class.getResource(path);
+            System.out.println(url);
+            InputStream is = url.openStream();
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
             String line;
             while((line = br.readLine()) != null)
             {
