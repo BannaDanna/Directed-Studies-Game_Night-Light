@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Directed-Studies-Game_Night-Light:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Directed_Studies_Game_Night_Light_jar</output-path>
+    <root id="archive" name="Directed-Studies-Game_Night-Light.jar">
+      <element id="module-output" name="Directed-Studies-Game_Night-Light" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Jamepad.jar" path-in-jar="/" />
+      <element id="file-copy" path="$PROJECT_DIR$/Jamepad.jar" />
+      <element id="dir-copy" path="$PROJECT_DIR$/res" />
+    </root>
+  </artifact>
+</component>

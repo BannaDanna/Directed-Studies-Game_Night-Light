@@ -14,6 +14,7 @@ import handler.states.State;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.sql.Time;
 
 public class Game implements Runnable{
 
@@ -80,7 +81,7 @@ public class Game implements Runnable{
     private void tick()
     {
         keyManager.tick();
-        controllerManager.tick();
+        // controllerManager.tick();
 
         if(State.getState() != null)
         {

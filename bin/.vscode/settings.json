@@ -1,0 +1,9 @@
+{
+    "java.project.sourcePaths": [
+        ".","res"
+    ],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "Jamepad.jar"
+    ]
+}

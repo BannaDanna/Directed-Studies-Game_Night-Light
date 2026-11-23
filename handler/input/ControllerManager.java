@@ -20,20 +20,6 @@ public class ControllerManager extends com.studiohartman.jamepad.ControllerManag
         actionButtons = new boolean[4];
         joystickPress = new boolean[2];
         dpad = new boolean[4];
-        joystick1[0] = xMovement;
-        joystick1[1] = yMovement;
-        joystick2[0] = xAttack;
-        joystick2[1] = yAttack;
-        actionButtons[0] = square;
-        actionButtons[1] = triangle;
-        actionButtons[2] = circle;
-        actionButtons[3] = X;
-        joystickPress[0] = lJoystick;
-        joystickPress[1] = rJoystick;
-        dpad[0] = dpadUp;
-        dpad[1] = dpadDown;
-        dpad[2] = dpadLeft;
-        dpad[3] = dpadRight;
     }
 
     public void tick()
@@ -64,4 +50,4 @@ public class ControllerManager extends com.studiohartman.jamepad.ControllerManag
         controllers.doVibration(0,0.5f,0.5f, 1000);
     }
 
-    }
+}

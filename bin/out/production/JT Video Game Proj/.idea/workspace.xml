@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="14760efa-feaf-4616-a212-48633de36532" name="Changes" comment="added smoother tanx movement">
+      <change afterPath="$PROJECT_DIR$/handler/input/ControllerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JT Video Game Proj.iml" beforeDir="false" afterPath="$PROJECT_DIR$/JT Video Game Proj.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/handler/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/handler/Handler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler/entities/creatures/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/handler/entities/creatures/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JT Video Game Proj/handler/entities/creatures/Tanx.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JT Video Game Proj/handler/entities/creatures/Tanx.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2GxZYQp7qmxHZPtSUDVnCwoJfaw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Advanced CS/Downloads/Jamepad.jar",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Advanced CS\Documents\Semester-1-Game\res\sounds" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Launcher">
+    <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="handler.Launcher" />
+      <module name="JT Video Game Proj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="handler.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Unnamed" type="Java Scratch" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="handler.Launcher" />
+      <module name="JT Video Game Proj" />
+      <option name="SCRATCH_FILE_URL" value="file://$PROJECT_DIR$/handler/Launcher.java" />
+      <shortenClasspath name="NONE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Launcher" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="14760efa-feaf-4616-a212-48633de36532" name="Changes" comment="" />
+      <created>1667332244188</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1667332244188</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added visual inventory function and drawing text">
+      <created>1668027281449</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1668027281449</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added visual inventory function and drawing text">
+      <created>1668027298860</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1668027298860</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added visual inventory function and drawing text">
+      <created>1668027310275</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1668027310275</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added inv item count">
+      <created>1668459242809</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1668459242809</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added different damage and killable variable">
+      <created>1668548129923</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1668548129923</updated>
+    </task>
+    <task id="LOCAL-00009" summary="added fullscreen">
+      <created>1669064175464</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1669064175464</updated>
+    </task>
+    <task id="LOCAL-00010" summary="removed fullscreen and fixed problems">
+      <created>1669150553309</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1669150553309</updated>
+    </task>
+    <task id="LOCAL-00011" summary="removed fullscreen and fixed problems">
+      <created>1669664926091</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1669664926091</updated>
+    </task>
+    <task id="LOCAL-00012" summary="messed around with fullscreen">
+      <created>1669668884634</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1669668884634</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fixed sprite size">
+      <created>1669757495808</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1669757495808</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Scaling additions">
+      <created>1670534344668</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1670534344668</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Scaling additions">
+      <created>1670534366728</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1670534366728</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Scaling additions">
+      <created>1670880282701</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1670880282701</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Scaling additions">
+      <created>1672866878022</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1672866878022</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Fixed esc button exit">
+      <created>1674161069977</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1674161069977</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Added new player sprite">
+      <created>1674161092380</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1674161092380</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Added new player sprite">
+      <created>1674503952325</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1674503952325</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Added new player attack animation">
+      <created>1674503989972</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1674503989972</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Added new player attack animation">
+      <created>1674504548600</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1674504548600</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Tuned player collision and spawn">
+      <created>1674507325365</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1674507325365</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Added inventory description">
+      <created>1674507342939</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1674507342939</updated>
+    </task>
+    <task id="LOCAL-00025" summary="changed player spawnpoint">
+      <created>1674589990740</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1674589990740</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Modified inventory">
+      <created>1674590242981</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1674590242981</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Modified inventory">
+      <created>1674593503549</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1674593503549</updated>
+    </task>
+    <task id="LOCAL-00028" summary="modified statics bounds">
+      <created>1674593525774</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1674593525774</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Added Sprint button">
+      <created>1674767523387</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1674767523387</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Added moving attack animation arrays">
+      <created>1674767554180</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1674767554180</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Added moving attack animation arrays &amp; sprint">
+      <created>1674767564730</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1674767564730</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Added moving attack animation arrays &amp; sprint">
+      <created>1674767940144</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1674767940144</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Added more moving attack code.">
+      <created>1675718686645</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1675718686645</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Added SoundManager and audio playback">
+      <created>1675891424339</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1675891424339</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Added SoundManager and audio playback">
+      <created>1677014637409</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1677014637409</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Added AudioTriggerBox and player sound triggers">
+      <created>1677185848388</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1677185848388</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Added AudioTriggerBox and player sound triggers">
+      <created>1677186445453</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1677186445453</updated>
+    </task>
+    <task id="LOCAL-00038" summary="fixed checkMovingAttack method">
+      <created>1677532724066</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1677532724066</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Added Tanx and events">
+      <created>1680123590434</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1680123590434</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Added Tanx and events">
+      <created>1680123596683</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1680123596683</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Added Tanx and events">
+      <created>1680123993165</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1680123993165</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Created Player Death">
+      <created>1680298240798</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1680298240798</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Created Non interactable door">
+      <created>1680299023240</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1680299023240</updated>
+    </task>
+    <task id="LOCAL-00044" summary="added HUD and stamina">
+      <created>1680643532180</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1680643532180</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Updated stamina function">
+      <created>1680744968463</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1680744968463</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Added README.md">
+      <created>1680811715875</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1680811715875</updated>
+    </task>
+    <task id="LOCAL-00047" summary="updated README.md">
+      <created>1680813790672</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1680813790672</updated>
+    </task>
+    <task id="LOCAL-00048" summary="added stamina regen delay">
+      <created>1680813812758</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1680813812758</updated>
+    </task>
+    <task id="LOCAL-00049" summary="added reactive stamina bar">
+      <created>1680814908741</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1680814908741</updated>
+    </task>
+    <task id="LOCAL-00050" summary="added reactive stamina bar">
+      <created>1680815058905</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1680815058905</updated>
+    </task>
+    <task id="LOCAL-00051" summary="added reactive stamina bar">
+      <created>1680815390137</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1680815390137</updated>
+    </task>
+    <task id="LOCAL-00052" summary="added smoother tanx movement">
+      <created>1681248171997</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1681248171998</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fixed esc button exit" />
+    <MESSAGE value="Added new player sprite" />
+    <MESSAGE value="Added new player attack animation" />
+    <MESSAGE value="Tuned player collision and spawn" />
+    <MESSAGE value="Added inventory description" />
+    <MESSAGE value="changed player spawnpoint" />
+    <MESSAGE value="Modified inventory" />
+    <MESSAGE value="modified statics bounds" />
+    <MESSAGE value="Added Sprint button" />
+    <MESSAGE value="Added moving attack animation arrays" />
+    <MESSAGE value="Added moving attack animation arrays &amp; sprint" />
+    <MESSAGE value="Added more moving attack code." />
+    <MESSAGE value="Added SoundManager and audio playback" />
+    <MESSAGE value="Added AudioTriggerBox and player sound triggers" />
+    <MESSAGE value="fixed checkMovingAttack method" />
+    <MESSAGE value="Added Tanx and events" />
+    <MESSAGE value="Created Player Death" />
+    <MESSAGE value="Created Non interactable door" />
+    <MESSAGE value="added HUD and stamina" />
+    <MESSAGE value="Updated stamina function" />
+    <MESSAGE value="Added README.md" />
+    <MESSAGE value="updated README.md" />
+    <MESSAGE value="added stamina regen delay" />
+    <MESSAGE value="added reactive stamina bar" />
+    <MESSAGE value="added smoother tanx movement" />
+    <option name="LAST_COMMIT_MESSAGE" value="added smoother tanx movement" />
+  </component>
+</project>

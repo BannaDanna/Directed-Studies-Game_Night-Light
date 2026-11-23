@@ -1,0 +1,9 @@
+<changelist name="removed_fullscreen_and_fixed_problems" date="1669664925512" recycled="false">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/removed_fullscreen_and_fixed_problems/shelved.patch" />
+  <option name="DESCRIPTION" value="removed fullscreen and fixed problems" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/JT Video Game Proj/handler/Game.class" />
+    <option name="AFTER_PATH" value="out/production/JT Video Game Proj/handler/Game.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/removed_fullscreen_and_fixed_problems/Game.class" />
+  </binary>
+</changelist>
